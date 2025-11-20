@@ -39,7 +39,7 @@ module Prism
     snippet "float suffix at end of file", "1e"
     snippet "parameter name that is zero length", "a { |b;"
 
-    snippet "foo", "->}_5=_5,_5,"
+    snippet "foo", "#!00000000r000000000r"
 
     snippet "statements node with multiple heredocs", <<~EOF
       for <<A + <<B
