@@ -9408,6 +9408,7 @@ parser_lex_ignored_newline(pm_parser_t *parser) {
 static inline void
 parser_flush_heredoc_end(pm_parser_t *parser) {
     assert(parser->heredoc_end <= parser->end);
+    printf("FLUSHING!\n");
     parser->next_start = parser->heredoc_end;
     parser->heredoc_end = NULL;
 }
@@ -9776,6 +9777,7 @@ parser_lex(pm_parser_t *parser) {
                     case '\\': {
                         size_t eol_length = match_eol_offset(parser, 1);
                         if (eol_length) {
+                            printf("NEVER REACHED 1!\n");
                             if (parser->heredoc_end) {
                                 parser->current.end = parser->heredoc_end;
                                 parser->heredoc_end = NULL;
@@ -9880,6 +9882,7 @@ parser_lex(pm_parser_t *parser) {
                     }
 
                     if (parser->heredoc_end) {
+                        printf("FLUSH END 1\n");
                         parser_flush_heredoc_end(parser);
                     }
 
@@ -11081,6 +11084,7 @@ parser_lex(pm_parser_t *parser) {
             size_t whitespace;
 
             if (parser->heredoc_end) {
+                printf("FLUSH END 2\n");
                 whitespace = pm_strspn_inline_whitespace(parser->current.end, parser->end - parser->current.end);
                 if (peek_offset(parser, (ptrdiff_t)whitespace) == '\n') {
                     whitespace += 1;
@@ -11093,6 +11097,7 @@ parser_lex(pm_parser_t *parser) {
                 parser->current.end += whitespace;
                 if (peek_offset(parser, -1) == '\n') {
                     // mutates next_start
+                    printf("FLUSH END 3\n");
                     parser_flush_heredoc_end(parser);
                 }
                 LEX(PM_TOKEN_WORDS_SEP);
@@ -11193,6 +11198,7 @@ parser_lex(pm_parser_t *parser) {
                             pm_token_buffer_push_byte(&token_buffer, '\n');
 
                             if (parser->heredoc_end) {
+                                printf("FLUSH END 4\n");
                                 // ... if we are on the same line as a heredoc,
                                 // flush the heredoc and continue parsing after
                                 // heredoc_end.
@@ -11393,6 +11399,7 @@ parser_lex(pm_parser_t *parser) {
                         }
 
                         parser->current.end = breakpoint + 1;
+                        printf("FLUSH END 5\n");
                         parser_flush_heredoc_end(parser);
                         pm_regexp_token_buffer_flush(parser, &token_buffer);
                         LEX(PM_TOKEN_STRING_CONTENT);
@@ -11651,6 +11658,7 @@ parser_lex(pm_parser_t *parser) {
                         }
 
                         parser->current.end = breakpoint + 1;
+                        printf("FLUSH END 7\n");
                         parser_flush_heredoc_end(parser);
                         pm_token_buffer_flush(parser, &token_buffer);
                         LEX(PM_TOKEN_STRING_CONTENT);
@@ -11693,6 +11701,7 @@ parser_lex(pm_parser_t *parser) {
                                     // ... if we are on the same line as a heredoc,
                                     // flush the heredoc and continue parsing after
                                     // heredoc_end.
+                                    printf("FLUSH END 8\n");
                                     parser_flush_heredoc_end(parser);
                                     pm_token_buffer_copy(parser, &token_buffer);
                                     LEX(PM_TOKEN_STRING_CONTENT);
@@ -11763,6 +11772,7 @@ parser_lex(pm_parser_t *parser) {
             if (parser->next_start == NULL) {
                 parser->current.start = parser->current.end;
             } else {
+                printf("NEVER REACHED 2!\n");
                 parser->current.start = parser->next_start;
                 parser->current.end = parser->next_start;
                 parser->heredoc_end = NULL;
@@ -11782,6 +11792,7 @@ parser_lex(pm_parser_t *parser) {
             // terminator) but still continue parsing so that content after the
             // declaration of the heredoc can be parsed.
             if (parser->current.end >= parser->end) {
+                printf("NEVER REACHED 3!\n");
                 pm_parser_err_heredoc_term(parser, heredoc_lex_mode->ident_start, heredoc_lex_mode->ident_length);
                 parser->next_start = lex_mode->as.heredoc.next_start;
                 parser->heredoc_end = parser->current.end;
@@ -11834,6 +11845,7 @@ parser_lex(pm_parser_t *parser) {
                         if (*lex_mode->as.heredoc.next_start == '\\') {
                             parser->next_start = NULL;
                         } else {
+                            printf("NEVER REACHED 4!\n");
                             parser->next_start = lex_mode->as.heredoc.next_start;
                             parser->heredoc_end = parser->current.end;
                         }
@@ -11893,6 +11905,7 @@ parser_lex(pm_parser_t *parser) {
                         PRISM_FALLTHROUGH
                     case '\n': {
                         if (parser->heredoc_end != NULL && (parser->heredoc_end > breakpoint)) {
+                            printf("FLUSH END 9\n");
                             parser_flush_heredoc_end(parser);
                             parser->current.end = breakpoint + 1;
                             pm_token_buffer_flush(parser, &token_buffer);
