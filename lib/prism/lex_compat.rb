@@ -823,6 +823,11 @@ module Prism
       prev_token_state = Translation::Ripper::Lexer::State.cached(Translation::Ripper::EXPR_BEG)
       prev_token_end = bom ? 3 : 0
 
+      # We know the tokens are sorted by location. Instead of calculating start line/column
+      # each time, we can keep track ourselves.
+      sp_line = source.start_line
+      sp_column = 0
+
       tokens.each do |token|
         line, column = token.location
         start_offset = source.line_to_byte_offset(line) + column
@@ -831,10 +836,6 @@ module Prism
 
         if start_offset > prev_token_end
           sp_value = source.slice(prev_token_end, start_offset - prev_token_end)
-          sp_line = source.line(prev_token_end)
-          sp_column = source.column(prev_token_end)
-          # Ripper reports columns on line 1 without counting the BOM
-          sp_column -= 3 if sp_line == 1 && bom
           continuation_index = sp_value.byteindex("\\")
 
           # ripper emits up to three :on_sp tokens when line continuations are used
@@ -874,11 +875,24 @@ module Prism
               prev_token_state
             ])
           end
+          sp_column += sp_value.bytesize
         end
 
         new_tokens << token
         prev_token_state = token.state
         prev_token_end = start_offset + token.value.bytesize
+
+        sp_column += token.value.bytesize
+        offset_index = sp_line - source.start_line + 1
+        while source.offsets[offset_index] && source.offsets[offset_index] <= prev_token_end
+          offset_index += 1
+          sp_line += 1
+          sp_column = 0
+        end
+        # After encountering a newline, add the bytesize after the last newline
+        if (last_newline_byteindex = token.value.byterindex("\n"))
+          sp_column += token.value.bytesize - last_newline_byteindex - 1
+        end
       end
 
       unless data_loc # no trailing :on_sp with __END__ as it is always preceded by :on_nl
