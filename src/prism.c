@@ -15852,6 +15852,8 @@ parse_heredoc_dedent(pm_parser_t *parser, pm_node_list_t *nodes, size_t common_w
         }
 
         if (string_node->unescaped.length == 0) {
+            const uint8_t *cursor = pm_memchr(source, '\\', length, parser->encoding_changed, parser->encoding);
+
             pm_node_destroy(parser, node);
         } else {
             nodes->nodes[write_index++] = node;
