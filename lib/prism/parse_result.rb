@@ -556,7 +556,7 @@ module Prism
   # EmbDocComment objects correspond to comments that are surrounded by =begin
   # and =end.
   class EmbDocComment < Comment
-    # This can only be true for inline comments.
+    # Returns false. This can only be true for inline comments.
     def trailing?
       false
     end
@@ -670,7 +670,7 @@ module Prism
     end
   end
 
-  # This represents the result of a call to ::parse or ::parse_file. It contains
+  # This represents the result of a call to Prism.parse or Prism.parse_file. It contains
   # the requested structure, any comments that were encounters, and any errors
   # that were encountered.
   class Result

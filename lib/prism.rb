@@ -38,7 +38,7 @@ module Prism
   # Raised when requested to parse as the currently running Ruby version but Prism has no support for it.
   class CurrentVersionError < ArgumentError
     # Initialize a new exception for the given ruby version string.
-    def initialize(version)
+    def initialize(version) # :nodoc:
       message = +"invalid version: Requested to parse as `version: 'current'`; "
       segments =
         if version.match?(/\A\d+\.\d+.\d+\z/)
