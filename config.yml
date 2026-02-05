@@ -1851,6 +1851,7 @@ nodes:
     fields:
       - name: locals
         type: constant[]
+        comment: xxx
       - name: class_keyword_loc
         type: location
         comment: |
@@ -1860,6 +1861,7 @@ nodes:
               ^^^^^
       - name: constant_path
         type: node
+        comment: xxx
         kind:
           - ConstantReadNode
           - ConstantPathNode
@@ -1948,15 +1950,20 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: binary_operator
         type: constant
+        comment: xxx
     comment: |
       Represents assigning to a class variable using an operator that isn't `=`.
 
@@ -1966,12 +1973,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator for assignment to a class variable.
@@ -1997,6 +2008,7 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents writing to a class variable in a context that doesn't have an explicit value.
 
@@ -2046,12 +2058,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `&&=` operator for assignment to a constant.
@@ -2062,15 +2078,20 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: binary_operator
         type: constant
+        comment: xxx
     comment: |
       Represents assigning to a constant using an operator that isn't `=`.
 
@@ -2080,12 +2101,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator for assignment to a constant.
@@ -2096,11 +2121,14 @@ nodes:
     fields:
       - name: target
         type: node
+        comment: xxx
         kind: ConstantPathNode
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `&&=` operator for assignment to a constant path.
@@ -2155,14 +2183,18 @@ nodes:
     fields:
       - name: target
         type: node
+        comment: xxx
         kind: ConstantPathNode
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: binary_operator
         type: constant
+        comment: xxx
     comment: |
       Represents assigning to a constant path using an operator that isn't `=`.
 
@@ -2172,11 +2204,14 @@ nodes:
     fields:
       - name: target
         type: node
+        comment: xxx
         kind: ConstantPathNode
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator for assignment to a constant path.
@@ -2187,13 +2222,17 @@ nodes:
     fields:
       - name: parent
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: name
         type: constant?
+        comment: xxx
       - name: delimiter_loc
         type: location
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
     comment: |
       Represents writing to a constant path in a context that doesn't have an explicit value.
 
@@ -2257,6 +2296,7 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents writing to a constant in a context that doesn't have an explicit value.
 
@@ -2306,33 +2346,45 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: receiver
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: parameters
         type: node?
+        comment: xxx
         kind: ParametersNode
       - name: body
         type: node?
+        comment: xxx
         kind:
           - StatementsNode
           - BeginNode
       - name: locals
         type: constant[]
+        comment: xxx
       - name: def_keyword_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location?
+        comment: xxx
       - name: lparen_loc
         type: location?
+        comment: xxx
       - name: rparen_loc
         type: location?
+        comment: xxx
       - name: equal_loc
         type: location?
+        comment: xxx
       - name: end_keyword_loc
         type: location?
+        comment: xxx
     comment: |
       Represents a method definition.
 
@@ -2343,13 +2395,17 @@ nodes:
     fields:
       - name: lparen_loc
         type: location?
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: Node # More than non-void expression as defined?(return) is allowed, yet defined?(BEGIN{}) is SyntaxError
       - name: rparen_loc
         type: location?
+        comment: xxx
       - name: keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `defined?` keyword.
 
@@ -2359,11 +2415,14 @@ nodes:
     fields:
       - name: else_keyword_loc
         type: location
+        comment: xxx
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: end_keyword_loc
         type: location?
+        comment: xxx
     comment: |
       Represents an `else` clause in a `case`, `if`, or `unless` statement.
 
@@ -2373,11 +2432,14 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: closing_loc
         type: location
+        comment: xxx
     comment: |
       Represents an interpolated set of statements.
 
@@ -2387,8 +2449,10 @@ nodes:
     fields:
       - name: operator_loc
         type: location
+        comment: xxx
       - name: variable
         type: node
+        comment: xxx
         kind:
           - InstanceVariableReadNode
           - ClassVariableReadNode
@@ -2404,11 +2468,14 @@ nodes:
     fields:
       - name: ensure_keyword_loc
         type: location
+        comment: xxx
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: end_keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents an `ensure` clause in a `begin` statement.
 
@@ -2510,12 +2577,15 @@ nodes:
     fields:
       - name: left
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: right
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: operator_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `..` or `...` operators to create flip flops.
 
@@ -2640,12 +2710,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `&&=` operator for assignment to a global variable.
@@ -2656,15 +2730,20 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: binary_operator
         type: constant
+        comment: xxx
     comment: |
       Represents assigning to a global variable using an operator that isn't `=`.
 
@@ -2674,12 +2753,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator for assignment to a global variable.
@@ -2705,6 +2788,7 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents writing to a global variable in a context that doesn't have an explicit value.
 
@@ -2950,6 +3034,7 @@ nodes:
     fields:
       - name: numeric
         type: node
+        comment: xxx
         kind:
           - FloatNode
           - IntegerNode
@@ -2963,6 +3048,7 @@ nodes:
     fields:
       - name: value
         type: node
+        comment: xxx
         kind:
           - LocalVariableReadNode
           - CallNode
@@ -2998,14 +3084,18 @@ nodes:
     fields:
       - name: pattern
         type: node
+        comment: xxx
         kind: pattern expression
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: in_loc
         type: location
+        comment: xxx
       - name: then_loc
         type: location?
+        comment: xxx
     comment: |
       Represents the use of the `in` keyword in a case statement.
 
@@ -3016,23 +3106,31 @@ nodes:
     fields:
       - name: receiver
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: call_operator_loc
         type: location?
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: closing_loc
         type: location
+        comment: xxx
       - name: block
         type: node?
+        comment: xxx
         kind: BlockArgumentNode # foo[&b] &&= value, only valid on Ruby < 3.4
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `&&=` operator on a call to the `[]` method.
@@ -3044,25 +3142,34 @@ nodes:
     fields:
       - name: receiver
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: call_operator_loc
         type: location?
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: closing_loc
         type: location
+        comment: xxx
       - name: block
         type: node?
+        comment: xxx
         kind: BlockArgumentNode # foo[&b] += value, only valid on Ruby < 3.4
       - name: binary_operator
         type: constant
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of an assignment operator on a call to `[]`.
@@ -3074,23 +3181,31 @@ nodes:
     fields:
       - name: receiver
         type: node?
+        comment: xxx
         kind: non-void expression
       - name: call_operator_loc
         type: location?
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: closing_loc
         type: location
+        comment: xxx
       - name: block
         type: node?
+        comment: xxx
         kind: BlockArgumentNode # foo[&b] ||= value, only valid on Ruby < 3.4
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator on a call to `[]`.
@@ -3102,16 +3217,21 @@ nodes:
     fields:
       - name: receiver
         type: node
+        comment: xxx
         kind: non-void expression
       - name: opening_loc
         type: location
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: closing_loc
         type: location
+        comment: xxx
       - name: block
         type: node?
+        comment: xxx
         kind: BlockArgumentNode # foo[&b], = 1, only valid on Ruby < 3.4
     comment: |
       Represents assigning to an index.
@@ -3130,12 +3250,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `&&=` operator for assignment to an instance variable.
@@ -3146,15 +3270,20 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: binary_operator
         type: constant
+        comment: xxx
     comment: |
       Represents assigning to an instance variable using an operator that isn't `=`.
 
@@ -3164,12 +3293,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the `||=` operator for assignment to an instance variable.
@@ -3195,6 +3328,7 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents writing to an instance variable in a context that doesn't have an explicit value.
 
@@ -3256,14 +3390,17 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: parts
         type: node[]
+        comment: xxx
         kind:
           - StringNode
           - EmbeddedStatementsNode
           - EmbeddedVariableNode
       - name: closing_loc
         type: location
+        comment: xxx
     newline: parts
     comment: |
       Represents a regular expression literal that contains interpolation that is being used in the predicate of a conditional to implicitly match against the last line read by an IO object.
@@ -3275,14 +3412,17 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: parts
         type: node[]
+        comment: xxx
         kind:
           - StringNode
           - EmbeddedStatementsNode
           - EmbeddedVariableNode
       - name: closing_loc
         type: location
+        comment: xxx
     newline: parts
     comment: |
       Represents a regular expression literal that contains interpolation.
@@ -3294,8 +3434,10 @@ nodes:
     fields:
       - name: opening_loc
         type: location?
+        comment: xxx
       - name: parts
         type: node[]
+        comment: xxx
         kind:
           - StringNode
           - EmbeddedStatementsNode
@@ -3307,6 +3449,7 @@ nodes:
           - on error: InterpolatedSymbolNode
       - name: closing_loc
         type: location?
+        comment: xxx
     newline: parts
     comment: |
       Represents a string literal that contains interpolation.
@@ -3317,14 +3460,17 @@ nodes:
     fields:
       - name: opening_loc
         type: location?
+        comment: xxx
       - name: parts
         type: node[]
+        comment: xxx
         kind:
           - StringNode
           - EmbeddedStatementsNode
           - EmbeddedVariableNode
       - name: closing_loc
         type: location?
+        comment: xxx
     newline: parts
     comment: |
       Represents a symbol literal that contains interpolation.
@@ -3335,14 +3481,17 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: parts
         type: node[]
+        comment: xxx
         kind:
           - StringNode
           - EmbeddedStatementsNode
           - EmbeddedVariableNode
       - name: closing_loc
         type: location
+        comment: xxx
     newline: parts
     comment: |
       Represents an xstring literal that contains interpolation.
@@ -3366,6 +3515,7 @@ nodes:
     fields:
       - name: elements
         type: node[]
+        comment: xxx
         kind:
           - AssocNode
           - AssocSplatNode
@@ -3379,10 +3529,13 @@ nodes:
     fields:
       - name: name
         type: constant?
+        comment: xxx
       - name: name_loc
         type: location?
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
     comment: |
       Represents a keyword rest parameter to a method, block, or lambda definition.
 
@@ -3393,20 +3546,26 @@ nodes:
     fields:
       - name: locals
         type: constant[]
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
       - name: parameters
         type: node?
+        comment: xxx
         kind:
           - BlockParametersNode
           - NumberedParametersNode
           - ItParametersNode
       - name: body
         type: node?
+        comment: xxx
         kind:
           - StatementsNode
           - BeginNode
@@ -3419,15 +3578,20 @@ nodes:
     fields:
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: name
         type: constant
+        comment: xxx
       - name: depth
         type: uint32
+        comment: xxx
     comment: |
       Represents the use of the `&&=` operator for assignment to a local variable.
 
@@ -3437,17 +3601,23 @@ nodes:
     fields:
       - name: name_loc
         type: location
+        comment: xxx
       - name: binary_operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: name
         type: constant
+        comment: xxx
       - name: binary_operator
         type: constant
+        comment: xxx
       - name: depth
         type: uint32
+        comment: xxx
     comment: |
       Represents assigning to a local variable using an operator that isn't `=`.
 
@@ -3457,15 +3627,20 @@ nodes:
     fields:
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: name
         type: constant
+        comment: xxx
       - name: depth
         type: uint32
+        comment: xxx
     comment: |
       Represents the use of the `||=` operator for assignment to a local variable.
 
@@ -3505,8 +3680,10 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: depth
         type: uint32
+        comment: xxx
     comment: |
       Represents writing to a local variable in a context that doesn't have an explicit value.
 
@@ -3574,12 +3751,16 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: content_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
       - name: unescaped
         type: string
+        comment: xxx
     comment: |
       Represents a regular expression literal used in the predicate of a conditional to implicitly match against the last line read by an IO object.
 
@@ -3589,12 +3770,15 @@ nodes:
     fields:
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
       - name: pattern
         type: node
+        comment: xxx
         kind: pattern expression
       - name: operator_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the modifier `in` operator.
 
@@ -3673,9 +3857,11 @@ nodes:
     fields:
       - name: call
         type: node
+        comment: xxx
         kind: CallNode
       - name: targets
         type: node[]
+        comment: xxx
         kind: LocalVariableTargetNode
     comment: |
       Represents writing local variables using a regular expression match with named capture groups.
@@ -3689,23 +3875,29 @@ nodes:
     fields:
       - name: locals
         type: constant[]
+        comment: xxx
       - name: module_keyword_loc
         type: location
+        comment: xxx
       - name: constant_path
         type: node
+        comment: xxx
         kind:
           - ConstantReadNode
           - ConstantPathNode
           - on error: MissingNode # module Parent module end
       - name: body
         type: node?
+        comment: xxx
         kind:
           - StatementsNode
           - BeginNode
       - name: end_keyword_loc
         type: location
+        comment: xxx
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents a module declaration involving the `module` keyword.
 
@@ -3905,9 +4097,11 @@ nodes:
     fields:
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `next` keyword.
 
@@ -3923,8 +4117,10 @@ nodes:
     fields:
       - name: operator_loc
         type: location
+        comment: xxx
       - name: keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of `**nil` inside method arguments.
 
@@ -3935,6 +4131,7 @@ nodes:
     fields:
       - name: maximum
         type: uint8
+        comment: xxx
     comment: |
       Represents an implicit set of parameters through the use of numbered parameters within a block or lambda.
 
@@ -3962,10 +4159,13 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents an optional keyword parameter to a method, block, or lambda definition.
@@ -3978,12 +4178,16 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: value
         type: node
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents an optional parameter to a method, block, or lambda definition.
@@ -4031,19 +4235,23 @@ nodes:
     fields:
       - name: requireds
         type: node[]
+        comment: xxx
         kind:
           - RequiredParameterNode
           - MultiTargetNode
       - name: optionals
         type: node[]
+        comment: xxx
         kind: OptionalParameterNode
       - name: rest
         type: node?
+        comment: xxx
         kind:
           - RestParameterNode
           - ImplicitRestNode # Only in block parameters
       - name: posts
         type: node[]
+        comment: xxx
         kind:
           - RequiredParameterNode
           - MultiTargetNode
@@ -4054,17 +4262,20 @@ nodes:
           - on error: ForwardingParameterNode
       - name: keywords
         type: node[]
+        comment: xxx
         kind:
           - RequiredKeywordParameterNode
           - OptionalKeywordParameterNode
       - name: keyword_rest
         type: node?
+        comment: xxx
         kind:
           - KeywordRestParameterNode
           - ForwardingParameterNode
           - NoKeywordsParameterNode
       - name: block
         type: node?
+        comment: xxx
         kind: BlockParameterNode
     comment: |
       Represents the list of parameters on a method, block, or lambda definition.
@@ -4077,11 +4288,14 @@ nodes:
     fields:
       - name: body
         type: node?
+        comment: xxx
         kind: non-void expression # Usually a StatementsNode but not always e.g. `1 in (..10)`
       - name: opening_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
     newline: false
     comment: |
       Represents a parenthesized expression
@@ -4158,13 +4372,17 @@ nodes:
     fields:
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `END` keyword.
 
@@ -4174,13 +4392,17 @@ nodes:
     fields:
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: opening_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `BEGIN` keyword.
 
@@ -4190,8 +4412,10 @@ nodes:
     fields:
       - name: locals
         type: constant[]
+        comment: xxx
       - name: statements
         type: node
+        comment: xxx
         kind: StatementsNode
     comment: The top level node of any parse tree.
   - name: RangeNode
@@ -4263,12 +4487,16 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: content_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
       - name: unescaped
         type: string
+        comment: xxx
     comment: |
       Represents a regular expression literal with no interpolation.
 
@@ -4279,8 +4507,10 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
       - name: name_loc
         type: location
+        comment: xxx
     comment: |
       Represents a required keyword parameter to a method, block, or lambda definition.
 
@@ -4292,6 +4522,7 @@ nodes:
     fields:
       - name: name
         type: constant
+        comment: xxx
     comment: |
       Represents a required parameter to a method, block, or lambda definition.
 
@@ -4302,11 +4533,14 @@ nodes:
     fields:
       - name: expression
         type: node
+        comment: xxx
         kind: Node
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: rescue_expression
         type: node
+        comment: xxx
         kind: Node
     newline: expression
     comment: |
@@ -4318,13 +4552,17 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: exceptions
         type: node[]
+        comment: xxx
         kind: non-void expression
       - name: operator_loc
         type: location?
+        comment: xxx
       - name: reference
         type: node?
+        comment: xxx
         kind:
           - LocalVariableTargetNode
           - InstanceVariableTargetNode
@@ -4339,11 +4577,14 @@ nodes:
           - on error: MissingNode # begin; rescue =>; end
       - name: then_keyword_loc
         type: location?
+        comment: xxx
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
       - name: subsequent
         type: node?
+        comment: xxx
         kind: RescueNode
     comment: |
       Represents a rescue statement.
@@ -4360,10 +4601,13 @@ nodes:
     fields:
       - name: name
         type: constant?
+        comment: xxx
       - name: name_loc
         type: location?
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
     comment: |
       Represents a rest parameter to a method, block, or lambda definition.
 
@@ -4380,8 +4624,10 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
     comment: |
       Represents the use of the `return` keyword.
@@ -4419,20 +4665,26 @@ nodes:
     fields:
       - name: locals
         type: constant[]
+        comment: xxx
       - name: class_keyword_loc
         type: location
+        comment: xxx
       - name: operator_loc
         type: location
+        comment: xxx
       - name: expression
         type: node
+        comment: xxx
         kind: non-void expression
       - name: body
         type: node?
+        comment: xxx
         kind:
           - StatementsNode
           - BeginNode
       - name: end_keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents a singleton class declaration involving the `class` keyword.
 
@@ -4465,8 +4717,10 @@ nodes:
     fields:
       - name: operator_loc
         type: location
+        comment: xxx
       - name: expression
         type: node?
+        comment: xxx
         kind: non-void expression
     comment: |
       Represents the use of the splat operator.
@@ -4477,6 +4731,7 @@ nodes:
     fields:
       - name: body
         type: node[]
+        comment: xxx
         kind: Node
     comment: |
       Represents a set of statements contained within some scope.
@@ -4488,12 +4743,16 @@ nodes:
     fields:
       - name: opening_loc
         type: location?
+        comment: xxx
       - name: content_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location?
+        comment: xxx
       - name: unescaped
         type: string
+        comment: xxx
     comment: |
       Represents a string literal, a string contained within a `%w` list, or plain string content within an interpolated string.
 
@@ -4509,16 +4768,20 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: lparen_loc
         type: location?
+        comment: xxx
       - name: arguments
         type: node?
         kind: ArgumentsNode
         comment: "Can be only `nil` when there are empty parentheses, like `super()`."
       - name: rparen_loc
         type: location?
+        comment: xxx
       - name: block
         type: node?
+        comment: xxx
         kind:
           - BlockNode
           - BlockArgumentNode
@@ -4537,12 +4800,16 @@ nodes:
     fields:
       - name: opening_loc
         type: location?
+        comment: xxx
       - name: value_loc
         type: location?
+        comment: xxx
       - name: closing_loc
         type: location?
+        comment: xxx
       - name: unescaped
         type: string
+        comment: xxx
     comment: |
       Represents a symbol literal or a symbol contained within a `%i` list.
 
@@ -4561,11 +4828,13 @@ nodes:
     fields:
       - name: names
         type: node[]
+        comment: xxx
         kind:
           - SymbolNode
           - InterpolatedSymbolNode
       - name: keyword_loc
         type: location
+        comment: xxx
     comment: |
       Represents the use of the `undef` keyword.
 
@@ -4639,15 +4908,20 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: do_keyword_loc
         type: location?
+        comment: xxx
       - name: closing_loc
         type: location?
+        comment: xxx
       - name: predicate
         type: node
+        comment: xxx
         kind: non-void expression
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
     newline: predicate
     comment: |
@@ -4662,13 +4936,17 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: conditions
         type: node[]
+        comment: xxx
         kind: non-void expression
       - name: then_keyword_loc
         type: location?
+        comment: xxx
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
     comment: |
       Represents the use of the `when` keyword within a case statement.
@@ -4682,15 +4960,20 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: do_keyword_loc
         type: location?
+        comment: xxx
       - name: closing_loc
         type: location?
+        comment: xxx
       - name: predicate
         type: node
+        comment: xxx
         kind: non-void expression
       - name: statements
         type: node?
+        comment: xxx
         kind: StatementsNode
     newline: predicate
     comment: |
@@ -4706,12 +4989,16 @@ nodes:
     fields:
       - name: opening_loc
         type: location
+        comment: xxx
       - name: content_loc
         type: location
+        comment: xxx
       - name: closing_loc
         type: location
+        comment: xxx
       - name: unescaped
         type: string
+        comment: xxx
     comment: |
       Represents an xstring literal with no interpolation.
 
@@ -4721,13 +5008,17 @@ nodes:
     fields:
       - name: keyword_loc
         type: location
+        comment: xxx
       - name: lparen_loc
         type: location?
+        comment: xxx
       - name: arguments
         type: node?
+        comment: xxx
         kind: ArgumentsNode
       - name: rparen_loc
         type: location?
+        comment: xxx
     comment: |
       Represents the use of the `yield` keyword.
 
