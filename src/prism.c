@@ -9853,9 +9853,16 @@ parser_lex(pm_parser_t *parser) {
             // Next, we'll set to start of this token to be the current end.
             parser->current.start = parser->current.end;
 
-            // We'll check if we're at the end of the file. If we are, then we
-            // need to return the EOF token.
+            // We'll check if we're at the end of the file.
             if (parser->current.end >= parser->end) {
+                // If we are, check if are parsing interpolation. If that is the case,
+                // the closing character is missing. We insert it here that is it balanced.
+                if (parser->lex_modes.current->mode == PM_LEX_EMBEXPR) {
+                    pm_parser_err_current(parser, PM_ERR_EMBEXPR_END);
+                    lex_mode_pop(parser);
+                    LEX(PM_TOKEN_EMBEXPR_END);
+                }
+
                 // If we hit EOF, but the EOF came immediately after a newline,
                 // set the start of the token to the newline.  This way any EOF
                 // errors will be reported as happening on that line rather than
