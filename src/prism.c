@@ -9783,6 +9783,12 @@ parser_lex(pm_parser_t *parser) {
     unsigned int semantic_token_seen = parser->semantic_token_seen;
     parser->semantic_token_seen = true;
 
+    // We'll jump to this label when we are about to encounter an EOF.
+    // If we still have lex_modes on the stack, we pop them so that cleanup
+    // can happen. For example, we should still continue parsing after a heredoc
+    // identifier, even if the heredoc body was syntax invalid.
+    switch_lex_mode:
+    
     switch (parser->lex_modes.current->mode) {
         case PM_LEX_DEFAULT:
         case PM_LEX_EMBEXPR:
@@ -9856,6 +9862,14 @@ parser_lex(pm_parser_t *parser) {
             // We'll check if we're at the end of the file. If we are, then we
             // need to return the EOF token.
             if (parser->current.end >= parser->end) {
+                // We may be missing closing tokens. We should pop modes one by one
+                // and to the appropriate cleanup like moving next_start for heredocs.
+                // Only when no mode is remaining will we actually emit the EOF token.
+                if (parser->lex_modes.current->mode != PM_LEX_DEFAULT) {
+                    lex_mode_pop(parser);
+                    goto switch_lex_mode;
+                }
+
                 // If we hit EOF, but the EOF came immediately after a newline,
                 // set the start of the token to the newline.  This way any EOF
                 // errors will be reported as happening on that line rather than
@@ -11153,7 +11167,7 @@ parser_lex(pm_parser_t *parser) {
             // We'll check if we're at the end of the file. If we are, then we
             // need to return the EOF token.
             if (parser->current.end >= parser->end) {
-                LEX(PM_TOKEN_EOF);
+                goto lex_next_token;
             }
 
             // Here we'll get a list of the places where strpbrk should break,
@@ -11330,7 +11344,7 @@ parser_lex(pm_parser_t *parser) {
             // We'll check if we're at the end of the file. If we are, then we
             // need to return the EOF token.
             if (parser->current.end >= parser->end) {
-                LEX(PM_TOKEN_EOF);
+                goto lex_next_token;
             }
 
             // Get a reference to the current mode.
@@ -11578,7 +11592,7 @@ parser_lex(pm_parser_t *parser) {
             // We'll check if we're at the end of the file. If we are, then we need to
             // return the EOF token.
             if (parser->current.end >= parser->end) {
-                LEX(PM_TOKEN_EOF);
+                goto lex_next_token;
             }
 
             // These are the places where we need to split up the content of the
