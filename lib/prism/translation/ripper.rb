@@ -382,7 +382,10 @@ module Prism
         :**
       ]
 
-      private_constant :KEYWORDS, :BINARY_OPERATORS
+      # Indicates the absence of any value, including nil
+      SENTINEL = Object.new
+
+      private_constant :KEYWORDS, :BINARY_OPERATORS, :SENTINEL
 
       # Parses +src+ and create S-exp tree.
       # Returns more readable tree rather than Ripper.sexp_raw.
@@ -497,6 +500,7 @@ module Prism
         @lineno = lineno
         @column = 0
         @result = nil
+        @delayed_string_events = []
       end
 
       ##########################################################################
@@ -510,6 +514,10 @@ module Prism
 
       # Parse the source and return the result.
       def parse
+        result.magic_comments.each do |magic_comment|
+          on_magic_comment(magic_comment.key, magic_comment.value)
+        end
+
         result.comments.each do |comment|
           location = comment.location
           bounds(location)
@@ -539,10 +547,6 @@ module Prism
               offset += line.bytesize
             end
           end
-        end
-
-        result.magic_comments.each do |magic_comment|
-          on_magic_comment(magic_comment.key, magic_comment.value)
         end
 
         unless result.data_loc.nil?
@@ -812,19 +816,22 @@ module Prism
       # Visit a list of elements, like the elements of an array or arguments.
       private def visit_arguments(elements)
         bounds(elements.first.location)
-        elements.inject(on_args_new) do |args, element|
+        args = SENTINEL
+        elements.each do |element|
           arg = visit(element)
-          bounds(element.location)
+          args = on_args_new if args == SENTINEL
 
+          bounds(element.location)
           case element
           when BlockArgumentNode
-            on_args_add_block(args, arg)
+            args = on_args_add_block(args, arg)
           when SplatNode
-            on_args_add_star(args, arg)
+            args = on_args_add_star(args, arg)
           else
-            on_args_add(args, arg)
+            args = on_args_add(args, arg)
           end
         end
+        args
       end
 
       # foo => [bar]
@@ -933,7 +940,7 @@ module Prism
         case node
         when nil
           bounds(location)
-          on_bodystmt(visit_statements_node_body([nil]), nil, nil, nil)
+          on_bodystmt(on_stmts_add(on_stmts_new, on_void_stmt), nil, nil, nil)
         when StatementsNode
           body = [*node.body]
           body.unshift(nil) if void_stmt?(location, body[0].location, allow_newline)
@@ -1165,10 +1172,11 @@ module Prism
             end
 
           if node.name.end_with?("=") && !node.message.end_with?("=") && !node.arguments.nil? && node.block.nil?
-            value = visit_write_value(node.arguments.arguments.first)
-
             bounds(node.location)
-            on_assign(on_field(receiver, call_operator, message), value)
+            on_assign(
+              on_field(receiver, call_operator, message),
+              with_bounds { visit_write_value(node.arguments.arguments.first) }
+            )
           else
             arguments, block, has_ripper_block = visit_call_node_arguments(node.arguments, node.block, trailing_comma?(node.arguments&.location || node.location, node.closing_loc || node.location))
             call =
@@ -1254,12 +1262,12 @@ module Prism
         bounds(node.message_loc)
         message = visit_token(node.message)
 
-        bounds(node.location)
-        target = on_field(receiver, call_operator, message)
-
         bounds(node.binary_operator_loc)
         operator = on_op("#{node.binary_operator}=")
         value = visit_write_value(node.value)
+
+        bounds(node.location)
+        target = on_field(receiver, call_operator, message)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -1276,12 +1284,12 @@ module Prism
         bounds(node.message_loc)
         message = visit_token(node.message)
 
-        bounds(node.location)
-        target = on_field(receiver, call_operator, message)
-
         bounds(node.operator_loc)
         operator = on_op("&&=")
         value = visit_write_value(node.value)
+
+        bounds(node.location)
+        target = on_field(receiver, call_operator, message)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -1298,12 +1306,12 @@ module Prism
         bounds(node.message_loc)
         message = visit_token(node.message)
 
-        bounds(node.location)
-        target = on_field(receiver, call_operator, message)
-
         bounds(node.operator_loc)
         operator = on_op("||=")
         value = visit_write_value(node.value)
+
+        bounds(node.location)
+        target = on_field(receiver, call_operator, message)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -1348,26 +1356,30 @@ module Prism
       # ^^^^^^^^^^^^^^^^^^^^^^^
       def visit_case_node(node)
         predicate = visit(node.predicate)
-        clauses =
-          node.conditions.reverse_each.inject(visit(node.else_clause)) do |current, condition|
-            on_when(*visit(condition), current)
-          end
+        clauses = node.conditions.map { |condition| visit(condition) }
+        else_clause = visit(node.else_clause)
+
+        consequents = clauses.reverse_each.inject(else_clause) do |current, condition|
+          on_when(*condition, current)
+        end
 
         bounds(node.location)
-        on_case(predicate, clauses)
+        on_case(predicate, consequents)
       end
 
       # case foo; in bar; end
       # ^^^^^^^^^^^^^^^^^^^^^
       def visit_case_match_node(node)
         predicate = visit(node.predicate)
-        clauses =
-          node.conditions.reverse_each.inject(visit(node.else_clause)) do |current, condition|
-            on_in(*visit(condition), current)
-          end
+        clauses = node.conditions.map { |condition| visit(condition) }
+        else_clause = visit(node.else_clause)
+
+        consequents = clauses.reverse_each.inject(else_clause) do |current, condition|
+          on_in(*condition, current)
+        end
 
         bounds(node.location)
-        on_case(predicate, clauses)
+        on_case(predicate, consequents)
       end
 
       # class Foo; end
@@ -1567,6 +1579,8 @@ module Prism
           bounds(node.name_loc)
           child = on_const(node.name.to_s)
 
+          yield if block_given?
+
           bounds(node.location)
           on_top_const_field(child)
         else
@@ -1574,6 +1588,8 @@ module Prism
 
           bounds(node.name_loc)
           child = on_const(node.name.to_s)
+
+          yield if block_given?
 
           bounds(node.location)
           on_const_path_field(parent, child)
@@ -1583,11 +1599,13 @@ module Prism
       # Foo::Bar += baz
       # ^^^^^^^^^^^^^^^
       def visit_constant_path_operator_write_node(node)
-        target = visit_constant_path_write_node_target(node.target)
+        value = nil
+        target = visit_constant_path_write_node_target(node.target) do
+          value = visit_write_value(node.value)
+        end
 
         bounds(node.binary_operator_loc)
         operator = on_op("#{node.binary_operator}=")
-        value = visit_write_value(node.value)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -1596,11 +1614,13 @@ module Prism
       # Foo::Bar &&= baz
       # ^^^^^^^^^^^^^^^^
       def visit_constant_path_and_write_node(node)
-        target = visit_constant_path_write_node_target(node.target)
+        value = nil
+        target = visit_constant_path_write_node_target(node.target) do
+          value = visit_write_value(node.value)
+        end
 
         bounds(node.operator_loc)
         operator = on_op("&&=")
-        value = visit_write_value(node.value)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -1609,11 +1629,13 @@ module Prism
       # Foo::Bar ||= baz
       # ^^^^^^^^^^^^^^^^
       def visit_constant_path_or_write_node(node)
-        target = visit_constant_path_write_node_target(node.target)
+        value = nil
+        target = visit_constant_path_write_node_target(node.target) do
+          value = visit_write_value(node.value)
+        end
 
         bounds(node.operator_loc)
         operator = on_op("||=")
-        value = visit_write_value(node.value)
 
         bounds(node.location)
         on_opassign(target, operator, value)
@@ -2267,16 +2289,15 @@ module Prism
       # :"foo #{bar}"
       # ^^^^^^^^^^^^^
       def visit_interpolated_symbol_node(node)
-        with_string_bounds(node) do
+        parts = with_string_bounds(node) do
           bounds(node.parts.first.location)
-          parts =
-            node.parts.inject(on_string_content) do |content, part|
-              on_string_add(content, visit_string_content(part))
-            end
-
-          bounds(node.location)
-          on_dyna_symbol(parts)
+          node.parts.inject(on_string_content) do |content, part|
+            on_string_add(content, visit_string_content(part))
+          end
         end
+
+        bounds(node.location)
+        on_dyna_symbol(parts)
       end
 
       # `foo #{bar}`
@@ -2485,12 +2506,16 @@ module Prism
         on_regexp_beg(node.opening)
 
         bounds(node.content_loc)
-        tstring_content = on_tstring_content(node.content)
 
-        bounds(node.closing_loc)
-        closing = on_regexp_end(node.closing)
-
-        on_regexp_literal(on_regexp_add(on_regexp_new, tstring_content), closing)
+        on_regexp_literal(
+          on_regexp_add(
+            on_regexp_new,
+            on_tstring_content(node.content)
+          ),
+          with_bounds(node.closing_loc) do
+            on_regexp_end(node.closing)
+          end
+        )
       end
 
       # foo in bar
@@ -2823,18 +2848,24 @@ module Prism
         on_regexp_beg(node.opening)
 
         if node.content.empty?
-          bounds(node.closing_loc)
-          closing = on_regexp_end(node.closing)
-
-          on_regexp_literal(on_regexp_new, closing)
+          on_regexp_literal(
+            on_regexp_new,
+            with_bounds(node.closing_loc) do
+              on_regexp_end(node.closing)
+            end
+          )
         else
           bounds(node.content_loc)
-          tstring_content = on_tstring_content(node.content)
 
-          bounds(node.closing_loc)
-          closing = on_regexp_end(node.closing)
-
-          on_regexp_literal(on_regexp_add(on_regexp_new, tstring_content), closing)
+          on_regexp_literal(
+            on_regexp_add(
+              on_regexp_new,
+              on_tstring_content(node.content)
+            ),
+            with_bounds(node.closing_loc) do
+              on_regexp_end(node.closing)
+            end
+          )
         end
       end
 
@@ -2880,26 +2911,29 @@ module Prism
             bounds(node.location)
             length = node.exceptions.length
 
-            node.exceptions.each_with_index.inject(on_args_new) do |mrhs, (exception, index)|
+            mrhs = SENTINEL
+            node.exceptions.each_with_index do |exception, index|
               arg = visit(exception)
+              mrhs = on_args_new if mrhs == SENTINEL
 
               bounds(exception.location)
               mrhs = on_mrhs_new_from_args(mrhs) if index == length - 1
 
               if exception.is_a?(SplatNode)
                 if index == length - 1
-                  on_mrhs_add_star(mrhs, arg)
+                  mrhs = on_mrhs_add_star(mrhs, arg)
                 else
-                  on_args_add_star(mrhs, arg)
+                  mrhs = on_args_add_star(mrhs, arg)
                 end
               else
                 if index == length - 1
-                  on_mrhs_add(mrhs, arg)
+                  mrhs = on_mrhs_add(mrhs, arg)
                 else
-                  on_args_add(mrhs, arg)
+                  mrhs = on_args_add(mrhs, arg)
                 end
               end
             end
+            mrhs
           end
 
         reference = visit(node.reference)
@@ -3022,9 +3056,13 @@ module Prism
       # structure of the prism parse tree, but we manually add them here so that
       # we can mirror Ripper's void stmt.
       private def visit_statements_node_body(body)
-        body.inject(on_stmts_new) do |stmts, stmt|
-          on_stmts_add(stmts, stmt.nil? ? on_void_stmt : visit(stmt))
+        stmts = SENTINEL
+        body.each do |stmt|
+          stmts_add = stmt.nil? ? on_void_stmt : visit(stmt)
+          stmts = on_stmts_new if stmts == SENTINEL
+          stmts = on_stmts_add(stmts, stmts_add)
         end
+        stmts
       end
 
       # "foo"
@@ -3054,6 +3092,7 @@ module Prism
 
       # Responsible for emitting the various string-like begin/end events
       private def with_string_bounds(node)
+        @delayed_string_events << []
         # `foo "bar": baz` doesn't emit the closing location
         assoc = !(opening = node.opening)&.include?(":") && node.closing&.end_with?(":")
 
@@ -3082,6 +3121,9 @@ module Prism
           bounds(node.closing_loc)
           on_tstring_end(node.closing)
         end
+
+        @delayed_string_events.last.each(&:call)
+        @delayed_string_events.pop
 
         result
       end
@@ -3150,14 +3192,16 @@ module Prism
 
           result
         else
+          @delayed_string_events.last << -> do
+            bounds(parts.first.location)
+            on_heredoc_dedent(result, common_whitespace)
+          end
+
           bounds(parts.first.location)
           result =
             parts.inject(base) do |string_content, part|
               yield string_content, visit_string_content(part)
             end
-
-          bounds(parts.first.location)
-          on_heredoc_dedent(result, common_whitespace)
         end
       end
 
@@ -3201,15 +3245,13 @@ module Prism
       # :foo
       # ^^^^
       def visit_symbol_node(node)
-        with_string_bounds(node) do
+        on_dyna_post = SENTINEL
+        result = with_string_bounds(node) do
           if node.value_loc.nil?
-            bounds(node.location)
-            on_dyna_symbol(on_string_content)
+            on_dyna_post = on_string_content
           elsif (opening = node.opening)&.match?(/^%s|['"]:?$/)
             bounds(node.value_loc)
-            content = on_string_add(on_string_content, on_tstring_content(node.value))
-            bounds(node.location)
-            on_dyna_symbol(content)
+            on_dyna_post = on_string_add(on_string_content, on_tstring_content(node.value))
           elsif (closing = node.closing) == ":"
             bounds(node.location)
             on_label("#{node.value}:")
@@ -3221,6 +3263,13 @@ module Prism
             on_symbol_literal(on_symbol(visit_token(node.value)))
           end
         end
+
+        if on_dyna_post != SENTINEL
+          bounds(node.location)
+          result = on_dyna_symbol(on_dyna_post)
+        end
+
+        result
       end
 
       # true
@@ -3352,11 +3401,15 @@ module Prism
             bounds(node.location)
             on_xstring_literal(heredoc)
           else
-            bounds(node.content_loc)
-            content = on_tstring_content(node.content)
-
             bounds(node.location)
-            on_xstring_literal(on_xstring_add(on_xstring_new, content))
+            on_xstring_literal(
+              on_xstring_add(
+                on_xstring_new,
+                with_bounds(node.content_loc) do
+                  on_tstring_content(node.content)
+                end
+              )
+            )
           end
         end
       end
@@ -3463,29 +3516,34 @@ module Prism
           elements = node.elements
           length = elements.length
 
-          bounds(elements.first.location)
-          elements.each_with_index.inject((elements.first.is_a?(SplatNode) && length == 1) ? on_mrhs_new : on_args_new) do |args, (element, index)|
+          args = SENTINEL
+          elements.each_with_index do |element, index|
             arg = visit(element)
+
             bounds(element.location)
+            if args == SENTINEL
+              args = (elements.first.is_a?(SplatNode) && length == 1) ? on_mrhs_new : on_args_new
+            end
 
             if index == length - 1
               if element.is_a?(SplatNode)
                 mrhs = index == 0 ? args : on_mrhs_new_from_args(args)
-                on_mrhs_add_star(mrhs, arg)
+                args = on_mrhs_add_star(mrhs, arg)
               else
-                on_mrhs_add(on_mrhs_new_from_args(args), arg)
+                args = on_mrhs_add(on_mrhs_new_from_args(args), arg)
               end
             else
               case element
               when BlockArgumentNode
-                on_args_add_block(args, arg)
+                args = on_args_add_block(args, arg)
               when SplatNode
-                on_args_add_star(args, arg)
+                args = on_args_add_star(args, arg)
               else
-                on_args_add(args, arg)
+                args = on_args_add(args, arg)
               end
             end
           end
+          args
         else
           visit(node)
         end
@@ -3499,6 +3557,16 @@ module Prism
       def bounds(location)
         @lineno = location.start_line
         @column = location.start_column
+      end
+
+      def with_bounds(location = nil)
+        prev_lineno = @lineno
+        prev_column = @column
+        bounds(location) if location
+        yield
+      ensure
+        @lineno = prev_lineno
+        @column = prev_column
       end
 
       # :startdoc:

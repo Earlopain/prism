@@ -1,0 +1,3 @@
+if /foo/ then end
+
+if /foo #{bar}/ then end

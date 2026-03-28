@@ -89,6 +89,9 @@ module Prism
       "seattlerb/block_call_dot_op2_brace_block.txt",
       "seattlerb/block_command_operation_colon.txt",
       "seattlerb/block_command_operation_dot.txt",
+      "seattlerb/call_args_assoc_quoted.txt",
+      "seattlerb/call_stabby_do_end_with_block.txt",
+      "seattlerb/call_stabby_with_braces_block.txt",
       "seattlerb/case_in.txt",
       "seattlerb/heredoc__backslash_dos_format.txt",
       "seattlerb/heredoc_backslash_nl.txt",
@@ -96,8 +99,6 @@ module Prism
       "seattlerb/heredoc_squiggly_blank_line_plus_interpolation.txt",
       "seattlerb/heredoc_squiggly_empty.txt",
       "seattlerb/masgn_command_call.txt",
-      "seattlerb/messy_op_asgn_lineno.txt",
-      "seattlerb/op_asgn_primary_colon_const_command_call.txt",
       "seattlerb/parse_pattern_076.txt",
       "tilde_heredocs.txt",
       "unparser/corpus/literal/assignment.txt",
@@ -108,11 +109,9 @@ module Prism
       "whitequark/masgn_nested.txt",
       "whitequark/newline_in_hash_argument.txt",
       "whitequark/numparam_ruby_bug_19025.txt",
-      "whitequark/op_asgn_cmd.txt",
       "whitequark/parser_drops_truncated_parts_of_squiggly_heredoc.txt",
       "whitequark/parser_slash_slash_n_escaping_in_literals.txt",
       "whitequark/pattern_matching_nil_pattern.txt",
-      "whitequark/ruby_bug_12402.txt",
       "whitequark/ruby_bug_18878.txt",
       "whitequark/send_block_chain_cmd.txt",
       "whitequark/slash_newline_in_heredocs.txt",
@@ -136,8 +135,87 @@ module Prism
       end
     end
 
+    # Events that are currently not emitted
     UNSUPPORTED_EVENTS = %i[comma ignored_nl kw label_end lbrace lbracket lparen nl op rbrace rbracket rparen semicolon sp words_sep ignored_sp]
     SUPPORTED_EVENTS = Translation::Ripper::EVENTS - UNSUPPORTED_EVENTS
+
+    # Events that are not emitted in the correct order
+    UNSUPPORTED_SORT = %i[xstring_add xstring_literal tstring_content string_literal stmts_add void_stmt stmts_new vcall ident fcall brace_block params string_add bodystmt do_block call aref_field var_ref mlhs_new mlhs_add_star words_add qwords_add qsymbols_add symbols_add word_new string_content args_add_block arg_ambiguous comment embdoc_beg embdoc embdoc_end]
+    SORTED_EVENTS = Translation::Ripper::EVENTS - UNSUPPORTED_SORT
+    SORT_EXCLUDES = {
+      args_add: [
+        "method_calls.txt",
+        "seattlerb/dstr_lex_state.txt",
+      ],
+      args_new: ["seattlerb/dstr_lex_state.txt"],
+      binary: [
+        "seattlerb/parse_line_iter_call_parens.txt",
+        "seattlerb/qsymbols_interp.txt",
+      ],
+      block_var: [
+        "blocks.txt",
+        "seattlerb/parse_line_iter_call_parens.txt",
+        "unparser/corpus/literal/dstr.txt",
+        "unparser/corpus/semantic/block.txt",
+      ],
+      command: [
+        "method_calls.txt",
+        "seattlerb/dstr_lex_state.txt",
+        "seattlerb/parse_line_iter_call_no_parens.txt",
+        "whitequark/parser_bug_272.txt",
+        "whitequark/parser_bug_525.txt",
+      ],
+      const_path_ref: ["unparser/corpus/literal/defs.txt"],
+      dyna_symbol: [
+        "hashes.txt",
+        "method_calls.txt",
+        "seattlerb/bug_hash_interp_array.txt",
+        "seattlerb/quoted_symbol_hash_arg.txt",
+        "seattlerb/quoted_symbol_keys.txt",
+        "whitequark/bug_do_block_in_hash_brace.txt",
+        "whitequark/hash_label_end.txt",
+      ],
+      embexpr_end: ["seattlerb/str_interp_ternary_or_label.txt"],
+      period: [
+        "arithmetic.txt",
+        "command_method_call.txt",
+      ],
+      rest_param: ["whitequark/send_lambda.txt"],
+      var_field: ["blocks.txt"],
+      opassign: ["blocks.txt"],
+      qwords_new: [
+        "seattlerb/TestRubyParserShared.txt",
+        "seattlerb/array_lits_trailing_calls.txt",
+        "seattlerb/qwords_empty.txt",
+        "strings.txt",
+        "whitequark/array_words_empty.txt",
+      ],
+      qsymbols_new: [
+        "seattlerb/TestRubyParserShared.txt",
+        "seattlerb/symbols_empty.txt",
+        "seattlerb/symbols_empty_space.txt",
+        "whitequark/array_symbols_empty.txt",
+      ],
+      words_new: [
+        "seattlerb/TestRubyParserShared.txt",
+        "seattlerb/qWords_space.txt",
+        "seattlerb/words_interp.txt",
+        "strings.txt",
+        "whitequark/array_words_empty.txt",
+        "whitequark/bug_interp_single.txt",
+      ],
+      symbols_new: [
+        "seattlerb/TestRubyParserShared.txt",
+        "seattlerb/qsymbols_empty.txt",
+        "seattlerb/qsymbols_empty_space.txt",
+        "seattlerb/symbol_list.txt",
+        "whitequark/array_symbols_empty.txt",
+      ],
+      symbeg: ["method_calls.txt"],
+      symbol: ["method_calls.txt"],
+      symbol_literal: ["method_calls.txt"],
+    }
+    SORT_EXCLUDES.default = []
 
     module Events
       attr_reader :events
@@ -183,7 +261,18 @@ module Prism
         prism.parse
         # This makes sure that the content is the same. Ordering is not correct for now.
         assert_equal(ripper.events.sort, prism.events.sort)
+        assert_equal(
+          ripper.events.select { |e,| use_for_sorting?(ripper.events, e, fixture.path) },
+          prism.events.select { |e,| use_for_sorting?(prism.events, e, fixture.path) }
+        )
       end
+    end
+
+    def use_for_sorting?(all_events, event, path)
+      return false if SORT_EXCLUDES[event].include?(path)
+      # foo(bar: baz)
+      return false if event == :args_new && all_events.any? { |e,| e == :bare_assoc_hash }
+      SORTED_EVENTS.include?(event)
     end
 
     def test_lexer
