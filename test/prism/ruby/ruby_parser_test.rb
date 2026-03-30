@@ -41,6 +41,7 @@ module Prism
       "heredoc_percent_q_newline_delimiter.txt",
       "heredocs_with_fake_newlines.txt",
       "heredocs_with_ignored_newlines.txt",
+      "match_last_line.txt",
       "method_calls.txt",
       "methods.txt",
       "multi_write.txt",

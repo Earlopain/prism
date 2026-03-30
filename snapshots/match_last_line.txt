@@ -1,0 +1,59 @@
+@ ProgramNode (location: (1,0)-(3,24))
+├── flags: ∅
+├── locals: []
+└── statements:
+    @ StatementsNode (location: (1,0)-(3,24))
+    ├── flags: ∅
+    └── body: (length: 2)
+        ├── @ IfNode (location: (1,0)-(1,17))
+        │   ├── flags: newline
+        │   ├── if_keyword_loc: (1,0)-(1,2) = "if"
+        │   ├── predicate:
+        │   │   @ MatchLastLineNode (location: (1,3)-(1,8))
+        │   │   ├── flags: static_literal, forced_us_ascii_encoding
+        │   │   ├── opening_loc: (1,3)-(1,4) = "/"
+        │   │   ├── content_loc: (1,4)-(1,7) = "foo"
+        │   │   ├── closing_loc: (1,7)-(1,8) = "/"
+        │   │   └── unescaped: "foo"
+        │   ├── then_keyword_loc: (1,9)-(1,13) = "then"
+        │   ├── statements: ∅
+        │   ├── subsequent: ∅
+        │   └── end_keyword_loc: (1,14)-(1,17) = "end"
+        └── @ IfNode (location: (3,0)-(3,24))
+            ├── flags: newline
+            ├── if_keyword_loc: (3,0)-(3,2) = "if"
+            ├── predicate:
+            │   @ InterpolatedMatchLastLineNode (location: (3,3)-(3,15))
+            │   ├── flags: ∅
+            │   ├── opening_loc: (3,3)-(3,4) = "/"
+            │   ├── parts: (length: 2)
+            │   │   ├── @ StringNode (location: (3,4)-(3,8))
+            │   │   │   ├── flags: static_literal, frozen
+            │   │   │   ├── opening_loc: ∅
+            │   │   │   ├── content_loc: (3,4)-(3,8) = "foo "
+            │   │   │   ├── closing_loc: ∅
+            │   │   │   └── unescaped: "foo "
+            │   │   └── @ EmbeddedStatementsNode (location: (3,8)-(3,14))
+            │   │       ├── flags: ∅
+            │   │       ├── opening_loc: (3,8)-(3,10) = "\#{"
+            │   │       ├── statements:
+            │   │       │   @ StatementsNode (location: (3,10)-(3,13))
+            │   │       │   ├── flags: ∅
+            │   │       │   └── body: (length: 1)
+            │   │       │       └── @ CallNode (location: (3,10)-(3,13))
+            │   │       │           ├── flags: variable_call, ignore_visibility
+            │   │       │           ├── receiver: ∅
+            │   │       │           ├── call_operator_loc: ∅
+            │   │       │           ├── name: :bar
+            │   │       │           ├── message_loc: (3,10)-(3,13) = "bar"
+            │   │       │           ├── opening_loc: ∅
+            │   │       │           ├── arguments: ∅
+            │   │       │           ├── closing_loc: ∅
+            │   │       │           ├── equal_loc: ∅
+            │   │       │           └── block: ∅
+            │   │       └── closing_loc: (3,13)-(3,14) = "}"
+            │   └── closing_loc: (3,14)-(3,15) = "/"
+            ├── then_keyword_loc: (3,16)-(3,20) = "then"
+            ├── statements: ∅
+            ├── subsequent: ∅
+            └── end_keyword_loc: (3,21)-(3,24) = "end"
