@@ -137,10 +137,10 @@ module Prism
     end
 
     # Events that are currently not emitted
-    UNSUPPORTED_EVENTS = %i[comma ignored_nl label_end lbrace lbracket lparen nl op rbrace rbracket rparen semicolon sp words_sep ignored_sp]
+    UNSUPPORTED_EVENTS = %i[comma ignored_nl label_end lbrace lbracket lparen nl rbrace rbracket rparen semicolon sp words_sep ignored_sp]
     SUPPORTED_EVENTS = Translation::Ripper::EVENTS - UNSUPPORTED_EVENTS
     # Events that assert against their line/column
-    CHECK_LOCATION_EVENTS = %i[kw]
+    CHECK_LOCATION_EVENTS = %i[kw op]
     IGNORE_FOR_SORT_EVENTS = %i[
       stmts_new stmts_add bodystmt void_stmt
       args_new args_add args_add_star args_add_block arg_paren method_add_arg

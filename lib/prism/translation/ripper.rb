@@ -28,7 +28,6 @@ module Prism
     # - on_lbracket
     # - on_lparen
     # - on_nl
-    # - on_op
     # - on_operator_ambiguous
     # - on_rbrace
     # - on_rbracket
@@ -1133,8 +1132,9 @@ module Prism
             bounds(last_argument.location)
             on_assign(call, value)
           when :-@, :+@, :~
+            bounds(node.message_loc)
+            on_op(node.message)
             receiver = visit(node.receiver)
-
             bounds(node.location)
             on_unary(node.name, receiver)
           when :!
@@ -1157,6 +1157,10 @@ module Prism
             end
           when *BINARY_OPERATORS
             receiver = visit(node.receiver)
+
+            bounds(node.message_loc)
+            on_op(node.message)
+
             value = visit(node.arguments.arguments.first)
 
             bounds(node.location)
@@ -1939,6 +1943,7 @@ module Prism
       #                   ^^^
       def visit_forwarding_arguments_node(node)
         bounds(node.location)
+        on_op("...")
         on_args_forward
       end
 
@@ -1946,6 +1951,7 @@ module Prism
       #         ^^^
       def visit_forwarding_parameter_node(node)
         bounds(node.location)
+        on_op("...")
         on_args_forward
       end
 
@@ -2101,7 +2107,13 @@ module Prism
       def visit_if_node(node)
         if node.then_keyword == "?"
           predicate = visit(node.predicate)
+
+          bounds(node.then_keyword_loc)
+          on_op("?")
           truthy = visit(node.statements.body.first)
+
+          bounds(node.subsequent.else_keyword_loc)
+          on_op(":")
           falsy = visit(node.subsequent.statements.body.first)
 
           bounds(node.location)
@@ -2559,6 +2571,10 @@ module Prism
       def visit_local_variable_write_node(node)
         bounds(node.name_loc)
         target = on_var_field(on_ident(node.name_loc.slice))
+
+        bounds(node.operator_loc)
+        on_op("=")
+
         value = visit_write_value(node.value)
 
         bounds(node.location)
@@ -3186,6 +3202,8 @@ module Prism
       # def foo(*); bar(*); end
       #                 ^
       def visit_splat_node(node)
+        bounds(node.operator_loc)
+        on_op("*")
         visit(node.expression)
       end
 
