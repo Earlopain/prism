@@ -1134,7 +1134,7 @@ module Prism
           on_blockarg(nil)
         else
           bounds(node.name_loc)
-          name = visit_token(node.name.to_s)
+          name = on_ident(node.name.to_s)
 
           bounds(node.location)
           on_blockarg(name)
@@ -1349,7 +1349,7 @@ module Prism
           receiver = visit(node.receiver)
 
           bounds(node.call_operator_loc)
-          call_operator = visit_token(node.call_operator)
+          call_operator = visit_call_operator(node.call_operator)
 
           message =
             if node.message_loc.nil?
@@ -1460,7 +1460,7 @@ module Prism
         receiver = visit(node.receiver)
 
         bounds(node.call_operator_loc)
-        call_operator = visit_token(node.call_operator)
+        call_operator = visit_call_operator(node.call_operator)
 
         bounds(node.message_loc)
         message = visit_token(node.message)
@@ -1482,7 +1482,7 @@ module Prism
         receiver = visit(node.receiver)
 
         bounds(node.call_operator_loc)
-        call_operator = visit_token(node.call_operator)
+        call_operator = visit_call_operator(node.call_operator)
 
         bounds(node.message_loc)
         message = visit_token(node.message)
@@ -1504,7 +1504,7 @@ module Prism
         receiver = visit(node.receiver)
 
         bounds(node.call_operator_loc)
-        call_operator = visit_token(node.call_operator)
+        call_operator = visit_call_operator(node.call_operator)
 
         bounds(node.message_loc)
         message = visit_token(node.message)
@@ -1538,7 +1538,7 @@ module Prism
           receiver = visit(node.receiver)
 
           bounds(node.call_operator_loc)
-          call_operator = visit_token(node.call_operator)
+          call_operator = visit_call_operator(node.call_operator)
 
           bounds(node.message_loc)
           message = visit_token(node.message)
@@ -1919,7 +1919,7 @@ module Prism
         operator =
           if !node.operator_loc.nil?
             bounds(node.operator_loc)
-            visit_token(node.operator)
+            node.operator == "." ? on_period(".") : on_op("::")
           end
 
         bounds(node.name_loc)
@@ -3198,7 +3198,7 @@ module Prism
       #         ^^^^^^^
       def visit_optional_parameter_node(node)
         bounds(node.name_loc)
-        name = visit_token(node.name.to_s)
+        name = on_ident(node.name.to_s)
 
         bounds(node.operator_loc)
         on_op("=")
@@ -3519,7 +3519,7 @@ module Prism
           on_rest_param(nil)
         else
           bounds(node.name_loc)
-          on_rest_param(visit_token(node.name.to_s))
+          on_rest_param(on_ident(node.name.to_s))
         end
       end
 
@@ -4090,6 +4090,11 @@ module Prism
       def void_stmt?(left, right, allow_newline)
         pattern = allow_newline ? /[;\n]/ : /;/
         source.byteslice(left.end_offset...right.start_offset).match?(pattern)
+      end
+
+      # Visit either `.` or `&.` as part of a method call chain.
+      def visit_call_operator(token)
+        token == "." ? on_period(token) : on_op(token)
       end
 
       # Visit the string content of a particular node. This method is used to
