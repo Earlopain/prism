@@ -22,7 +22,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: head
+          ruby-version: ruby
           bundler-cache: true
 
       - name: rake templates
