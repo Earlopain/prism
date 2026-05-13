@@ -30,7 +30,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4
+          ruby-version: ruby
           bundler-cache: true
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@master
@@ -59,7 +59,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4
+          ruby-version: ruby
           bundler-cache: true
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@master
@@ -90,7 +90,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4
+          ruby-version: ruby
           bundler-cache: true
       - name: rake cargo:build
         run: bundle exec rake cargo:build
