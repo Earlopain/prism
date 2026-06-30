@@ -155,6 +155,7 @@ jobs:
       with:
         ruby-version: ruby
         bundler-cache: true
+    - run: gcc --version
     - name: Run Ruby tests
       run: bundle exec rake
       env:

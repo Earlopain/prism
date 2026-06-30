@@ -12,7 +12,8 @@
  */
 typedef enum {
     /* These are the error diagnostics. */
-    <%- errors.each do |error| -%>
+    PM_ERR_ALIAS_ARGUMENT = 0,
+    <%- errors.drop(1).each do |error| -%>
     PM_ERR_<%= error.name %>,
     <%- end -%>
 
