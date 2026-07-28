@@ -39,32 +39,47 @@ namespace :test do
   end
 end
 
-# If we're on JRuby or TruffleRuby, we don't want to bother to configure
-# memcheck or debug tests.
+# If we're on JRuby or TruffleRuby, we don't want to bother to configure valgrind
 return if RUBY_ENGINE == "jruby" || RUBY_ENGINE == "truffleruby"
 
-# Don't bother trying to configure memcheck on old versions of Ruby.
-return if RUBY_VERSION < "3.0"
+# Needs good support for RUBY_FREE_AT_EXIT
+return if RUBY_VERSION < "3.4"
 
-# Only attempt to configure memcheck if the gem is installed.
-begin
-  require "ruby_memcheck"
-rescue LoadError
-  return
+require "rake"
+config = lambda do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.test_files = FileList["test/**/*_test.rb"]
 end
 
 namespace :test do
-  RubyMemcheck.config(use_only_ruby_free_at_exit: false)
-  RubyMemcheck::TestTask.new(valgrind_internal: :compile, &config)
-
-  # Hide test:valgrind_internal from rake -T
-  Rake::Task["test:valgrind_internal"].clear_comments
-
-  desc "Run tests under valgrind"
-  task :valgrind do
+  task :valgrind_internal do
     # Recompile with PRISM_BUILD_DEBUG=1
     ENV["PRISM_BUILD_DEBUG"] = "1"
-    Rake::Task["clobber"].invoke
-    Rake::Task["test:valgrind_internal"].invoke
+    # Rake::Task["clobber"].invoke
+    # Rake::Task["compile"].invoke
   end
+
+  class ValgrindTestTask < Rake::TestTask
+    XML_PATH = File.expand_path("#{__dir__}/../tmp/valgrind-%p.xml")
+    SUPPRESSIONS_PATH = File.expand_path("#{__dir__}/../supressions/ruby-dev.supp")
+
+    def ruby(*args, **options, &block)
+      command = [
+        "valgrind",
+        "--num-callers=50",
+        "--error-limit=no",
+        "--trace-children=yes",
+        "--undef-value-errors=no",
+        "--leak-check=full",
+        "--show-leak-kinds=definite",
+        # "--suppressions", SUPPRESSIONS_PATH,
+        RUBY,
+        args.join(" "),
+      ].join(" ")
+      binding.irb
+      sh({ **ENV, "RUBY_FREE_AT_EXIT" => "1" }, command, **options, &block)
+    end
+  end
+  ValgrindTestTask.new(valgrind: :valgrind_internal, &config)
 end

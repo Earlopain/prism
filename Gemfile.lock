@@ -27,24 +27,6 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jar-dependencies (0.5.5)
-    mini_portile2 (2.8.9)
-    nokogiri (1.19.1)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
-    nokogiri (1.19.1-aarch64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.19.1-aarch64-linux-musl)
-      racc (~> 1.4)
-    nokogiri (1.19.1-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.19.1-java)
-      racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.19.1-x86_64-linux-musl)
-      racc (~> 1.4)
     onigmo (0.1.0)
     parser (3.3.10.2)
       ast (~> 2.4.1)
@@ -71,8 +53,6 @@ GEM
       tsort
     reline (0.6.3)
       io-console (~> 0.5)
-    ruby_memcheck (3.0.1)
-      nokogiri
     ruby_parser (3.22.0)
       racc (~> 1.5)
       sexp_processor (~> 4.16)
@@ -103,9 +83,8 @@ DEPENDENCIES
   rake-compiler
   rake-compiler-dock (~> 1.12.0)
   rdoc
-  ruby_memcheck
   ruby_parser
   test-unit
 
 BUNDLED WITH
-  4.0.4
+  4.0.17
