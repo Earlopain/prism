@@ -488,5 +488,53 @@ module Prism
       end_keyword_loc
     end
   end
+
+  class MatchLastLineNode < Node
+    #: () -> String
+    def content # :nodoc
+      value
+    end
+
+    #: () -> Location
+    def content_loc # :nodoc
+      value_loc
+    end
+  end
+
+  class RegularExpressionNode < Node
+    #: () -> String
+    def content # :nodoc
+      value
+    end
+
+    #: () -> Location
+    def content_loc # :nodoc
+      value_loc
+    end
+  end
+
+  class StringNode < Node
+    #: () -> String
+    def content # :nodoc
+      value
+    end
+
+    #: () -> Location
+    def content_loc # :nodoc
+      value_loc
+    end
+  end
+
+  class XStringNode < Node
+    #: () -> String
+    def content # :nodoc
+      value
+    end
+
+    #: () -> Location
+    def content_loc # :nodoc
+      value_loc
+    end
+  end
   # :startdoc:
 end

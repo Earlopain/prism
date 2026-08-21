@@ -32,7 +32,7 @@ typedef enum {
 
     /*
      * An unknown base, in which case pm_integer_parse will derive it based on
-     * the content of the string. This is less efficient and does more
+     * the value of the string. This is less efficient and does more
      * comparisons, so if callers know the base ahead of time, they should use
      * that instead.
      */
