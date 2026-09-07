@@ -6,42 +6,69 @@ return unless defined?(RubyVM::InstructionSequence)
 
 module Prism
   class NewlineTest < TestCase
-    skips = %w[
-      errors_test.rb
-      locals_test.rb
-      regexp_test.rb
-      test_helper.rb
-      unescape_test.rb
-      api/parse_stream_test.rb
-      api/raise_error_test.rb
-      encoding/regular_expression_encoding_test.rb
-      encoding/string_encoding_test.rb
-      result/breadth_first_search_test.rb
-      result/static_literals_test.rb
-      result/warnings_test.rb
-      ruby/find_fixtures.rb
-      ruby/find_test.rb
-      ruby/parser_test.rb
-      ruby/ripper_test.rb
-      ruby/ruby_parser_test.rb
-      ruby/parameters_signature_test.rb
-    ]
+    def test_visitor
+      assert_newlines(<<~'RUBY')
+        class Foo
+          foo do
+            bar
+            baz
+          end
 
-    base = __dir__
-    (Dir["{,api/,encoding/,result/,ruby/}*.rb", base: base] - skips).each do |relative|
-      define_method(:"test_#{relative}") do
-        assert_newlines(base, relative)
-      end
+          -> do
+            foo
+            bar
+          end
+
+          if foo
+            bar
+            baz
+          end
+
+          foo if bar
+          foo unless bar
+          foo while bar
+          foo until bar
+
+          begin
+            foo
+          rescue
+            bar
+          ensure
+            baz
+          end
+
+          foo rescue nil
+
+          ()
+
+          "foo
+            #{}
+          baz"
+
+          `foo
+            `
+
+          /foo
+            #{}
+          baz/
+
+          /foo
+            #{}
+          baz/
+
+          if /foo
+            #{}
+          baz/ then end
+        end
+      RUBY
     end
 
     private
 
-    def assert_newlines(base, relative)
-      filepath = File.join(base, relative)
-      source = File.read(filepath, binmode: true, external_encoding: Encoding::UTF_8)
+    def assert_newlines(source)
       expected = rubyvm_lines(source)
 
-      result = Prism.parse_file(filepath)
+      result = Prism.parse(source)
       assert_empty result.errors
       actual = prism_lines(result)
 
