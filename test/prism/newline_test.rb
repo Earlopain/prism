@@ -2,7 +2,7 @@
 
 require_relative "test_helper"
 
-return unless defined?(RubyVM::InstructionSequence)
+return if !defined?(RubyVM::InstructionSequence) || RUBY_VERSION < "3.4.0"
 
 module Prism
   class NewlineTest < TestCase
@@ -76,7 +76,7 @@ module Prism
     end
 
     def rubyvm_lines(source)
-      queue = [ignore_warnings { RubyVM::InstructionSequence.compile(source) }]
+      queue = [ignore_warnings { RubyVM::InstructionSequence.compile_parsey(source) }]
       lines = []
 
       while iseq = queue.shift

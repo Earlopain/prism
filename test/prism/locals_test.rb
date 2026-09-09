@@ -9,10 +9,6 @@
 # to test on the most recent versions.
 return if !defined?(RubyVM::InstructionSequence) || RUBY_VERSION < "3.4.0"
 
-# If we're on Ruby 3.4.0 and the default parser is Prism, then there is no point
-# in comparing the locals because they will be the same.
-return if RubyVM::InstructionSequence.compile("").to_a[4][:parser] == :prism
-
 # Omit tests if running on a 32-bit machine because there is a bug with how
 # Ruby is handling large ISeqs on 32-bit machines
 return if RUBY_PLATFORM =~ /i686/
@@ -128,7 +124,7 @@ module Prism
     # sets of local variables that were encountered.
     def cruby_locals(source)
       locals = [] #: Array[Array[Symbol | Integer]]
-      stack = [ISeq.new(ignore_warnings { RubyVM::InstructionSequence.compile(source) }.to_a)]
+      stack = [ISeq.new(ignore_warnings { RubyVM::InstructionSequence.compile_parsey(source) }.to_a)]
 
       while (iseq = stack.pop)
         names = [*iseq.local_table]

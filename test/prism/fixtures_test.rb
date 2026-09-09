@@ -32,7 +32,7 @@ module Prism
     except << "4.1/trailing_comma_after_method_arguments.txt"
 
     Fixture.each_for_current_ruby(except: except) do |fixture|
-      define_method(fixture.test_name) { assert_valid_syntax(fixture.read) }
+      define_method(fixture.test_name) { assert_valid_syntax_parsey(fixture.read) }
     end
   end
 end

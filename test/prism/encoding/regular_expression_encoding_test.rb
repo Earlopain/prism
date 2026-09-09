@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-return unless defined?(RubyVM::InstructionSequence)
-return if RubyVM::InstructionSequence.compile("").to_a[4][:parser] == :prism
-return if RUBY_VERSION < "3.2"
+return if !defined?(RubyVM::InstructionSequence) || RUBY_VERSION < "3.4.0"
 
 require_relative "../test_helper"
 
@@ -48,7 +46,7 @@ module Prism
 
         expected =
           begin
-            eval(source).encoding
+            RubyVM::InstructionSequence.compile_parsey(source).eval.encoding
           rescue SyntaxError => error
             if encoding_errors.find { |e| error.message.include?(e) }
               error.message.split("\n").map { |m| m[/: (.+?)$/, 1] }

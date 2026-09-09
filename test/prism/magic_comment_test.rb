@@ -91,12 +91,12 @@ module Prism
       assert_equal expected, actual
 
       # Compare against Ruby's expectation.
-      if defined?(RubyVM::InstructionSequence)
+      if defined?(RubyVM::InstructionSequence) && RUBY_VERSION >= "3.4"
         previous = $VERBOSE
         expected =
           begin
             $VERBOSE = nil
-            RubyVM::InstructionSequence.compile(source).eval.encoding
+            RubyVM::InstructionSequence.compile_parsey(source).eval.encoding
           ensure
             $VERBOSE = previous
           end

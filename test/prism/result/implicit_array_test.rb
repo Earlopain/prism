@@ -52,8 +52,8 @@ module Prism
       assert Prism.parse_success?(source)
       assert Prism.parse_failure?("if #{source} then end")
 
-      assert_valid_syntax(source)
-      refute_valid_syntax("if #{source} then end")
+      assert_valid_syntax_parsey(source)
+      refute_valid_syntax_parsey("if #{source} then end")
     end
   end
 end

@@ -42,7 +42,7 @@ module Prism
       RUBY
 
       source.each_line do |line|
-        assert_valid_syntax(source)
+        assert_valid_syntax_parsey(source)
         assert_predicate Prism.parse(source), :success?
       end
     end
@@ -117,7 +117,7 @@ module Prism
 
       source = expected.lines.grep_v(/^\s*\^/).join.gsub(/\n*\z/, "")
       if CURRENT_MAJOR_MINOR == version && !PARSE_Y_EXCLUDES.include?(filepath)
-        refute_valid_syntax(source)
+        refute_valid_syntax_parsey(source)
       end
 
       result = Prism.parse(source, version: version)

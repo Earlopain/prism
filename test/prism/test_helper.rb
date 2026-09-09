@@ -271,29 +271,29 @@ module Prism
 
     private
 
-    if RUBY_ENGINE == "ruby" && RubyVM::InstructionSequence.compile("").to_a[4][:parser] != :prism
+    if defined?(RubyVM) && RUBY_VERSION >= "3.4.0"
       # Check that the given source is valid syntax by compiling it with RubyVM.
-      def check_syntax(source)
-        ignore_warnings { RubyVM::InstructionSequence.compile(source) }
+      def check_syntax_parsey(source)
+        ignore_warnings { RubyVM::InstructionSequence.compile_parsey(source) }
       end
 
       # Assert that the given source is valid Ruby syntax by attempting to
       # compile it, and then implicitly checking that it does not raise an
       # syntax errors.
-      def assert_valid_syntax(source)
-        check_syntax(source)
+      def assert_valid_syntax_parsey(source)
+        check_syntax_parsey(source)
       end
 
       # Refute that the given source is invalid Ruby syntax by attempting to
       # compile it and asserting that it raises a SyntaxError.
-      def refute_valid_syntax(source)
-        assert_raise(SyntaxError) { check_syntax(source) }
+      def refute_valid_syntax_parsey(source)
+        assert_raise(SyntaxError) { check_syntax_parsey(source) }
       end
     else
-      def assert_valid_syntax(source)
+      def assert_valid_syntax_parsey(source)
       end
 
-      def refute_valid_syntax(source)
+      def refute_valid_syntax_parsey(source)
       end
     end
 
