@@ -26,10 +26,10 @@ pub type pm_node_t = pm_node;
 
  Represents the use of the `alias` keyword to alias a global variable.
 
-``` ruby
+ ```rb
  alias $foo $bar
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALIAS_GLOBAL_VARIABLE_NODE
 
@@ -40,10 +40,10 @@ pub type pm_alias_global_variable_node_t = pm_alias_global_variable_node;
 
  Represents the use of the `alias` keyword to alias a method.
 
-``` ruby
+ ```rb
  alias foo bar
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALIAS_METHOD_NODE
 
@@ -54,10 +54,10 @@ pub type pm_alias_method_node_t = pm_alias_method_node;
 
  Represents an alternation pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo => bar | baz
         ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALTERNATION_PATTERN_NODE
 
@@ -68,10 +68,10 @@ pub type pm_alternation_pattern_node_t = pm_alternation_pattern_node;
 
  Represents the use of the `&&` operator or the `and` keyword.
 
-``` ruby
+ ```rb
  left and right
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_AND_NODE
 
@@ -82,10 +82,10 @@ pub type pm_and_node_t = pm_and_node;
 
  Represents a set of arguments to a method or a keyword.
 
-``` ruby
+ ```rb
  return foo, bar, baz
         ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARGUMENTS_NODE
 
@@ -103,10 +103,10 @@ pub type pm_arguments_node_t = pm_arguments_node;
 
  Represents an array literal. This can be a regular array using brackets or a special array using % like %w or %i.
 
-``` ruby
+ ```rb
  [1, 2, 3]
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARRAY_NODE
 
@@ -120,30 +120,22 @@ pub type pm_array_node_t = pm_array_node;
 
  Represents an array pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo in 1, 2
         ^^^^
-```
 
-``` ruby
  foo in [1, 2]
         ^^^^^^
-```
 
-``` ruby
  foo in *bar
         ^^^^
-```
 
-``` ruby
  foo in Bar[]
         ^^^^^
-```
 
-``` ruby
  foo in Bar[1, 2, 3]
         ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARRAY_PATTERN_NODE
 
@@ -154,10 +146,10 @@ pub type pm_array_pattern_node_t = pm_array_pattern_node;
 
  Represents a hash key/value pair.
 
-``` ruby
+ ```rb
  { a => b }
    ^^^^^^
-```
+ ```
 
  Type: ::PM_ASSOC_NODE
 
@@ -168,10 +160,10 @@ pub type pm_assoc_node_t = pm_assoc_node;
 
  Represents a splat in a hash literal.
 
-``` ruby
+ ```rb
  { **foo }
    ^^^^^
-```
+ ```
 
  Type: ::PM_ASSOC_SPLAT_NODE
 
@@ -182,10 +174,10 @@ pub type pm_assoc_splat_node_t = pm_assoc_splat_node;
 
  Represents reading a reference to a field in the previous match.
 
-``` ruby
+ ```rb
  $'
  ^^
-```
+ ```
 
  Type: ::PM_BACK_REFERENCE_READ_NODE
 
@@ -196,12 +188,12 @@ pub type pm_back_reference_read_node_t = pm_back_reference_read_node;
 
  Represents a begin statement.
 
-``` ruby
+ ```rb
  begin
    foo
  end
  ^^^^^
-```
+ ```
 
  Type: ::PM_BEGIN_NODE
 
@@ -212,10 +204,10 @@ pub type pm_begin_node_t = pm_begin_node;
 
  Represents a block argument using `&`.
 
-``` ruby
+ ```rb
  bar(&args)
      ^^^^^
-```
+ ```
 
  Type: ::PM_BLOCK_ARGUMENT_NODE
 
@@ -226,10 +218,10 @@ pub type pm_block_argument_node_t = pm_block_argument_node;
 
  Represents a block local variable.
 
-``` ruby
+ ```rb
  a { |; b| }
         ^
-```
+ ```
 
  Type: ::PM_BLOCK_LOCAL_VARIABLE_NODE
 
@@ -243,10 +235,10 @@ pub type pm_block_local_variable_node_t = pm_block_local_variable_node;
 
  Represents a block of ruby code.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                 ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_BLOCK_NODE
 
@@ -257,11 +249,11 @@ pub type pm_block_node_t = pm_block_node;
 
  Represents a block parameter of a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(&b)
        ^^
  end
-```
+ ```
 
  Type: ::PM_BLOCK_PARAMETER_NODE
 
@@ -275,16 +267,14 @@ pub type pm_block_parameter_node_t = pm_block_parameter_node;
 
  Represents a block's parameters declaration.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
     ^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo do |a, b = 1; local|
         ^^^^^^^^^^^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_BLOCK_PARAMETERS_NODE
 
@@ -295,10 +285,10 @@ pub type pm_block_parameters_node_t = pm_block_parameters_node;
 
  Represents the use of the `break` keyword.
 
-``` ruby
+ ```rb
  break foo
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_BREAK_NODE
 
@@ -309,10 +299,10 @@ pub type pm_break_node_t = pm_break_node;
 
  Represents the use of the `&&=` operator on a call.
 
-``` ruby
+ ```rb
  foo.bar &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_AND_WRITE_NODE
 
@@ -329,35 +319,25 @@ pub type pm_call_and_write_node_t = pm_call_and_write_node;
 
  Represents a method call, in all of the various forms that can take.
 
-``` ruby
+ ```rb
  foo
  ^^^
-```
 
-``` ruby
  foo()
  ^^^^^
-```
 
-``` ruby
  +foo
  ^^^^
-```
 
-``` ruby
  foo + bar
  ^^^^^^^^^
-```
 
-``` ruby
  foo.bar
  ^^^^^^^
-```
 
-``` ruby
  foo&.bar
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_NODE
 
@@ -374,10 +354,10 @@ pub type pm_call_node_t = pm_call_node;
 
  Represents the use of an assignment operator on a call.
 
-``` ruby
+ ```rb
  foo.bar += baz
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_OPERATOR_WRITE_NODE
 
@@ -394,10 +374,10 @@ pub type pm_call_operator_write_node_t = pm_call_operator_write_node;
 
  Represents the use of the `||=` operator on a call.
 
-``` ruby
+ ```rb
  foo.bar ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_OR_WRITE_NODE
 
@@ -414,22 +394,18 @@ pub type pm_call_or_write_node_t = pm_call_or_write_node;
 
  Represents assigning to a method call.
 
-``` ruby
+ ```rb
  foo.bar, = 1
  ^^^^^^^
-```
 
-``` ruby
  begin
  rescue => foo.bar
            ^^^^^^^
  end
-```
 
-``` ruby
  for foo.bar in baz do end
      ^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_TARGET_NODE
 
@@ -446,10 +422,10 @@ pub type pm_call_target_node_t = pm_call_target_node;
 
  Represents assigning to a local variable in pattern matching.
 
-``` ruby
+ ```rb
  foo => [bar => baz]
          ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CAPTURE_PATTERN_NODE
 
@@ -460,12 +436,12 @@ pub type pm_capture_pattern_node_t = pm_capture_pattern_node;
 
  Represents the use of a case statement for pattern matching.
 
-``` ruby
+ ```rb
  case true
  in false
  end
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CASE_MATCH_NODE
 
@@ -476,12 +452,12 @@ pub type pm_case_match_node_t = pm_case_match_node;
 
  Represents the use of a case statement.
 
-``` ruby
+ ```rb
  case true
  when false
  end
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CASE_NODE
 
@@ -492,10 +468,10 @@ pub type pm_case_node_t = pm_case_node;
 
  Represents a class declaration involving the `class` keyword.
 
-``` ruby
+ ```rb
  class Foo end
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_NODE
 
@@ -506,10 +482,10 @@ pub type pm_class_node_t = pm_class_node;
 
  Represents the use of the `&&=` operator for assignment to a class variable.
 
-``` ruby
+ ```rb
  @@target &&= value
  ^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_AND_WRITE_NODE
 
@@ -520,10 +496,10 @@ pub type pm_class_variable_and_write_node_t = pm_class_variable_and_write_node;
 
  Represents assigning to a class variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  @@target += value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -534,10 +510,10 @@ pub type pm_class_variable_operator_write_node_t = pm_class_variable_operator_wr
 
  Represents the use of the `||=` operator for assignment to a class variable.
 
-``` ruby
+ ```rb
  @@target ||= value
  ^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_OR_WRITE_NODE
 
@@ -548,10 +524,10 @@ pub type pm_class_variable_or_write_node_t = pm_class_variable_or_write_node;
 
  Represents referencing a class variable.
 
-``` ruby
+ ```rb
  @@foo
  ^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_READ_NODE
 
@@ -562,10 +538,10 @@ pub type pm_class_variable_read_node_t = pm_class_variable_read_node;
 
  Represents writing to a class variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  @@foo, @@bar = baz
  ^^^^^  ^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_TARGET_NODE
 
@@ -576,10 +552,10 @@ pub type pm_class_variable_target_node_t = pm_class_variable_target_node;
 
  Represents writing to a class variable.
 
-``` ruby
+ ```rb
  @@foo = 1
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_WRITE_NODE
 
@@ -590,10 +566,10 @@ pub type pm_class_variable_write_node_t = pm_class_variable_write_node;
 
  Represents the use of the `&&=` operator for assignment to a constant.
 
-``` ruby
+ ```rb
  Target &&= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_AND_WRITE_NODE
 
@@ -604,10 +580,10 @@ pub type pm_constant_and_write_node_t = pm_constant_and_write_node;
 
  Represents assigning to a constant using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  Target += value
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_OPERATOR_WRITE_NODE
 
@@ -618,10 +594,10 @@ pub type pm_constant_operator_write_node_t = pm_constant_operator_write_node;
 
  Represents the use of the `||=` operator for assignment to a constant.
 
-``` ruby
+ ```rb
  Target ||= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_OR_WRITE_NODE
 
@@ -632,10 +608,10 @@ pub type pm_constant_or_write_node_t = pm_constant_or_write_node;
 
  Represents the use of the `&&=` operator for assignment to a constant path.
 
-``` ruby
+ ```rb
  Parent::Child &&= value
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_AND_WRITE_NODE
 
@@ -646,10 +622,10 @@ pub type pm_constant_path_and_write_node_t = pm_constant_path_and_write_node;
 
  Represents accessing a constant through a path of `::` operators.
 
-``` ruby
+ ```rb
  Foo::Bar
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_NODE
 
@@ -660,10 +636,10 @@ pub type pm_constant_path_node_t = pm_constant_path_node;
 
  Represents assigning to a constant path using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  Parent::Child += value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_OPERATOR_WRITE_NODE
 
@@ -674,10 +650,10 @@ pub type pm_constant_path_operator_write_node_t = pm_constant_path_operator_writ
 
  Represents the use of the `||=` operator for assignment to a constant path.
 
-``` ruby
+ ```rb
  Parent::Child ||= value
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_OR_WRITE_NODE
 
@@ -688,10 +664,10 @@ pub type pm_constant_path_or_write_node_t = pm_constant_path_or_write_node;
 
  Represents writing to a constant path in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  Foo::Foo, Bar::Bar = baz
  ^^^^^^^^  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_TARGET_NODE
 
@@ -702,20 +678,16 @@ pub type pm_constant_path_target_node_t = pm_constant_path_target_node;
 
  Represents writing to a constant path.
 
-``` ruby
+ ```rb
  ::Foo = 1
  ^^^^^^^^^
-```
 
-``` ruby
  Foo::Bar = 1
  ^^^^^^^^^^^^
-```
 
-``` ruby
  ::Foo::Bar = 1
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_WRITE_NODE
 
@@ -726,10 +698,10 @@ pub type pm_constant_path_write_node_t = pm_constant_path_write_node;
 
  Represents referencing a constant.
 
-``` ruby
+ ```rb
  Foo
  ^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_READ_NODE
 
@@ -740,10 +712,10 @@ pub type pm_constant_read_node_t = pm_constant_read_node;
 
  Represents writing to a constant in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  Foo, Bar = baz
  ^^^  ^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_TARGET_NODE
 
@@ -754,10 +726,10 @@ pub type pm_constant_target_node_t = pm_constant_target_node;
 
  Represents writing to a constant.
 
-``` ruby
+ ```rb
  Foo = 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_WRITE_NODE
 
@@ -768,11 +740,11 @@ pub type pm_constant_write_node_t = pm_constant_write_node;
 
  Represents a method definition.
 
-``` ruby
+ ```rb
  def method
  end
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_DEF_NODE
 
@@ -783,10 +755,10 @@ pub type pm_def_node_t = pm_def_node;
 
  Represents the use of the `defined?` keyword.
 
-``` ruby
+ ```rb
  defined?(a)
  ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_DEFINED_NODE
 
@@ -797,10 +769,10 @@ pub type pm_defined_node_t = pm_defined_node;
 
  Represents an `else` clause in a `case`, `if`, or `unless` statement.
 
-``` ruby
+ ```rb
  if a then b else c end
              ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ELSE_NODE
 
@@ -811,10 +783,10 @@ pub type pm_else_node_t = pm_else_node;
 
  Represents an interpolated set of statements.
 
-``` ruby
+ ```rb
  "foo #{bar}"
       ^^^^^^
-```
+ ```
 
  Type: ::PM_EMBEDDED_STATEMENTS_NODE
 
@@ -825,10 +797,10 @@ pub type pm_embedded_statements_node_t = pm_embedded_statements_node;
 
  Represents an interpolated variable.
 
-``` ruby
+ ```rb
  "foo #@bar"
       ^^^^^
-```
+ ```
 
  Type: ::PM_EMBEDDED_VARIABLE_NODE
 
@@ -839,14 +811,14 @@ pub type pm_embedded_variable_node_t = pm_embedded_variable_node;
 
  Represents an `ensure` clause in a `begin` statement.
 
-``` ruby
+ ```rb
  begin
    foo
  ensure
  ^^^^^^
    bar
  end
-```
+ ```
 
  Type: ::PM_ENSURE_NODE
 
@@ -866,10 +838,10 @@ pub type pm_error_recovery_node_t = pm_error_recovery_node;
 
  Represents the use of the literal `false` keyword.
 
-``` ruby
+ ```rb
  false
  ^^^^^
-```
+ ```
 
  Type: ::PM_FALSE_NODE
 
@@ -880,25 +852,19 @@ pub type pm_false_node_t = pm_false_node;
 
  Represents a find pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo in *bar, baz, *qux
         ^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in [*bar, baz, *qux]
         ^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
         ^^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => *bar, baz, *qux
         ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FIND_PATTERN_NODE
 
@@ -909,10 +875,10 @@ pub type pm_find_pattern_node_t = pm_find_pattern_node;
 
  Represents the use of the `..` or `...` operators to create flip flops.
 
-``` ruby
+ ```rb
  baz if foo .. bar
         ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FLIP_FLOP_NODE
 
@@ -926,10 +892,10 @@ pub type pm_flip_flop_node_t = pm_flip_flop_node;
 
  Represents a floating point number literal.
 
-``` ruby
+ ```rb
  1.0
  ^^^
-```
+ ```
 
  Type: ::PM_FLOAT_NODE
 
@@ -940,10 +906,10 @@ pub type pm_float_node_t = pm_float_node;
 
  Represents the use of the `for` keyword.
 
-``` ruby
+ ```rb
  for i in a end
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FOR_NODE
 
@@ -954,12 +920,12 @@ pub type pm_for_node_t = pm_for_node;
 
  Represents forwarding all arguments to this method to another method.
 
-``` ruby
+ ```rb
  def foo(...)
    bar(...)
        ^^^
  end
-```
+ ```
 
  Type: ::PM_FORWARDING_ARGUMENTS_NODE
 
@@ -970,11 +936,11 @@ pub type pm_forwarding_arguments_node_t = pm_forwarding_arguments_node;
 
  Represents the use of the forwarding parameter in a method, block, or lambda declaration.
 
-``` ruby
+ ```rb
  def foo(...)
          ^^^
  end
-```
+ ```
 
  Type: ::PM_FORWARDING_PARAMETER_NODE
 
@@ -985,15 +951,13 @@ pub type pm_forwarding_parameter_node_t = pm_forwarding_parameter_node;
 
  Represents the use of the `super` keyword without parentheses or arguments, but which might have a block.
 
-``` ruby
+ ```rb
  super
  ^^^^^
-```
 
-``` ruby
  super { 123 }
  ^^^^^^^^^^^^^
-```
+ ```
 
  If it has any other arguments, it would be a `SuperNode` instead.
 
@@ -1006,10 +970,10 @@ pub type pm_forwarding_super_node_t = pm_forwarding_super_node;
 
  Represents the use of the `&&=` operator for assignment to a global variable.
 
-``` ruby
+ ```rb
  $target &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_AND_WRITE_NODE
 
@@ -1020,10 +984,10 @@ pub type pm_global_variable_and_write_node_t = pm_global_variable_and_write_node
 
  Represents assigning to a global variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  $target += value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -1034,10 +998,10 @@ pub type pm_global_variable_operator_write_node_t = pm_global_variable_operator_
 
  Represents the use of the `||=` operator for assignment to a global variable.
 
-``` ruby
+ ```rb
  $target ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_OR_WRITE_NODE
 
@@ -1048,10 +1012,10 @@ pub type pm_global_variable_or_write_node_t = pm_global_variable_or_write_node;
 
  Represents referencing a global variable.
 
-``` ruby
+ ```rb
  $foo
  ^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_READ_NODE
 
@@ -1062,10 +1026,10 @@ pub type pm_global_variable_read_node_t = pm_global_variable_read_node;
 
  Represents writing to a global variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  $foo, $bar = baz
  ^^^^  ^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_TARGET_NODE
 
@@ -1076,10 +1040,10 @@ pub type pm_global_variable_target_node_t = pm_global_variable_target_node;
 
  Represents writing to a global variable.
 
-``` ruby
+ ```rb
  $foo = 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_WRITE_NODE
 
@@ -1090,10 +1054,10 @@ pub type pm_global_variable_write_node_t = pm_global_variable_write_node;
 
  Represents a hash literal.
 
-``` ruby
+ ```rb
  { a => b }
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_HASH_NODE
 
@@ -1104,25 +1068,19 @@ pub type pm_hash_node_t = pm_hash_node;
 
  Represents a hash pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo => { a: 1, b: 2 }
         ^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => { a: 1, b: 2, **c }
         ^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => Bar[a: 1, b: 2]
         ^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in { a: 1, b: 2 }
         ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_HASH_PATTERN_NODE
 
@@ -1133,20 +1091,16 @@ pub type pm_hash_pattern_node_t = pm_hash_pattern_node;
 
  Represents the use of the `if` keyword, either in the block form or the modifier form, or a ternary expression.
 
-``` ruby
+ ```rb
  bar if foo
  ^^^^^^^^^^
-```
 
-``` ruby
  if foo then bar end
  ^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo ? bar : baz
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IF_NODE
 
@@ -1157,10 +1111,10 @@ pub type pm_if_node_t = pm_if_node;
 
  Represents an imaginary number literal.
 
-``` ruby
+ ```rb
  1.0i
  ^^^^
-```
+ ```
 
  Type: ::PM_IMAGINARY_NODE
 
@@ -1171,20 +1125,16 @@ pub type pm_imaginary_node_t = pm_imaginary_node;
 
  Represents a node that is implicitly being added to the tree but doesn't correspond directly to a node in the source.
 
-``` ruby
+ ```rb
  { foo: }
    ^^^^
-```
 
-``` ruby
  { Foo: }
    ^^^^
-```
 
-``` ruby
  foo in { bar: }
           ^^^^
-```
+ ```
 
  Type: ::PM_IMPLICIT_NODE
 
@@ -1195,25 +1145,19 @@ pub type pm_implicit_node_t = pm_implicit_node;
 
  Represents using a trailing comma to indicate an implicit rest parameter.
 
-``` ruby
+ ```rb
  foo { |bar,| }
            ^
-```
 
-``` ruby
  foo in [bar,]
             ^
-```
 
-``` ruby
  for foo, in bar do end
         ^
-```
 
-``` ruby
  foo, = bar
     ^
-```
+ ```
 
  Type: ::PM_IMPLICIT_REST_NODE
 
@@ -1224,10 +1168,10 @@ pub type pm_implicit_rest_node_t = pm_implicit_rest_node;
 
  Represents the use of the `in` keyword in a case statement.
 
-``` ruby
+ ```rb
  case a; in b then c end
          ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IN_NODE
 
@@ -1238,10 +1182,10 @@ pub type pm_in_node_t = pm_in_node;
 
  Represents the use of the `&&=` operator on a call to the `[]` method.
 
-``` ruby
+ ```rb
  foo.bar[baz] &&= value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_AND_WRITE_NODE
 
@@ -1258,10 +1202,10 @@ pub type pm_index_and_write_node_t = pm_index_and_write_node;
 
  Represents the use of an assignment operator on a call to `[]`.
 
-``` ruby
+ ```rb
  foo.bar[baz] += value
  ^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_OPERATOR_WRITE_NODE
 
@@ -1278,10 +1222,10 @@ pub type pm_index_operator_write_node_t = pm_index_operator_write_node;
 
  Represents the use of the `||=` operator on a call to `[]`.
 
-``` ruby
+ ```rb
  foo.bar[baz] ||= value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_OR_WRITE_NODE
 
@@ -1298,22 +1242,18 @@ pub type pm_index_or_write_node_t = pm_index_or_write_node;
 
  Represents assigning to an index.
 
-``` ruby
+ ```rb
  foo[bar], = 1
  ^^^^^^^^
-```
 
-``` ruby
  begin
  rescue => foo[bar]
            ^^^^^^^^
  end
-```
 
-``` ruby
  for foo[bar] in baz do end
      ^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_TARGET_NODE
 
@@ -1330,10 +1270,10 @@ pub type pm_index_target_node_t = pm_index_target_node;
 
  Represents the use of the `&&=` operator for assignment to an instance variable.
 
-``` ruby
+ ```rb
  @target &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_AND_WRITE_NODE
 
@@ -1344,10 +1284,10 @@ pub type pm_instance_variable_and_write_node_t = pm_instance_variable_and_write_
 
  Represents assigning to an instance variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  @target += value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -1358,10 +1298,10 @@ pub type pm_instance_variable_operator_write_node_t = pm_instance_variable_opera
 
  Represents the use of the `||=` operator for assignment to an instance variable.
 
-``` ruby
+ ```rb
  @target ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_OR_WRITE_NODE
 
@@ -1372,10 +1312,10 @@ pub type pm_instance_variable_or_write_node_t = pm_instance_variable_or_write_no
 
  Represents referencing an instance variable.
 
-``` ruby
+ ```rb
  @foo
  ^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_READ_NODE
 
@@ -1386,10 +1326,10 @@ pub type pm_instance_variable_read_node_t = pm_instance_variable_read_node;
 
  Represents writing to an instance variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  @foo, @bar = baz
  ^^^^  ^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_TARGET_NODE
 
@@ -1400,10 +1340,10 @@ pub type pm_instance_variable_target_node_t = pm_instance_variable_target_node;
 
  Represents writing to an instance variable.
 
-``` ruby
+ ```rb
  @foo = 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_WRITE_NODE
 
@@ -1414,10 +1354,10 @@ pub type pm_instance_variable_write_node_t = pm_instance_variable_write_node;
 
  Represents an integer number literal.
 
-``` ruby
+ ```rb
  1
  ^
-```
+ ```
 
  Type: ::PM_INTEGER_NODE
 
@@ -1434,10 +1374,10 @@ pub type pm_integer_node_t = pm_integer_node;
 
  Represents a regular expression literal that contains interpolation that is being used in the predicate of a conditional to implicitly match against the last line read by an IO object.
 
-``` ruby
+ ```rb
  if /foo #{bar} baz/ then end
     ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_MATCH_LAST_LINE_NODE
 
@@ -1461,10 +1401,10 @@ pub type pm_interpolated_match_last_line_node_t = pm_interpolated_match_last_lin
 
  Represents a regular expression literal that contains interpolation.
 
-``` ruby
+ ```rb
  /foo #{bar} baz/
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_REGULAR_EXPRESSION_NODE
 
@@ -1488,10 +1428,10 @@ pub type pm_interpolated_regular_expression_node_t = pm_interpolated_regular_exp
 
  Represents a string literal that contains interpolation.
 
-``` ruby
+ ```rb
  "foo #{bar} baz"
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_STRING_NODE
 
@@ -1506,10 +1446,10 @@ pub type pm_interpolated_string_node_t = pm_interpolated_string_node;
 
  Represents a symbol literal that contains interpolation.
 
-``` ruby
+ ```rb
  :"foo #{bar} baz"
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_SYMBOL_NODE
 
@@ -1520,10 +1460,10 @@ pub type pm_interpolated_symbol_node_t = pm_interpolated_symbol_node;
 
  Represents an xstring literal that contains interpolation.
 
-``` ruby
+ ```rb
  `foo #{bar} baz`
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_X_STRING_NODE
 
@@ -1534,10 +1474,10 @@ pub type pm_interpolated_x_string_node_t = pm_interpolated_x_string_node;
 
  Represents reading from the implicit `it` local variable.
 
-``` ruby
+ ```rb
  -> { it }
       ^^
-```
+ ```
 
  Type: ::PM_IT_LOCAL_VARIABLE_READ_NODE
 
@@ -1548,10 +1488,10 @@ pub type pm_it_local_variable_read_node_t = pm_it_local_variable_read_node;
 
  Represents an implicit set of parameters through the use of the `it` keyword within a block or lambda.
 
-``` ruby
+ ```rb
  -> { it + it }
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IT_PARAMETERS_NODE
 
@@ -1562,10 +1502,10 @@ pub type pm_it_parameters_node_t = pm_it_parameters_node;
 
  Represents a hash literal without opening and closing braces.
 
-``` ruby
+ ```rb
  foo(a: b)
      ^^^^
-```
+ ```
 
  Type: ::PM_KEYWORD_HASH_NODE
 
@@ -1579,11 +1519,11 @@ pub type pm_keyword_hash_node_t = pm_keyword_hash_node;
 
  Represents a keyword rest parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(**b)
        ^^^
  end
-```
+ ```
 
  Type: ::PM_KEYWORD_REST_PARAMETER_NODE
 
@@ -1597,10 +1537,10 @@ pub type pm_keyword_rest_parameter_node_t = pm_keyword_rest_parameter_node;
 
  Represents using a lambda literal (not the lambda method call).
 
-``` ruby
+ ```rb
  ->(value) { value * 2 }
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LAMBDA_NODE
 
@@ -1611,10 +1551,10 @@ pub type pm_lambda_node_t = pm_lambda_node;
 
  Represents the use of the `&&=` operator for assignment to a local variable.
 
-``` ruby
+ ```rb
  target &&= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_AND_WRITE_NODE
 
@@ -1625,10 +1565,10 @@ pub type pm_local_variable_and_write_node_t = pm_local_variable_and_write_node;
 
  Represents assigning to a local variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  target += value
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -1639,10 +1579,10 @@ pub type pm_local_variable_operator_write_node_t = pm_local_variable_operator_wr
 
  Represents the use of the `||=` operator for assignment to a local variable.
 
-``` ruby
+ ```rb
  target ||= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_OR_WRITE_NODE
 
@@ -1653,10 +1593,10 @@ pub type pm_local_variable_or_write_node_t = pm_local_variable_or_write_node;
 
  Represents reading a local variable. Note that this requires that a local variable of the same name has already been written to in the same scope, otherwise it is parsed as a method call.
 
-``` ruby
+ ```rb
  foo
  ^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_READ_NODE
 
@@ -1667,15 +1607,13 @@ pub type pm_local_variable_read_node_t = pm_local_variable_read_node;
 
  Represents writing to a local variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  foo, bar = baz
  ^^^  ^^^
-```
 
-``` ruby
  foo => baz
         ^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_TARGET_NODE
 
@@ -1686,10 +1624,10 @@ pub type pm_local_variable_target_node_t = pm_local_variable_target_node;
 
  Represents writing to a local variable.
 
-``` ruby
+ ```rb
  foo = 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_WRITE_NODE
 
@@ -1700,10 +1638,10 @@ pub type pm_local_variable_write_node_t = pm_local_variable_write_node;
 
  Represents a regular expression literal used in the predicate of a conditional to implicitly match against the last line read by an IO object.
 
-``` ruby
+ ```rb
  if /foo/i then end
     ^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_LAST_LINE_NODE
 
@@ -1727,10 +1665,10 @@ pub type pm_match_last_line_node_t = pm_match_last_line_node;
 
  Represents the use of the modifier `in` operator.
 
-``` ruby
+ ```rb
  foo in bar
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_PREDICATE_NODE
 
@@ -1741,10 +1679,10 @@ pub type pm_match_predicate_node_t = pm_match_predicate_node;
 
  Represents the use of the `=>` operator.
 
-``` ruby
+ ```rb
  foo => bar
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_REQUIRED_NODE
 
@@ -1755,10 +1693,10 @@ pub type pm_match_required_node_t = pm_match_required_node;
 
  Represents writing local variables using a regular expression match with named capture groups.
 
-``` ruby
+ ```rb
  /(?<foo>bar)/ =~ baz
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_WRITE_NODE
 
@@ -1769,10 +1707,10 @@ pub type pm_match_write_node_t = pm_match_write_node;
 
  Represents a module declaration involving the `module` keyword.
 
-``` ruby
+ ```rb
  module Foo end
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MODULE_NODE
 
@@ -1783,17 +1721,17 @@ pub type pm_module_node_t = pm_module_node;
 
  Represents a multi-target expression.
 
-``` ruby
+ ```rb
  a, (b, c) = 1, 2, 3
     ^^^^^^
-```
+ ```
 
  This can be a part of `MultiWriteNode` as above, or the target of a `for` loop
 
-``` ruby
+ ```rb
  for a, b in [[1, 2], [3, 4]]
      ^^^^
-```
+ ```
 
  Type: ::PM_MULTI_TARGET_NODE
 
@@ -1804,10 +1742,10 @@ pub type pm_multi_target_node_t = pm_multi_target_node;
 
  Represents a write to a multi-target expression.
 
-``` ruby
+ ```rb
  a, b, c = 1, 2, 3
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MULTI_WRITE_NODE
 
@@ -1818,10 +1756,10 @@ pub type pm_multi_write_node_t = pm_multi_write_node;
 
  Represents the use of the `next` keyword.
 
-``` ruby
+ ```rb
  next 1
  ^^^^^^
-```
+ ```
 
  Type: ::PM_NEXT_NODE
 
@@ -1832,10 +1770,10 @@ pub type pm_next_node_t = pm_next_node;
 
  Represents the use of the `nil` keyword.
 
-``` ruby
+ ```rb
  nil
  ^^^
-```
+ ```
 
  Type: ::PM_NIL_NODE
 
@@ -1846,11 +1784,11 @@ pub type pm_nil_node_t = pm_nil_node;
 
  Represents the use of `&nil` inside method arguments.
 
-``` ruby
+ ```rb
  def a(&nil)
        ^^^^
  end
-```
+ ```
 
  Type: ::PM_NO_BLOCK_PARAMETER_NODE
 
@@ -1861,11 +1799,11 @@ pub type pm_no_block_parameter_node_t = pm_no_block_parameter_node;
 
  Represents the use of `**nil` inside method arguments.
 
-``` ruby
+ ```rb
  def a(**nil)
        ^^^^^
  end
-```
+ ```
 
  Type: ::PM_NO_KEYWORDS_PARAMETER_NODE
 
@@ -1876,10 +1814,10 @@ pub type pm_no_keywords_parameter_node_t = pm_no_keywords_parameter_node;
 
  Represents an implicit set of parameters through the use of numbered parameters within a block or lambda.
 
-``` ruby
+ ```rb
  -> { _1 + _2 }
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_NUMBERED_PARAMETERS_NODE
 
@@ -1890,10 +1828,10 @@ pub type pm_numbered_parameters_node_t = pm_numbered_parameters_node;
 
  Represents reading a numbered reference to a capture in the previous match.
 
-``` ruby
+ ```rb
  $1
  ^^
-```
+ ```
 
  Type: ::PM_NUMBERED_REFERENCE_READ_NODE
 
@@ -1904,11 +1842,11 @@ pub type pm_numbered_reference_read_node_t = pm_numbered_reference_read_node;
 
  Represents an optional keyword parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b: 1)
        ^^^^
  end
-```
+ ```
 
  Type: ::PM_OPTIONAL_KEYWORD_PARAMETER_NODE
 
@@ -1922,11 +1860,11 @@ pub type pm_optional_keyword_parameter_node_t = pm_optional_keyword_parameter_no
 
  Represents an optional parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b = 1)
        ^^^^^
  end
-```
+ ```
 
  Type: ::PM_OPTIONAL_PARAMETER_NODE
 
@@ -1940,10 +1878,10 @@ pub type pm_optional_parameter_node_t = pm_optional_parameter_node;
 
  Represents the use of the `||` operator or the `or` keyword.
 
-``` ruby
+ ```rb
  left or right
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_OR_NODE
 
@@ -1954,11 +1892,11 @@ pub type pm_or_node_t = pm_or_node;
 
  Represents the list of parameters on a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b, c, d)
        ^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_PARAMETERS_NODE
 
@@ -1969,10 +1907,10 @@ pub type pm_parameters_node_t = pm_parameters_node;
 
  Represents a parenthesized expression
 
-``` ruby
+ ```rb
  (10 + 34)
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_PARENTHESES_NODE
 
@@ -1986,10 +1924,10 @@ pub type pm_parentheses_node_t = pm_parentheses_node;
 
  Represents the use of the `^` operator for pinning an expression in a pattern matching expression.
 
-``` ruby
+ ```rb
  foo in ^(bar)
         ^^^^^^
-```
+ ```
 
  Type: ::PM_PINNED_EXPRESSION_NODE
 
@@ -2000,10 +1938,10 @@ pub type pm_pinned_expression_node_t = pm_pinned_expression_node;
 
  Represents the use of the `^` operator for pinning a variable in a pattern matching expression.
 
-``` ruby
+ ```rb
  foo in ^bar
         ^^^^
-```
+ ```
 
  Type: ::PM_PINNED_VARIABLE_NODE
 
@@ -2014,10 +1952,10 @@ pub type pm_pinned_variable_node_t = pm_pinned_variable_node;
 
  Represents the use of the `END` keyword.
 
-``` ruby
+ ```rb
  END { foo }
  ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_POST_EXECUTION_NODE
 
@@ -2028,10 +1966,10 @@ pub type pm_post_execution_node_t = pm_post_execution_node;
 
  Represents the use of the `BEGIN` keyword.
 
-``` ruby
+ ```rb
  BEGIN { foo }
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_PRE_EXECUTION_NODE
 
@@ -2051,15 +1989,13 @@ pub type pm_program_node_t = pm_program_node;
 
  Represents the use of the `..` or `...` operators.
 
-``` ruby
+ ```rb
  1..2
  ^^^^
-```
 
-``` ruby
  c if a =~ /left/ ... b =~ /right/
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_RANGE_NODE
 
@@ -2073,10 +2009,10 @@ pub type pm_range_node_t = pm_range_node;
 
  Represents a rational number literal.
 
-``` ruby
+ ```rb
  1.0r
  ^^^^
-```
+ ```
 
  Type: ::PM_RATIONAL_NODE
 
@@ -2093,10 +2029,10 @@ pub type pm_rational_node_t = pm_rational_node;
 
  Represents the use of the `redo` keyword.
 
-``` ruby
+ ```rb
  redo
  ^^^^
-```
+ ```
 
  Type: ::PM_REDO_NODE
 
@@ -2107,10 +2043,10 @@ pub type pm_redo_node_t = pm_redo_node;
 
  Represents a regular expression literal with no interpolation.
 
-``` ruby
+ ```rb
  /foo/i
  ^^^^^^
-```
+ ```
 
  Type: ::PM_REGULAR_EXPRESSION_NODE
 
@@ -2134,11 +2070,11 @@ pub type pm_regular_expression_node_t = pm_regular_expression_node;
 
  Represents a required keyword parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b: )
        ^^
  end
-```
+ ```
 
  Type: ::PM_REQUIRED_KEYWORD_PARAMETER_NODE
 
@@ -2152,11 +2088,11 @@ pub type pm_required_keyword_parameter_node_t = pm_required_keyword_parameter_no
 
  Represents a required parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b)
        ^
  end
-```
+ ```
 
  Type: ::PM_REQUIRED_PARAMETER_NODE
 
@@ -2170,10 +2106,10 @@ pub type pm_required_parameter_node_t = pm_required_parameter_node;
 
  Represents an expression modified with a rescue.
 
-``` ruby
+ ```rb
  foo rescue nil
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_RESCUE_MODIFIER_NODE
 
@@ -2184,13 +2120,13 @@ pub type pm_rescue_modifier_node_t = pm_rescue_modifier_node;
 
  Represents a rescue statement.
 
-``` ruby
+ ```rb
  begin
  rescue Foo, *splat, Bar => ex
    foo
  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  end
-```
+ ```
 
  `Foo, *splat, Bar` are in the `exceptions` field. `ex` is in the `reference` field.
 
@@ -2203,11 +2139,11 @@ pub type pm_rescue_node_t = pm_rescue_node;
 
  Represents a rest parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(*b)
        ^^
  end
-```
+ ```
 
  Type: ::PM_REST_PARAMETER_NODE
 
@@ -2221,10 +2157,10 @@ pub type pm_rest_parameter_node_t = pm_rest_parameter_node;
 
  Represents the use of the `retry` keyword.
 
-``` ruby
+ ```rb
  retry
  ^^^^^
-```
+ ```
 
  Type: ::PM_RETRY_NODE
 
@@ -2235,10 +2171,10 @@ pub type pm_retry_node_t = pm_retry_node;
 
  Represents the use of the `return` keyword.
 
-``` ruby
+ ```rb
  return 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_RETURN_NODE
 
@@ -2249,10 +2185,10 @@ pub type pm_return_node_t = pm_return_node;
 
  Represents the `self` keyword.
 
-``` ruby
+ ```rb
  self
  ^^^^
-```
+ ```
 
  Type: ::PM_SELF_NODE
 
@@ -2263,11 +2199,11 @@ pub type pm_self_node_t = pm_self_node;
 
  This node wraps a constant write to indicate that when the value is written, it should have its shareability state modified.
 
-``` ruby
+ ```rb
  # shareable_constant_value: literal
  C = { a: 1 }
  ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SHAREABLE_CONSTANT_NODE
 
@@ -2283,10 +2219,10 @@ pub type pm_shareable_constant_node_t = pm_shareable_constant_node;
 
  Represents a singleton class declaration involving the `class` keyword.
 
-``` ruby
+ ```rb
  class << self end
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SINGLETON_CLASS_NODE
 
@@ -2297,10 +2233,10 @@ pub type pm_singleton_class_node_t = pm_singleton_class_node;
 
  Represents the use of the `__ENCODING__` keyword.
 
-``` ruby
+ ```rb
  __ENCODING__
  ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_ENCODING_NODE
 
@@ -2311,10 +2247,10 @@ pub type pm_source_encoding_node_t = pm_source_encoding_node;
 
  Represents the use of the `__FILE__` keyword.
 
-``` ruby
+ ```rb
  __FILE__
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_FILE_NODE
 
@@ -2331,10 +2267,10 @@ pub type pm_source_file_node_t = pm_source_file_node;
 
  Represents the use of the `__LINE__` keyword.
 
-``` ruby
+ ```rb
  __LINE__
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_LINE_NODE
 
@@ -2345,10 +2281,10 @@ pub type pm_source_line_node_t = pm_source_line_node;
 
  Represents the use of the splat operator.
 
-``` ruby
+ ```rb
  [*a]
   ^^
-```
+ ```
 
  Type: ::PM_SPLAT_NODE
 
@@ -2359,10 +2295,10 @@ pub type pm_splat_node_t = pm_splat_node;
 
  Represents a set of statements contained within some scope.
 
-``` ruby
+ ```rb
  foo; bar; baz
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_STATEMENTS_NODE
 
@@ -2373,20 +2309,16 @@ pub type pm_statements_node_t = pm_statements_node;
 
  Represents a string literal, a string contained within a `%w` list, or plain string content within an interpolated string.
 
-``` ruby
+ ```rb
  "foo"
  ^^^^^
-```
 
-``` ruby
  %w[foo]
     ^^^
-```
 
-``` ruby
  "foo #{bar} baz"
   ^^^^      ^^^^
-```
+ ```
 
  Type: ::PM_STRING_NODE
 
@@ -2403,15 +2335,13 @@ pub type pm_string_node_t = pm_string_node;
 
  Represents the use of the `super` keyword with parentheses or arguments.
 
-``` ruby
+ ```rb
  super()
  ^^^^^^^
-```
 
-``` ruby
  super foo, bar
  ^^^^^^^^^^^^^^
-```
+ ```
 
  If no arguments are provided (except for a block), it would be a `ForwardingSuperNode` instead.
 
@@ -2424,15 +2354,13 @@ pub type pm_super_node_t = pm_super_node;
 
  Represents a symbol literal or a symbol contained within a `%i` list.
 
-``` ruby
+ ```rb
  :foo
  ^^^^
-```
 
-``` ruby
  %i[foo]
     ^^^
-```
+ ```
 
  Type: ::PM_SYMBOL_NODE
 
@@ -2448,10 +2376,10 @@ pub type pm_symbol_node_t = pm_symbol_node;
 
  Represents the use of the literal `true` keyword.
 
-``` ruby
+ ```rb
  true
  ^^^^
-```
+ ```
 
  Type: ::PM_TRUE_NODE
 
@@ -2462,10 +2390,10 @@ pub type pm_true_node_t = pm_true_node;
 
  Represents the use of the `undef` keyword.
 
-``` ruby
+ ```rb
  undef :foo, :bar, :baz
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNDEF_NODE
 
@@ -2476,15 +2404,13 @@ pub type pm_undef_node_t = pm_undef_node;
 
  Represents the use of the `unless` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar unless foo
  ^^^^^^^^^^^^^^
-```
 
-``` ruby
  unless foo then bar end
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNLESS_NODE
 
@@ -2495,15 +2421,13 @@ pub type pm_unless_node_t = pm_unless_node;
 
  Represents the use of the `until` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar until foo
  ^^^^^^^^^^^^^
-```
 
-``` ruby
  until foo do bar end
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNTIL_NODE
 
@@ -2517,12 +2441,12 @@ pub type pm_until_node_t = pm_until_node;
 
  Represents the use of the `when` keyword within a case statement.
 
-``` ruby
+ ```rb
  case true
  when true
  ^^^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_WHEN_NODE
 
@@ -2533,15 +2457,13 @@ pub type pm_when_node_t = pm_when_node;
 
  Represents the use of the `while` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar while foo
  ^^^^^^^^^^^^^
-```
 
-``` ruby
  while foo do bar end
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_WHILE_NODE
 
@@ -2555,10 +2477,10 @@ pub type pm_while_node_t = pm_while_node;
 
  Represents an xstring literal with no interpolation.
 
-``` ruby
+ ```rb
  `foo`
  ^^^^^
-```
+ ```
 
  Type: ::PM_X_STRING_NODE
 
@@ -2573,10 +2495,10 @@ pub type pm_x_string_node_t = pm_x_string_node;
 
  Represents the use of the `yield` keyword.
 
-``` ruby
+ ```rb
  yield 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_YIELD_NODE
 
@@ -2733,10 +2655,10 @@ pub struct pm_node {
 
  Represents the use of the `alias` keyword to alias a global variable.
 
-``` ruby
+ ```rb
  alias $foo $bar
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALIAS_GLOBAL_VARIABLE_NODE
 
@@ -2752,30 +2674,30 @@ pub struct pm_alias_global_variable_node {
 
  Represents the new name of the global variable that can be used after aliasing.
 
-``` ruby
+ ```rb
  alias $foo $bar
        ^^^^
-```
+ ```
 */
     pub new_name: *mut pm_node,
     /** AliasGlobalVariableNode#old_name
 
  Represents the old name of the global variable that can be used before aliasing.
 
-``` ruby
+ ```rb
  alias $foo $bar
             ^^^^
-```
+ ```
 */
     pub old_name: *mut pm_node,
     /** AliasGlobalVariableNode#keyword_loc
 
  The Location of the `alias` keyword.
 
-``` ruby
+ ```rb
  alias $foo $bar
  ^^^^^
-```
+ ```
 */
     pub keyword_loc: pm_location_t,
 }
@@ -2783,10 +2705,10 @@ pub struct pm_alias_global_variable_node {
 
  Represents the use of the `alias` keyword to alias a method.
 
-``` ruby
+ ```rb
  alias foo bar
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALIAS_METHOD_NODE
 
@@ -2802,50 +2724,42 @@ pub struct pm_alias_method_node {
 
  Represents the new name of the method that will be aliased.
 
-``` ruby
+ ```rb
  alias foo bar
        ^^^
-```
 
-``` ruby
  alias :foo :bar
        ^^^^
-```
 
-``` ruby
  alias :"#{foo}" :"#{bar}"
        ^^^^^^^^^
-```
+ ```
 */
     pub new_name: *mut pm_node,
     /** AliasMethodNode#old_name
 
  Represents the old name of the method that will be aliased.
 
-``` ruby
+ ```rb
  alias foo bar
            ^^^
-```
 
-``` ruby
  alias :foo :bar
             ^^^^
-```
 
-``` ruby
  alias :"#{foo}" :"#{bar}"
                  ^^^^^^^^^
-```
+ ```
 */
     pub old_name: *mut pm_node,
     /** AliasMethodNode#keyword_loc
 
  Represents the Location of the `alias` keyword.
 
-``` ruby
+ ```rb
  alias foo bar
  ^^^^^
-```
+ ```
 */
     pub keyword_loc: pm_location_t,
 }
@@ -2853,10 +2767,10 @@ pub struct pm_alias_method_node {
 
  Represents an alternation pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo => bar | baz
         ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ALTERNATION_PATTERN_NODE
 
@@ -2872,30 +2786,30 @@ pub struct pm_alternation_pattern_node {
 
  Represents the left side of the expression.
 
-``` ruby
+ ```rb
  foo => bar | baz
         ^^^
-```
+ ```
 */
     pub left: *mut pm_node,
     /** AlternationPatternNode#right
 
  Represents the right side of the expression.
 
-``` ruby
+ ```rb
  foo => bar | baz
               ^^^
-```
+ ```
 */
     pub right: *mut pm_node,
     /** AlternationPatternNode#operator_loc
 
  Represents the alternation operator Location.
 
-``` ruby
+ ```rb
  foo => bar | baz
             ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -2903,10 +2817,10 @@ pub struct pm_alternation_pattern_node {
 
  Represents the use of the `&&` operator or the `and` keyword.
 
-``` ruby
+ ```rb
  left and right
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_AND_NODE
 
@@ -2922,40 +2836,36 @@ pub struct pm_and_node {
 
  Represents the left side of the expression. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  left and right
  ^^^^
-```
 
-``` ruby
  1 && 2
  ^
-```
+ ```
 */
     pub left: *mut pm_node,
     /** AndNode#right
 
  Represents the right side of the expression.
 
-``` ruby
+ ```rb
  left && right
          ^^^^^
-```
 
-``` ruby
  1 and 2
        ^
-```
+ ```
 */
     pub right: *mut pm_node,
     /** AndNode#operator_loc
 
  The Location of the `and` keyword or the `&&` operator.
 
-``` ruby
+ ```rb
  left and right
       ^^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -2963,10 +2873,10 @@ pub struct pm_and_node {
 
  Represents a set of arguments to a method or a keyword.
 
-``` ruby
+ ```rb
  return foo, bar, baz
         ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARGUMENTS_NODE
 
@@ -2989,10 +2899,10 @@ pub struct pm_arguments_node {
 
  The list of arguments, if present. These can be any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo(bar, baz)
      ^^^^^^^^
-```
+ ```
 */
     pub arguments: pm_node_list,
 }
@@ -3000,10 +2910,10 @@ pub struct pm_arguments_node {
 
  Represents an array literal. This can be a regular array using brackets or a special array using % like %w or %i.
 
-``` ruby
+ ```rb
  [1, 2, 3]
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARRAY_NODE
 
@@ -3027,24 +2937,24 @@ pub struct pm_array_node {
 
  Represents the optional source Location for the opening token.
 
-``` ruby
+ ```rb
  [1,2,3]                 # "["
  %w[foo bar baz]         # "%w["
  %I(apple orange banana) # "%I("
  foo = 1, 2, 3           # nil
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** ArrayNode#closing_loc
 
  Represents the optional source Location for the closing token.
 
-``` ruby
+ ```rb
  [1,2,3]                 # "]"
  %w[foo bar baz]         # "]"
  %I(apple orange banana) # ")"
  foo = 1, 2, 3           # nil
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -3052,30 +2962,22 @@ pub struct pm_array_node {
 
  Represents an array pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo in 1, 2
         ^^^^
-```
 
-``` ruby
  foo in [1, 2]
         ^^^^^^
-```
 
-``` ruby
  foo in *bar
         ^^^^
-```
 
-``` ruby
  foo in Bar[]
         ^^^^^
-```
 
-``` ruby
  foo in Bar[1, 2, 3]
         ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ARRAY_PATTERN_NODE
 
@@ -3091,70 +2993,66 @@ pub struct pm_array_pattern_node {
 
  Represents the optional constant preceding the Array
 
-``` ruby
+ ```rb
  foo in Bar[]
         ^^^
-```
 
-``` ruby
  foo in Bar[1, 2, 3]
         ^^^
-```
 
-``` ruby
  foo in Bar::Baz[1, 2, 3]
         ^^^^^^^^
-```
+ ```
 */
     pub constant: *mut pm_node,
     /** ArrayPatternNode#requireds
 
  Represents the required elements of the array pattern.
 
-``` ruby
+ ```rb
  foo in [1, 2]
          ^  ^
-```
+ ```
 */
     pub requireds: pm_node_list,
     /** ArrayPatternNode#rest
 
  Represents the rest element of the array pattern.
 
-``` ruby
+ ```rb
  foo in *bar
         ^^^^
-```
+ ```
 */
     pub rest: *mut pm_node,
     /** ArrayPatternNode#posts
 
  Represents the elements after the rest element of the array pattern.
 
-``` ruby
+ ```rb
  foo in *bar, baz
               ^^^
-```
+ ```
 */
     pub posts: pm_node_list,
     /** ArrayPatternNode#opening_loc
 
  Represents the opening Location of the array pattern.
 
-``` ruby
+ ```rb
  foo in [1, 2]
         ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** ArrayPatternNode#closing_loc
 
  Represents the closing Location of the array pattern.
 
-``` ruby
+ ```rb
  foo in [1, 2]
              ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -3162,10 +3060,10 @@ pub struct pm_array_pattern_node {
 
  Represents a hash key/value pair.
 
-``` ruby
+ ```rb
  { a => b }
    ^^^^^^
-```
+ ```
 
  Type: ::PM_ASSOC_NODE
 
@@ -3181,45 +3079,39 @@ pub struct pm_assoc_node {
 
  The key of the association. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  { a: b }
    ^
-```
 
-``` ruby
  { foo => bar }
    ^^^
-```
 
-``` ruby
  { def a; end => 1 }
    ^^^^^^^^^^
-```
+ ```
 */
     pub key: *mut pm_node,
     /** AssocNode#value
 
  The value of the association, if present. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  { foo => bar }
           ^^^
-```
 
-``` ruby
  { x: 1 }
       ^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** AssocNode#operator_loc
 
  The Location of the `=>` operator, if present.
 
-``` ruby
+ ```rb
  { foo => bar }
        ^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -3227,10 +3119,10 @@ pub struct pm_assoc_node {
 
  Represents a splat in a hash literal.
 
-``` ruby
+ ```rb
  { **foo }
    ^^^^^
-```
+ ```
 
  Type: ::PM_ASSOC_SPLAT_NODE
 
@@ -3246,20 +3138,20 @@ pub struct pm_assoc_splat_node {
 
  The value to be splatted, if present. Will be missing when keyword rest argument forwarding is used.
 
-``` ruby
+ ```rb
  { **foo }
      ^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** AssocSplatNode#operator_loc
 
  The Location of the `**` operator.
 
-``` ruby
+ ```rb
  { **x }
    ^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -3267,10 +3159,10 @@ pub struct pm_assoc_splat_node {
 
  Represents reading a reference to a field in the previous match.
 
-``` ruby
+ ```rb
  $'
  ^^
-```
+ ```
 
  Type: ::PM_BACK_REFERENCE_READ_NODE
 
@@ -3286,13 +3178,11 @@ pub struct pm_back_reference_read_node {
 
  The name of the back-reference variable, including the leading `$`.
 
-``` ruby
+ ```rb
  $& # name `:$&`
-```
 
-``` ruby
  $+ # name `:$+`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -3300,12 +3190,12 @@ pub struct pm_back_reference_read_node {
 
  Represents a begin statement.
 
-``` ruby
+ ```rb
  begin
    foo
  end
  ^^^^^
-```
+ ```
 
  Type: ::PM_BEGIN_NODE
 
@@ -3321,60 +3211,60 @@ pub struct pm_begin_node {
 
  Represents the Location of the `begin` keyword.
 
-``` ruby
+ ```rb
  begin x end
  ^^^^^
-```
+ ```
 */
     pub begin_keyword_loc: pm_location_t,
     /** BeginNode#statements
 
  Represents the statements within the begin block.
 
-``` ruby
+ ```rb
  begin x end
        ^
-```
+ ```
 */
     pub statements: *mut pm_statements_node,
     /** BeginNode#rescue_clause
 
  Represents the rescue clause within the begin block.
 
-``` ruby
+ ```rb
  begin x; rescue y; end
           ^^^^^^^^
-```
+ ```
 */
     pub rescue_clause: *mut pm_rescue_node,
     /** BeginNode#else_clause
 
  Represents the else clause within the begin block.
 
-``` ruby
+ ```rb
  begin x; rescue y; else z; end
                     ^^^^^^^^^^^
-```
+ ```
 */
     pub else_clause: *mut pm_else_node,
     /** BeginNode#ensure_clause
 
  Represents the ensure clause within the begin block.
 
-``` ruby
+ ```rb
  begin x; ensure y; end
           ^^^^^^^^
-```
+ ```
 */
     pub ensure_clause: *mut pm_ensure_node,
     /** BeginNode#end_keyword_loc
 
  Represents the Location of the `end` keyword.
 
-``` ruby
+ ```rb
  begin x end
          ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -3382,10 +3272,10 @@ pub struct pm_begin_node {
 
  Represents a block argument using `&`.
 
-``` ruby
+ ```rb
  bar(&args)
      ^^^^^
-```
+ ```
 
  Type: ::PM_BLOCK_ARGUMENT_NODE
 
@@ -3401,20 +3291,20 @@ pub struct pm_block_argument_node {
 
  The expression that is being passed as a block argument. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo(&args)
       ^^^^
-```
+ ```
 */
     pub expression: *mut pm_node,
     /** BlockArgumentNode#operator_loc
 
  Represents the Location of the `&` operator.
 
-``` ruby
+ ```rb
  foo(&args)
      ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -3422,10 +3312,10 @@ pub struct pm_block_argument_node {
 
  Represents a block local variable.
 
-``` ruby
+ ```rb
  a { |; b| }
         ^
-```
+ ```
 
  Type: ::PM_BLOCK_LOCAL_VARIABLE_NODE
 
@@ -3444,10 +3334,10 @@ pub struct pm_block_local_variable_node {
 
  The name of the block local variable.
 
-``` ruby
+ ```rb
  a { |; b| } # name `:b`
         ^
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -3455,10 +3345,10 @@ pub struct pm_block_local_variable_node {
 
  Represents a block of ruby code.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                 ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_BLOCK_NODE
 
@@ -3474,54 +3364,54 @@ pub struct pm_block_node {
 
  The local variables declared in the block.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x } # locals: [:i]
                    ^
-```
+ ```
 */
     pub locals: pm_constant_id_list_t,
     /** BlockNode#parameters
 
  The parameters of the block.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                   ^^^
  [1, 2, 3].each { puts _1 }
                 ^^^^^^^^^^^
  [1, 2, 3].each { puts it }
                 ^^^^^^^^^^^
-```
+ ```
 */
     pub parameters: *mut pm_node,
     /** BlockNode#body
 
  The body of the block.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                       ^^^^^^
-```
+ ```
 */
     pub body: *mut pm_node,
     /** BlockNode#opening_loc
 
  Represents the Location of the opening `{` or `do`.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                 ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** BlockNode#closing_loc
 
  Represents the Location of the closing `}` or `end`.
 
-``` ruby
+ ```rb
  [1, 2, 3].each { |i| puts x }
                              ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -3529,11 +3419,11 @@ pub struct pm_block_node {
 
  Represents a block parameter of a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(&b)
        ^^
  end
-```
+ ```
 
  Type: ::PM_BLOCK_PARAMETER_NODE
 
@@ -3552,32 +3442,32 @@ pub struct pm_block_parameter_node {
 
  The name of the block parameter.
 
-``` ruby
+ ```rb
  def a(&b) # name `:b`
         ^
  end
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** BlockParameterNode#name_loc
 
  Represents the Location of the block parameter name.
 
-``` ruby
+ ```rb
  def a(&b)
         ^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** BlockParameterNode#operator_loc
 
  Represents the Location of the `&` operator.
 
-``` ruby
+ ```rb
  def a(&b)
        ^
  end
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -3585,16 +3475,14 @@ pub struct pm_block_parameter_node {
 
  Represents a block's parameters declaration.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
     ^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo do |a, b = 1; local|
         ^^^^^^^^^^^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_BLOCK_PARAMETERS_NODE
 
@@ -3610,64 +3498,56 @@ pub struct pm_block_parameters_node {
 
  Represents the parameters of the block.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
      ^^^^^^^^
-```
 
-``` ruby
  foo do |a, b = 1; local|
          ^^^^^^^^
  end
-```
+ ```
 */
     pub parameters: *mut pm_parameters_node,
     /** BlockParametersNode#locals
 
  Represents the local variables of the block.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
                ^^^^^
-```
 
-``` ruby
  foo do |a, b = 1; local|
                    ^^^^^
  end
-```
+ ```
 */
     pub locals: pm_node_list,
     /** BlockParametersNode#opening_loc
 
  Represents the opening Location of the block parameters.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
     ^
-```
 
-``` ruby
  foo do |a, b = 1; local|
         ^
  end
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** BlockParametersNode#closing_loc
 
  Represents the closing Location of the block parameters.
 
-``` ruby
+ ```rb
  -> (a, b = 1; local) { }
                     ^
-```
 
-``` ruby
  foo do |a, b = 1; local|
                         ^
  end
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -3675,10 +3555,10 @@ pub struct pm_block_parameters_node {
 
  Represents the use of the `break` keyword.
 
-``` ruby
+ ```rb
  break foo
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_BREAK_NODE
 
@@ -3694,20 +3574,20 @@ pub struct pm_break_node {
 
  The arguments to the break statement, if present. These can be any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  break foo
        ^^^
-```
+ ```
 */
     pub arguments: *mut pm_arguments_node,
     /** BreakNode#keyword_loc
 
  The Location of the `break` keyword.
 
-``` ruby
+ ```rb
  break foo
  ^^^^^
-```
+ ```
 */
     pub keyword_loc: pm_location_t,
 }
@@ -3715,10 +3595,10 @@ pub struct pm_break_node {
 
  Represents the use of the `&&=` operator on a call.
 
-``` ruby
+ ```rb
  foo.bar &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_AND_WRITE_NODE
 
@@ -3740,70 +3620,70 @@ pub struct pm_call_and_write_node {
 
  The object that the method is being called on. This can be either `nil` or any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo.bar &&= value
  ^^^
-```
+ ```
 */
     pub receiver: *mut pm_node,
     /** CallAndWriteNode#call_operator_loc
 
  Represents the Location of the call operator.
 
-``` ruby
+ ```rb
  foo.bar &&= value
     ^
-```
+ ```
 */
     pub call_operator_loc: pm_location_t,
     /** CallAndWriteNode#message_loc
 
  Represents the Location of the message.
 
-``` ruby
+ ```rb
  foo.bar &&= value
      ^^^
-```
+ ```
 */
     pub message_loc: pm_location_t,
     /** CallAndWriteNode#read_name
 
  Represents the name of the method being called.
 
-``` ruby
+ ```rb
  foo.bar &&= value # read_name `:bar`
      ^^^
-```
+ ```
 */
     pub read_name: pm_constant_id_t,
     /** CallAndWriteNode#write_name
 
  Represents the name of the method being written to.
 
-``` ruby
+ ```rb
  foo.bar &&= value # write_name `:bar=`
      ^^^
-```
+ ```
 */
     pub write_name: pm_constant_id_t,
     /** CallAndWriteNode#operator_loc
 
  Represents the Location of the operator.
 
-``` ruby
+ ```rb
  foo.bar &&= value
          ^^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** CallAndWriteNode#value
 
  Represents the value being assigned.
 
-``` ruby
+ ```rb
  foo.bar &&= value
              ^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -3811,35 +3691,25 @@ pub struct pm_call_and_write_node {
 
  Represents a method call, in all of the various forms that can take.
 
-``` ruby
+ ```rb
  foo
  ^^^
-```
 
-``` ruby
  foo()
  ^^^^^
-```
 
-``` ruby
  +foo
  ^^^^
-```
 
-``` ruby
  foo + bar
  ^^^^^^^^^
-```
 
-``` ruby
  foo.bar
  ^^^^^^^
-```
 
-``` ruby
  foo&.bar
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_NODE
 
@@ -3861,110 +3731,102 @@ pub struct pm_call_node {
 
  The object that the method is being called on. This can be either `nil` or any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo.bar
  ^^^
-```
 
-``` ruby
  +foo
   ^^^
-```
 
-``` ruby
  foo + bar
  ^^^
-```
+ ```
 */
     pub receiver: *mut pm_node,
     /** CallNode#call_operator_loc
 
  Represents the Location of the call operator.
 
-``` ruby
+ ```rb
  foo.bar
     ^
-```
 
-``` ruby
  foo&.bar
     ^^
-```
+ ```
 */
     pub call_operator_loc: pm_location_t,
     /** CallNode#name
 
  Represents the name of the method being called.
 
-``` ruby
+ ```rb
  foo.bar # name `:foo`
  ^^^
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** CallNode#message_loc
 
  Represents the Location of the message.
 
-``` ruby
+ ```rb
  foo.bar
      ^^^
-```
+ ```
 */
     pub message_loc: pm_location_t,
     /** CallNode#opening_loc
 
  Represents the Location of the left parenthesis.
 
-``` ruby
+ ```rb
  foo(bar)
     ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** CallNode#arguments
 
  Represents the arguments to the method call. These can be any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo(bar)
      ^^^
-```
+ ```
 */
     pub arguments: *mut pm_arguments_node,
     /** CallNode#closing_loc
 
  Represents the Location of the right parenthesis.
 
-``` ruby
+ ```rb
  foo(bar)
         ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
     /** CallNode#equal_loc
 
  Represents the Location of the equal sign, in the case that this is an attribute write.
 
-``` ruby
+ ```rb
  foo.bar = value
          ^
-```
 
-``` ruby
  foo[bar] = value
           ^
-```
+ ```
 */
     pub equal_loc: pm_location_t,
     /** CallNode#block
 
  Represents the block that is being passed to the method.
 
-``` ruby
+ ```rb
  foo { |a| a }
      ^^^^^^^^^
-```
+ ```
 */
     pub block: *mut pm_node,
 }
@@ -3972,10 +3834,10 @@ pub struct pm_call_node {
 
  Represents the use of an assignment operator on a call.
 
-``` ruby
+ ```rb
  foo.bar += baz
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_OPERATOR_WRITE_NODE
 
@@ -3997,80 +3859,80 @@ pub struct pm_call_operator_write_node {
 
  The object that the method is being called on. This can be either `nil` or any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo.bar += value
  ^^^
-```
+ ```
 */
     pub receiver: *mut pm_node,
     /** CallOperatorWriteNode#call_operator_loc
 
  Represents the Location of the call operator.
 
-``` ruby
+ ```rb
  foo.bar += value
     ^
-```
+ ```
 */
     pub call_operator_loc: pm_location_t,
     /** CallOperatorWriteNode#message_loc
 
  Represents the Location of the message.
 
-``` ruby
+ ```rb
  foo.bar += value
      ^^^
-```
+ ```
 */
     pub message_loc: pm_location_t,
     /** CallOperatorWriteNode#read_name
 
  Represents the name of the method being called.
 
-``` ruby
+ ```rb
  foo.bar += value # read_name `:bar`
      ^^^
-```
+ ```
 */
     pub read_name: pm_constant_id_t,
     /** CallOperatorWriteNode#write_name
 
  Represents the name of the method being written to.
 
-``` ruby
+ ```rb
  foo.bar += value # write_name `:bar=`
      ^^^
-```
+ ```
 */
     pub write_name: pm_constant_id_t,
     /** CallOperatorWriteNode#binary_operator
 
  Represents the binary operator being used.
 
-``` ruby
+ ```rb
  foo.bar += value # binary_operator `:+`
          ^
-```
+ ```
 */
     pub binary_operator: pm_constant_id_t,
     /** CallOperatorWriteNode#binary_operator_loc
 
  Represents the Location of the binary operator.
 
-``` ruby
+ ```rb
  foo.bar += value
          ^^
-```
+ ```
 */
     pub binary_operator_loc: pm_location_t,
     /** CallOperatorWriteNode#value
 
  Represents the value being assigned.
 
-``` ruby
+ ```rb
  foo.bar += value
             ^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -4078,10 +3940,10 @@ pub struct pm_call_operator_write_node {
 
  Represents the use of the `||=` operator on a call.
 
-``` ruby
+ ```rb
  foo.bar ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_OR_WRITE_NODE
 
@@ -4103,70 +3965,70 @@ pub struct pm_call_or_write_node {
 
  The object that the method is being called on. This can be either `nil` or any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo.bar ||= value
  ^^^
-```
+ ```
 */
     pub receiver: *mut pm_node,
     /** CallOrWriteNode#call_operator_loc
 
  Represents the Location of the call operator.
 
-``` ruby
+ ```rb
  foo.bar ||= value
     ^
-```
+ ```
 */
     pub call_operator_loc: pm_location_t,
     /** CallOrWriteNode#message_loc
 
  Represents the Location of the message.
 
-``` ruby
+ ```rb
  foo.bar ||= value
      ^^^
-```
+ ```
 */
     pub message_loc: pm_location_t,
     /** CallOrWriteNode#read_name
 
  Represents the name of the method being called.
 
-``` ruby
+ ```rb
  foo.bar ||= value # read_name `:bar`
      ^^^
-```
+ ```
 */
     pub read_name: pm_constant_id_t,
     /** CallOrWriteNode#write_name
 
  Represents the name of the method being written to.
 
-``` ruby
+ ```rb
  foo.bar ||= value # write_name `:bar=`
      ^^^
-```
+ ```
 */
     pub write_name: pm_constant_id_t,
     /** CallOrWriteNode#operator_loc
 
  Represents the Location of the operator.
 
-``` ruby
+ ```rb
  foo.bar ||= value
          ^^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** CallOrWriteNode#value
 
  Represents the value being assigned.
 
-``` ruby
+ ```rb
  foo.bar ||= value
              ^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -4174,22 +4036,18 @@ pub struct pm_call_or_write_node {
 
  Represents assigning to a method call.
 
-``` ruby
+ ```rb
  foo.bar, = 1
  ^^^^^^^
-```
 
-``` ruby
  begin
  rescue => foo.bar
            ^^^^^^^
  end
-```
 
-``` ruby
  for foo.bar in baz do end
      ^^^^^^^
-```
+ ```
 
  Type: ::PM_CALL_TARGET_NODE
 
@@ -4211,40 +4069,40 @@ pub struct pm_call_target_node {
 
  The object that the method is being called on. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo.bar = 1
  ^^^
-```
+ ```
 */
     pub receiver: *mut pm_node,
     /** CallTargetNode#call_operator_loc
 
  Represents the Location of the call operator.
 
-``` ruby
+ ```rb
  foo.bar = 1
     ^
-```
+ ```
 */
     pub call_operator_loc: pm_location_t,
     /** CallTargetNode#name
 
  Represents the name of the method being called.
 
-``` ruby
+ ```rb
  foo.bar = 1 # name `:foo`
  ^^^
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** CallTargetNode#message_loc
 
  Represents the Location of the message.
 
-``` ruby
+ ```rb
  foo.bar = 1
      ^^^
-```
+ ```
 */
     pub message_loc: pm_location_t,
 }
@@ -4252,10 +4110,10 @@ pub struct pm_call_target_node {
 
  Represents assigning to a local variable in pattern matching.
 
-``` ruby
+ ```rb
  foo => [bar => baz]
          ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CAPTURE_PATTERN_NODE
 
@@ -4271,30 +4129,30 @@ pub struct pm_capture_pattern_node {
 
  Represents the value to capture.
 
-``` ruby
+ ```rb
  foo => bar
         ^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** CapturePatternNode#target
 
  Represents the target of the capture.
 
-``` ruby
+ ```rb
  foo => bar
  ^^^
-```
+ ```
 */
     pub target: *mut pm_local_variable_target_node,
     /** CapturePatternNode#operator_loc
 
  Represents the Location of the `=>` operator.
 
-``` ruby
+ ```rb
  foo => bar
      ^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -4302,12 +4160,12 @@ pub struct pm_capture_pattern_node {
 
  Represents the use of a case statement for pattern matching.
 
-``` ruby
+ ```rb
  case true
  in false
  end
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CASE_MATCH_NODE
 
@@ -4323,50 +4181,50 @@ pub struct pm_case_match_node {
 
  Represents the predicate of the case match. This can be either `nil` or any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  case true; in false; end
       ^^^^
-```
+ ```
 */
     pub predicate: *mut pm_node,
     /** CaseMatchNode#conditions
 
  Represents the conditions of the case match.
 
-``` ruby
+ ```rb
  case true; in false; end
             ^^^^^^^^
-```
+ ```
 */
     pub conditions: pm_node_list,
     /** CaseMatchNode#else_clause
 
  Represents the else clause of the case match.
 
-``` ruby
+ ```rb
  case true; in false; else; end
                       ^^^^^^^^^
-```
+ ```
 */
     pub else_clause: *mut pm_else_node,
     /** CaseMatchNode#case_keyword_loc
 
  Represents the Location of the `case` keyword.
 
-``` ruby
+ ```rb
  case true; in false; end
  ^^^^
-```
+ ```
 */
     pub case_keyword_loc: pm_location_t,
     /** CaseMatchNode#end_keyword_loc
 
  Represents the Location of the `end` keyword.
 
-``` ruby
+ ```rb
  case true; in false; end
                       ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -4374,12 +4232,12 @@ pub struct pm_case_match_node {
 
  Represents the use of a case statement.
 
-``` ruby
+ ```rb
  case true
  when false
  end
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CASE_NODE
 
@@ -4395,50 +4253,50 @@ pub struct pm_case_node {
 
  Represents the predicate of the case statement. This can be either `nil` or any [non-void expressions](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  case true; when false; end
       ^^^^
-```
+ ```
 */
     pub predicate: *mut pm_node,
     /** CaseNode#conditions
 
  Represents the conditions of the case statement.
 
-``` ruby
+ ```rb
  case true; when false; end
             ^^^^^^^^^^
-```
+ ```
 */
     pub conditions: pm_node_list,
     /** CaseNode#else_clause
 
  Represents the else clause of the case statement.
 
-``` ruby
+ ```rb
  case true; when false; else; end
                         ^^^^^^^^^
-```
+ ```
 */
     pub else_clause: *mut pm_else_node,
     /** CaseNode#case_keyword_loc
 
  Represents the Location of the `case` keyword.
 
-``` ruby
+ ```rb
  case true; when false; end
  ^^^^
-```
+ ```
 */
     pub case_keyword_loc: pm_location_t,
     /** CaseNode#end_keyword_loc
 
  Represents the Location of the `end` keyword.
 
-``` ruby
+ ```rb
  case true; when false; end
                         ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -4446,10 +4304,10 @@ pub struct pm_case_node {
 
  Represents a class declaration involving the `class` keyword.
 
-``` ruby
+ ```rb
  class Foo end
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_NODE
 
@@ -4468,10 +4326,10 @@ pub struct pm_class_node {
 
  Represents the Location of the `class` keyword.
 
-``` ruby
+ ```rb
  class Foo end
  ^^^^^
-```
+ ```
 */
     pub class_keyword_loc: pm_location_t,
     /** ClassNode#constant_path
@@ -4481,49 +4339,49 @@ pub struct pm_class_node {
 
  Represents the Location of the `<` operator.
 
-``` ruby
+ ```rb
  class Foo < Bar
            ^
-```
+ ```
 */
     pub inheritance_operator_loc: pm_location_t,
     /** ClassNode#superclass
 
  Represents the superclass of the class.
 
-``` ruby
+ ```rb
  class Foo < Bar
              ^^^
-```
+ ```
 */
     pub superclass: *mut pm_node,
     /** ClassNode#body
 
  Represents the body of the class.
 
-``` ruby
+ ```rb
  class Foo; bar; end
             ^^^
-```
+ ```
 */
     pub body: *mut pm_node,
     /** ClassNode#end_keyword_loc
 
  Represents the Location of the `end` keyword.
 
-``` ruby
+ ```rb
  class Foo end
            ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
     /** ClassNode#name
 
  The name of the class.
 
-``` ruby
+ ```rb
  class Foo end # name `:Foo`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -4531,10 +4389,10 @@ pub struct pm_class_node {
 
  Represents the use of the `&&=` operator for assignment to a class variable.
 
-``` ruby
+ ```rb
  @@target &&= value
  ^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_AND_WRITE_NODE
 
@@ -4550,40 +4408,40 @@ pub struct pm_class_variable_and_write_node {
 
  The name of the class variable, which is a `@@` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  @@target &&= value # name `:@@target`
  ^^^^^^^^
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** ClassVariableAndWriteNode#name_loc
 
  Represents the Location of the variable name.
 
-``` ruby
+ ```rb
  @@target &&= value
  ^^^^^^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** ClassVariableAndWriteNode#operator_loc
 
  Represents the Location of the `&&=` operator.
 
-``` ruby
+ ```rb
  @@target &&= value
           ^^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** ClassVariableAndWriteNode#value
 
  Represents the value being assigned. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  @@target &&= value
               ^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -4591,10 +4449,10 @@ pub struct pm_class_variable_and_write_node {
 
  Represents assigning to a class variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  @@target += value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -4626,10 +4484,10 @@ pub struct pm_class_variable_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to a class variable.
 
-``` ruby
+ ```rb
  @@target ||= value
  ^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_OR_WRITE_NODE
 
@@ -4658,10 +4516,10 @@ pub struct pm_class_variable_or_write_node {
 
  Represents referencing a class variable.
 
-``` ruby
+ ```rb
  @@foo
  ^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_READ_NODE
 
@@ -4677,13 +4535,11 @@ pub struct pm_class_variable_read_node {
 
  The name of the class variable, which is a `@@` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  @@abc   # name `:@@abc`
-```
 
-``` ruby
  @@_test # name `:@@_test`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -4691,10 +4547,10 @@ pub struct pm_class_variable_read_node {
 
  Represents writing to a class variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  @@foo, @@bar = baz
  ^^^^^  ^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_TARGET_NODE
 
@@ -4714,10 +4570,10 @@ pub struct pm_class_variable_target_node {
 
  Represents writing to a class variable.
 
-``` ruby
+ ```rb
  @@foo = 1
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CLASS_VARIABLE_WRITE_NODE
 
@@ -4733,48 +4589,44 @@ pub struct pm_class_variable_write_node {
 
  The name of the class variable, which is a `@@` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  @@abc = 123     # name `@@abc`
-```
 
-``` ruby
  @@_test = :test # name `@@_test`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** ClassVariableWriteNode#name_loc
 
  The Location of the variable name.
 
-``` ruby
+ ```rb
  @@foo = :bar
  ^^^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** ClassVariableWriteNode#value
 
  The value to write to the class variable. This can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  @@foo = :bar
          ^^^^
-```
 
-``` ruby
  @@_xyz = 123
           ^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** ClassVariableWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  @@foo = :bar
        ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -4782,10 +4634,10 @@ pub struct pm_class_variable_write_node {
 
  Represents the use of the `&&=` operator for assignment to a constant.
 
-``` ruby
+ ```rb
  Target &&= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_AND_WRITE_NODE
 
@@ -4814,10 +4666,10 @@ pub struct pm_constant_and_write_node {
 
  Represents assigning to a constant using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  Target += value
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_OPERATOR_WRITE_NODE
 
@@ -4849,10 +4701,10 @@ pub struct pm_constant_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to a constant.
 
-``` ruby
+ ```rb
  Target ||= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_OR_WRITE_NODE
 
@@ -4881,10 +4733,10 @@ pub struct pm_constant_or_write_node {
 
  Represents the use of the `&&=` operator for assignment to a constant path.
 
-``` ruby
+ ```rb
  Parent::Child &&= value
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_AND_WRITE_NODE
 
@@ -4910,10 +4762,10 @@ pub struct pm_constant_path_and_write_node {
 
  Represents accessing a constant through a path of `::` operators.
 
-``` ruby
+ ```rb
  Foo::Bar
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_NODE
 
@@ -4929,20 +4781,16 @@ pub struct pm_constant_path_node {
 
  The left-hand node of the path, if present. It can be `nil` or any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression). It will be `nil` when the constant lookup is at the root of the module tree.
 
-``` ruby
+ ```rb
  Foo::Bar
  ^^^
-```
 
-``` ruby
  self::Test
  ^^^^
-```
 
-``` ruby
  a.b::C
  ^^^
-```
+ ```
 */
     pub parent: *mut pm_node,
     /** ConstantPathNode#name
@@ -4954,30 +4802,26 @@ pub struct pm_constant_path_node {
 
  The Location of the `::` delimiter.
 
-``` ruby
+ ```rb
  ::Foo
  ^^
-```
 
-``` ruby
  One::Two
     ^^
-```
+ ```
 */
     pub delimiter_loc: pm_location_t,
     /** ConstantPathNode#name_loc
 
  The Location of the name of the constant.
 
-``` ruby
+ ```rb
  ::Foo
    ^^^
-```
 
-``` ruby
  One::Two
       ^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
 }
@@ -4985,10 +4829,10 @@ pub struct pm_constant_path_node {
 
  Represents assigning to a constant path using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  Parent::Child += value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_OPERATOR_WRITE_NODE
 
@@ -5017,10 +4861,10 @@ pub struct pm_constant_path_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to a constant path.
 
-``` ruby
+ ```rb
  Parent::Child ||= value
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_OR_WRITE_NODE
 
@@ -5046,10 +4890,10 @@ pub struct pm_constant_path_or_write_node {
 
  Represents writing to a constant path in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  Foo::Foo, Bar::Bar = baz
  ^^^^^^^^  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_TARGET_NODE
 
@@ -5078,20 +4922,16 @@ pub struct pm_constant_path_target_node {
 
  Represents writing to a constant path.
 
-``` ruby
+ ```rb
  ::Foo = 1
  ^^^^^^^^^
-```
 
-``` ruby
  Foo::Bar = 1
  ^^^^^^^^^^^^
-```
 
-``` ruby
  ::Foo::Bar = 1
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_PATH_WRITE_NODE
 
@@ -5107,35 +4947,33 @@ pub struct pm_constant_path_write_node {
 
  A node representing the constant path being written to.
 
-``` ruby
+ ```rb
  Foo::Bar = 1
  ^^^^^^^^
-```
 
-``` ruby
  ::Foo = :abc
  ^^^^^
-```
+ ```
 */
     pub target: *mut pm_constant_path_node,
     /** ConstantPathWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  ::ABC = 123
        ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** ConstantPathWriteNode#value
 
  The value to write to the constant path. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  FOO::BAR = :abc
             ^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -5143,10 +4981,10 @@ pub struct pm_constant_path_write_node {
 
  Represents referencing a constant.
 
-``` ruby
+ ```rb
  Foo
  ^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_READ_NODE
 
@@ -5162,13 +5000,11 @@ pub struct pm_constant_read_node {
 
  The name of the [constant](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#constants).
 
-``` ruby
+ ```rb
  X              # name `:X`
-```
 
-``` ruby
  SOME_CONSTANT  # name `:SOME_CONSTANT`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -5176,10 +5012,10 @@ pub struct pm_constant_read_node {
 
  Represents writing to a constant in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  Foo, Bar = baz
  ^^^  ^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_TARGET_NODE
 
@@ -5199,10 +5035,10 @@ pub struct pm_constant_target_node {
 
  Represents writing to a constant.
 
-``` ruby
+ ```rb
  Foo = 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_CONSTANT_WRITE_NODE
 
@@ -5218,48 +5054,44 @@ pub struct pm_constant_write_node {
 
  The name of the [constant](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#constants).
 
-``` ruby
+ ```rb
  Foo = :bar # name `:Foo`
-```
 
-``` ruby
  XYZ = 1    # name `:XYZ`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** ConstantWriteNode#name_loc
 
  The Location of the constant name.
 
-``` ruby
+ ```rb
  FOO = 1
  ^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** ConstantWriteNode#value
 
  The value to write to the constant. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  FOO = :bar
        ^^^^
-```
 
-``` ruby
  MyClass = Class.new
            ^^^^^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** ConstantWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  FOO = :bar
      ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -5267,11 +5099,11 @@ pub struct pm_constant_write_node {
 
  Represents a method definition.
 
-``` ruby
+ ```rb
  def method
  end
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_DEF_NODE
 
@@ -5324,10 +5156,10 @@ pub struct pm_def_node {
 
  Represents the use of the `defined?` keyword.
 
-``` ruby
+ ```rb
  defined?(a)
  ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_DEFINED_NODE
 
@@ -5356,10 +5188,10 @@ pub struct pm_defined_node {
 
  Represents an `else` clause in a `case`, `if`, or `unless` statement.
 
-``` ruby
+ ```rb
  if a then b else c end
              ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_ELSE_NODE
 
@@ -5385,10 +5217,10 @@ pub struct pm_else_node {
 
  Represents an interpolated set of statements.
 
-``` ruby
+ ```rb
  "foo #{bar}"
       ^^^^^^
-```
+ ```
 
  Type: ::PM_EMBEDDED_STATEMENTS_NODE
 
@@ -5414,10 +5246,10 @@ pub struct pm_embedded_statements_node {
 
  Represents an interpolated variable.
 
-``` ruby
+ ```rb
  "foo #@bar"
       ^^^^^
-```
+ ```
 
  Type: ::PM_EMBEDDED_VARIABLE_NODE
 
@@ -5440,14 +5272,14 @@ pub struct pm_embedded_variable_node {
 
  Represents an `ensure` clause in a `begin` statement.
 
-``` ruby
+ ```rb
  begin
    foo
  ensure
  ^^^^^^
    bar
  end
-```
+ ```
 
  Type: ::PM_ENSURE_NODE
 
@@ -5493,10 +5325,10 @@ pub struct pm_error_recovery_node {
 
  Represents the use of the literal `false` keyword.
 
-``` ruby
+ ```rb
  false
  ^^^^^
-```
+ ```
 
  Type: ::PM_FALSE_NODE
 
@@ -5513,25 +5345,19 @@ pub struct pm_false_node {
 
  Represents a find pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo in *bar, baz, *qux
         ^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in [*bar, baz, *qux]
         ^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
         ^^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => *bar, baz, *qux
         ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FIND_PATTERN_NODE
 
@@ -5547,85 +5373,75 @@ pub struct pm_find_pattern_node {
 
  Represents the optional constant preceding the pattern
 
-``` ruby
+ ```rb
  foo in Foo(*bar, baz, *qux)
         ^^^
-```
+ ```
 */
     pub constant: *mut pm_node,
     /** FindPatternNode#left
 
  Represents the first wildcard node in the pattern.
 
-``` ruby
+ ```rb
  foo in *bar, baz, *qux
         ^^^^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
             ^^^^
-```
+ ```
 */
     pub left: *mut pm_splat_node,
     /** FindPatternNode#requireds
 
  Represents the nodes in between the wildcards.
 
-``` ruby
+ ```rb
  foo in *bar, baz, *qux
               ^^^
-```
 
-``` ruby
  foo in Foo(*bar, baz, 1, *qux)
                   ^^^^^^
-```
+ ```
 */
     pub requireds: pm_node_list,
     /** FindPatternNode#right
 
  Represents the second wildcard node in the pattern.
 
-``` ruby
+ ```rb
  foo in *bar, baz, *qux
                    ^^^^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
                        ^^^^
-```
+ ```
 */
     pub right: *mut pm_splat_node,
     /** FindPatternNode#opening_loc
 
  The Location of the opening brace.
 
-``` ruby
+ ```rb
  foo in [*bar, baz, *qux]
         ^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
            ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** FindPatternNode#closing_loc
 
  The Location of the closing brace.
 
-``` ruby
+ ```rb
  foo in [*bar, baz, *qux]
                         ^
-```
 
-``` ruby
  foo in Foo(*bar, baz, *qux)
                            ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -5633,10 +5449,10 @@ pub struct pm_find_pattern_node {
 
  Represents the use of the `..` or `...` operators to create flip flops.
 
-``` ruby
+ ```rb
  baz if foo .. bar
         ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FLIP_FLOP_NODE
 
@@ -5665,10 +5481,10 @@ pub struct pm_flip_flop_node {
 
  Represents a floating point number literal.
 
-``` ruby
+ ```rb
  1.0
  ^^^
-```
+ ```
 
  Type: ::PM_FLOAT_NODE
 
@@ -5690,10 +5506,10 @@ pub struct pm_float_node {
 
  Represents the use of the `for` keyword.
 
-``` ruby
+ ```rb
  for i in a end
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_FOR_NODE
 
@@ -5709,72 +5525,72 @@ pub struct pm_for_node {
 
  The index expression for `for` loops.
 
-``` ruby
+ ```rb
  for i in a end
      ^
-```
+ ```
 */
     pub index: *mut pm_node,
     /** ForNode#collection
 
  The collection to iterate over.
 
-``` ruby
+ ```rb
  for i in a end
           ^
-```
+ ```
 */
     pub collection: *mut pm_node,
     /** ForNode#statements
 
  Represents the body of statements to execute for each iteration of the loop.
 
-``` ruby
+ ```rb
  for i in a
    foo(i)
    ^^^^^^
  end
-```
+ ```
 */
     pub statements: *mut pm_statements_node,
     /** ForNode#for_keyword_loc
 
  The Location of the `for` keyword.
 
-``` ruby
+ ```rb
  for i in a end
  ^^^
-```
+ ```
 */
     pub for_keyword_loc: pm_location_t,
     /** ForNode#in_keyword_loc
 
  The Location of the `in` keyword.
 
-``` ruby
+ ```rb
  for i in a end
        ^^
-```
+ ```
 */
     pub in_keyword_loc: pm_location_t,
     /** ForNode#do_keyword_loc
 
  The Location of the `do` keyword, if present.
 
-``` ruby
+ ```rb
  for i in a do end
             ^^
-```
+ ```
 */
     pub do_keyword_loc: pm_location_t,
     /** ForNode#end_keyword_loc
 
  The Location of the `end` keyword.
 
-``` ruby
+ ```rb
  for i in a end
             ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -5782,12 +5598,12 @@ pub struct pm_for_node {
 
  Represents forwarding all arguments to this method to another method.
 
-``` ruby
+ ```rb
  def foo(...)
    bar(...)
        ^^^
  end
-```
+ ```
 
  Type: ::PM_FORWARDING_ARGUMENTS_NODE
 
@@ -5804,11 +5620,11 @@ pub struct pm_forwarding_arguments_node {
 
  Represents the use of the forwarding parameter in a method, block, or lambda declaration.
 
-``` ruby
+ ```rb
  def foo(...)
          ^^^
  end
-```
+ ```
 
  Type: ::PM_FORWARDING_PARAMETER_NODE
 
@@ -5825,15 +5641,13 @@ pub struct pm_forwarding_parameter_node {
 
  Represents the use of the `super` keyword without parentheses or arguments, but which might have a block.
 
-``` ruby
+ ```rb
  super
  ^^^^^
-```
 
-``` ruby
  super { 123 }
  ^^^^^^^^^^^^^
-```
+ ```
 
  If it has any other arguments, it would be a `SuperNode` instead.
 
@@ -5866,10 +5680,10 @@ pub struct pm_forwarding_super_node {
 
  Represents the use of the `&&=` operator for assignment to a global variable.
 
-``` ruby
+ ```rb
  $target &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_AND_WRITE_NODE
 
@@ -5898,10 +5712,10 @@ pub struct pm_global_variable_and_write_node {
 
  Represents assigning to a global variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  $target += value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -5933,10 +5747,10 @@ pub struct pm_global_variable_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to a global variable.
 
-``` ruby
+ ```rb
  $target ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_OR_WRITE_NODE
 
@@ -5965,10 +5779,10 @@ pub struct pm_global_variable_or_write_node {
 
  Represents referencing a global variable.
 
-``` ruby
+ ```rb
  $foo
  ^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_READ_NODE
 
@@ -5984,13 +5798,11 @@ pub struct pm_global_variable_read_node {
 
  The name of the global variable, which is a `$` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifier). Alternatively, it can be one of the special global variables designated by a symbol.
 
-``` ruby
+ ```rb
  $foo   # name `:$foo`
-```
 
-``` ruby
  $_Test # name `:$_Test`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -5998,10 +5810,10 @@ pub struct pm_global_variable_read_node {
 
  Represents writing to a global variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  $foo, $bar = baz
  ^^^^  ^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_TARGET_NODE
 
@@ -6021,10 +5833,10 @@ pub struct pm_global_variable_target_node {
 
  Represents writing to a global variable.
 
-``` ruby
+ ```rb
  $foo = 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_GLOBAL_VARIABLE_WRITE_NODE
 
@@ -6040,48 +5852,44 @@ pub struct pm_global_variable_write_node {
 
  The name of the global variable, which is a `$` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifier). Alternatively, it can be one of the special global variables designated by a symbol.
 
-``` ruby
+ ```rb
  $foo = :bar  # name `:$foo`
-```
 
-``` ruby
  $_Test = 123 # name `:$_Test`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** GlobalVariableWriteNode#name_loc
 
  The Location of the global variable's name.
 
-``` ruby
+ ```rb
  $foo = :bar
  ^^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** GlobalVariableWriteNode#value
 
  The value to write to the global variable. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  $foo = :bar
         ^^^^
-```
 
-``` ruby
  $-xyz = 123
          ^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** GlobalVariableWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  $foo = :bar
       ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -6089,10 +5897,10 @@ pub struct pm_global_variable_write_node {
 
  Represents a hash literal.
 
-``` ruby
+ ```rb
  { a => b }
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_HASH_NODE
 
@@ -6108,35 +5916,33 @@ pub struct pm_hash_node {
 
  The Location of the opening brace.
 
-``` ruby
+ ```rb
  { a => b }
  ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** HashNode#elements
 
  The elements of the hash. These can be either `AssocNode`s or `AssocSplatNode`s.
 
-``` ruby
+ ```rb
  { a: b }
    ^^^^
-```
 
-``` ruby
  { **foo }
    ^^^^^
-```
+ ```
 */
     pub elements: pm_node_list,
     /** HashNode#closing_loc
 
  The Location of the closing brace.
 
-``` ruby
+ ```rb
  { a => b }
           ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -6144,25 +5950,19 @@ pub struct pm_hash_node {
 
  Represents a hash pattern in pattern matching.
 
-``` ruby
+ ```rb
  foo => { a: 1, b: 2 }
         ^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => { a: 1, b: 2, **c }
         ^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo => Bar[a: 1, b: 2]
         ^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo in { a: 1, b: 2 }
         ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_HASH_PATTERN_NODE
 
@@ -6178,75 +5978,65 @@ pub struct pm_hash_pattern_node {
 
  Represents the optional constant preceding the Hash.
 
-``` ruby
+ ```rb
  foo => Bar[a: 1, b: 2]
       ^^^
-```
 
-``` ruby
  foo => Bar::Baz[a: 1, b: 2]
       ^^^^^^^^
-```
+ ```
 */
     pub constant: *mut pm_node,
     /** HashPatternNode#elements
 
  Represents the explicit named hash keys and values.
 
-``` ruby
+ ```rb
  foo => { a: 1, b:, ** }
           ^^^^^^^^
-```
+ ```
 */
     pub elements: pm_node_list,
     /** HashPatternNode#rest
 
  Represents the rest of the Hash keys and values. This can be named, unnamed, or explicitly forbidden via `**nil`, this last one results in a `NoKeywordsParameterNode`.
 
-``` ruby
+ ```rb
  foo => { a: 1, b:, **c }
                     ^^^
-```
 
-``` ruby
  foo => { a: 1, b:, ** }
                     ^^
-```
 
-``` ruby
  foo => { a: 1, b:, **nil }
                     ^^^^^
-```
+ ```
 */
     pub rest: *mut pm_node,
     /** HashPatternNode#opening_loc
 
  The Location of the opening brace.
 
-``` ruby
+ ```rb
  foo => { a: 1 }
         ^
-```
 
-``` ruby
  foo => Bar[a: 1]
            ^
-```
+ ```
 */
     pub opening_loc: pm_location_t,
     /** HashPatternNode#closing_loc
 
  The Location of the closing brace.
 
-``` ruby
+ ```rb
  foo => { a: 1 }
                ^
-```
 
-``` ruby
  foo => Bar[a: 1]
                 ^
-```
+ ```
 */
     pub closing_loc: pm_location_t,
 }
@@ -6254,20 +6044,16 @@ pub struct pm_hash_pattern_node {
 
  Represents the use of the `if` keyword, either in the block form or the modifier form, or a ternary expression.
 
-``` ruby
+ ```rb
  bar if foo
  ^^^^^^^^^^
-```
 
-``` ruby
  if foo then bar end
  ^^^^^^^^^^^^^^^^^^^
-```
 
-``` ruby
  foo ? bar : baz
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IF_NODE
 
@@ -6283,10 +6069,10 @@ pub struct pm_if_node {
 
  The Location of the `if` keyword if present.
 
-``` ruby
+ ```rb
  bar if foo
      ^^
-```
+ ```
 
  The `if_keyword_loc` field will be `nil` when the `IfNode` represents a ternary expression.
 */
@@ -6295,58 +6081,52 @@ pub struct pm_if_node {
 
  The node for the condition the `IfNode` is testing.
 
-``` ruby
+ ```rb
  if foo
     ^^^
    bar
  end
-```
 
-``` ruby
  bar if foo
         ^^^
-```
 
-``` ruby
  foo ? bar : baz
  ^^^
-```
+ ```
 */
     pub predicate: *mut pm_node,
     /** IfNode#then_keyword_loc
 
  The Location of the `then` keyword (if present) or the `?` in a ternary expression, `nil` otherwise.
 
-``` ruby
+ ```rb
  if foo then bar end
         ^^^^
-```
 
-``` ruby
  a ? b : c
    ^
-```
+ ```
 */
     pub then_keyword_loc: pm_location_t,
     /** IfNode#statements
 
  Represents the body of statements that will be executed when the predicate is evaluated as truthy. Will be `nil` when no body is provided.
 
-``` ruby
+ ```rb
  if foo
    bar
    ^^^
    baz
    ^^^
  end
-```
+ ```
 */
     pub statements: *mut pm_statements_node,
     /** IfNode#subsequent
 
  Represents an `ElseNode` or an `IfNode` when there is an `else` or an `elsif` in the `if` statement.
 
-``` ruby
+ ```rb
  if foo
    bar
  elsif baz
@@ -6355,24 +6135,22 @@ pub struct pm_if_node {
    ^^^
  end
  ^^^
-```
 
-``` ruby
  if foo then bar else baz end
                  ^^^^^^^^^^^^
-```
+ ```
 */
     pub subsequent: *mut pm_node,
     /** IfNode#end_keyword_loc
 
  The Location of the `end` keyword if present, `nil` otherwise.
 
-``` ruby
+ ```rb
  if foo
    bar
  end
  ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -6380,10 +6158,10 @@ pub struct pm_if_node {
 
  Represents an imaginary number literal.
 
-``` ruby
+ ```rb
  1.0i
  ^^^^
-```
+ ```
 
  Type: ::PM_IMAGINARY_NODE
 
@@ -6403,20 +6181,16 @@ pub struct pm_imaginary_node {
 
  Represents a node that is implicitly being added to the tree but doesn't correspond directly to a node in the source.
 
-``` ruby
+ ```rb
  { foo: }
    ^^^^
-```
 
-``` ruby
  { Foo: }
    ^^^^
-```
 
-``` ruby
  foo in { bar: }
           ^^^^
-```
+ ```
 
  Type: ::PM_IMPLICIT_NODE
 
@@ -6436,25 +6210,19 @@ pub struct pm_implicit_node {
 
  Represents using a trailing comma to indicate an implicit rest parameter.
 
-``` ruby
+ ```rb
  foo { |bar,| }
            ^
-```
 
-``` ruby
  foo in [bar,]
             ^
-```
 
-``` ruby
  for foo, in bar do end
         ^
-```
 
-``` ruby
  foo, = bar
     ^
-```
+ ```
 
  Type: ::PM_IMPLICIT_REST_NODE
 
@@ -6471,10 +6239,10 @@ pub struct pm_implicit_rest_node {
 
  Represents the use of the `in` keyword in a case statement.
 
-``` ruby
+ ```rb
  case a; in b then c end
          ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IN_NODE
 
@@ -6503,10 +6271,10 @@ pub struct pm_in_node {
 
  Represents the use of the `&&=` operator on a call to the `[]` method.
 
-``` ruby
+ ```rb
  foo.bar[baz] &&= value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_AND_WRITE_NODE
 
@@ -6553,10 +6321,10 @@ pub struct pm_index_and_write_node {
 
  Represents the use of an assignment operator on a call to `[]`.
 
-``` ruby
+ ```rb
  foo.bar[baz] += value
  ^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_OPERATOR_WRITE_NODE
 
@@ -6606,10 +6374,10 @@ pub struct pm_index_operator_write_node {
 
  Represents the use of the `||=` operator on a call to `[]`.
 
-``` ruby
+ ```rb
  foo.bar[baz] ||= value
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_OR_WRITE_NODE
 
@@ -6656,22 +6424,18 @@ pub struct pm_index_or_write_node {
 
  Represents assigning to an index.
 
-``` ruby
+ ```rb
  foo[bar], = 1
  ^^^^^^^^
-```
 
-``` ruby
  begin
  rescue => foo[bar]
            ^^^^^^^^
  end
-```
 
-``` ruby
  for foo[bar] in baz do end
      ^^^^^^^^
-```
+ ```
 
  Type: ::PM_INDEX_TARGET_NODE
 
@@ -6709,10 +6473,10 @@ pub struct pm_index_target_node {
 
  Represents the use of the `&&=` operator for assignment to an instance variable.
 
-``` ruby
+ ```rb
  @target &&= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_AND_WRITE_NODE
 
@@ -6741,10 +6505,10 @@ pub struct pm_instance_variable_and_write_node {
 
  Represents assigning to an instance variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  @target += value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -6776,10 +6540,10 @@ pub struct pm_instance_variable_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to an instance variable.
 
-``` ruby
+ ```rb
  @target ||= value
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_OR_WRITE_NODE
 
@@ -6808,10 +6572,10 @@ pub struct pm_instance_variable_or_write_node {
 
  Represents referencing an instance variable.
 
-``` ruby
+ ```rb
  @foo
  ^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_READ_NODE
 
@@ -6827,13 +6591,11 @@ pub struct pm_instance_variable_read_node {
 
  The name of the instance variable, which is a `@` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  @x     # name `:@x`
-```
 
-``` ruby
  @_test # name `:@_test`
-```
+ ```
 */
     pub name: pm_constant_id_t,
 }
@@ -6841,10 +6603,10 @@ pub struct pm_instance_variable_read_node {
 
  Represents writing to an instance variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  @foo, @bar = baz
  ^^^^  ^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_TARGET_NODE
 
@@ -6864,10 +6626,10 @@ pub struct pm_instance_variable_target_node {
 
  Represents writing to an instance variable.
 
-``` ruby
+ ```rb
  @foo = 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_INSTANCE_VARIABLE_WRITE_NODE
 
@@ -6883,48 +6645,44 @@ pub struct pm_instance_variable_write_node {
 
  The name of the instance variable, which is a `@` followed by an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  @x = :y       # name `:@x`
-```
 
-``` ruby
  @_foo = "bar" # name `@_foo`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** InstanceVariableWriteNode#name_loc
 
  The Location of the variable name.
 
-``` ruby
+ ```rb
  @_x = 1
  ^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** InstanceVariableWriteNode#value
 
  The value to write to the instance variable. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  @foo = :bar
         ^^^^
-```
 
-``` ruby
  @_x = 1234
        ^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** InstanceVariableWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  @x = y
     ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -6932,10 +6690,10 @@ pub struct pm_instance_variable_write_node {
 
  Represents an integer number literal.
 
-``` ruby
+ ```rb
  1
  ^
-```
+ ```
 
  Type: ::PM_INTEGER_NODE
 
@@ -6963,10 +6721,10 @@ pub struct pm_integer_node {
 
  Represents a regular expression literal that contains interpolation that is being used in the predicate of a conditional to implicitly match against the last line read by an IO object.
 
-``` ruby
+ ```rb
  if /foo #{bar} baz/ then end
     ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_MATCH_LAST_LINE_NODE
 
@@ -7005,10 +6763,10 @@ pub struct pm_interpolated_match_last_line_node {
 
  Represents a regular expression literal that contains interpolation.
 
-``` ruby
+ ```rb
  /foo #{bar} baz/
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_REGULAR_EXPRESSION_NODE
 
@@ -7047,10 +6805,10 @@ pub struct pm_interpolated_regular_expression_node {
 
  Represents a string literal that contains interpolation.
 
-``` ruby
+ ```rb
  "foo #{bar} baz"
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_STRING_NODE
 
@@ -7080,10 +6838,10 @@ pub struct pm_interpolated_string_node {
 
  Represents a symbol literal that contains interpolation.
 
-``` ruby
+ ```rb
  :"foo #{bar} baz"
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_SYMBOL_NODE
 
@@ -7109,10 +6867,10 @@ pub struct pm_interpolated_symbol_node {
 
  Represents an xstring literal that contains interpolation.
 
-``` ruby
+ ```rb
  `foo #{bar} baz`
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_INTERPOLATED_X_STRING_NODE
 
@@ -7138,10 +6896,10 @@ pub struct pm_interpolated_x_string_node {
 
  Represents reading from the implicit `it` local variable.
 
-``` ruby
+ ```rb
  -> { it }
       ^^
-```
+ ```
 
  Type: ::PM_IT_LOCAL_VARIABLE_READ_NODE
 
@@ -7158,10 +6916,10 @@ pub struct pm_it_local_variable_read_node {
 
  Represents an implicit set of parameters through the use of the `it` keyword within a block or lambda.
 
-``` ruby
+ ```rb
  -> { it + it }
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_IT_PARAMETERS_NODE
 
@@ -7178,10 +6936,10 @@ pub struct pm_it_parameters_node {
 
  Represents a hash literal without opening and closing braces.
 
-``` ruby
+ ```rb
  foo(a: b)
      ^^^^
-```
+ ```
 
  Type: ::PM_KEYWORD_HASH_NODE
 
@@ -7204,11 +6962,11 @@ pub struct pm_keyword_hash_node {
 
  Represents a keyword rest parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(**b)
        ^^^
  end
-```
+ ```
 
  Type: ::PM_KEYWORD_REST_PARAMETER_NODE
 
@@ -7237,10 +6995,10 @@ pub struct pm_keyword_rest_parameter_node {
 
  Represents using a lambda literal (not the lambda method call).
 
-``` ruby
+ ```rb
  ->(value) { value * 2 }
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LAMBDA_NODE
 
@@ -7275,10 +7033,10 @@ pub struct pm_lambda_node {
 
  Represents the use of the `&&=` operator for assignment to a local variable.
 
-``` ruby
+ ```rb
  target &&= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_AND_WRITE_NODE
 
@@ -7310,10 +7068,10 @@ pub struct pm_local_variable_and_write_node {
 
  Represents assigning to a local variable using an operator that isn't `=`.
 
-``` ruby
+ ```rb
  target += value
  ^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_OPERATOR_WRITE_NODE
 
@@ -7348,10 +7106,10 @@ pub struct pm_local_variable_operator_write_node {
 
  Represents the use of the `||=` operator for assignment to a local variable.
 
-``` ruby
+ ```rb
  target ||= value
  ^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_OR_WRITE_NODE
 
@@ -7383,10 +7141,10 @@ pub struct pm_local_variable_or_write_node {
 
  Represents reading a local variable. Note that this requires that a local variable of the same name has already been written to in the same scope, otherwise it is parsed as a method call.
 
-``` ruby
+ ```rb
  foo
  ^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_READ_NODE
 
@@ -7402,32 +7160,28 @@ pub struct pm_local_variable_read_node {
 
  The name of the local variable, which is an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  x      # name `:x`
-```
 
-``` ruby
  _Test  # name `:_Test`
-```
+ ```
 
  Note that this can also be an underscore followed by a number for the default block parameters.
 
-``` ruby
+ ```rb
  _1     # name `:_1`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** LocalVariableReadNode#depth
 
  The number of visible scopes that should be searched to find the origin of this local variable.
 
-``` ruby
+ ```rb
  foo = 1; foo # depth 0
-```
 
-``` ruby
  bar = 2; tap { bar } # depth 1
-```
+ ```
 
  The specific rules for calculating the depth may differ from individual Ruby implementations, as they are not specified by the language. For more information, see [the Prism documentation](https://github.com/ruby/prism/blob/main/docs/local_variable_depth.md).
 */
@@ -7437,15 +7191,13 @@ pub struct pm_local_variable_read_node {
 
  Represents writing to a local variable in a context that doesn't have an explicit value.
 
-``` ruby
+ ```rb
  foo, bar = baz
  ^^^  ^^^
-```
 
-``` ruby
  foo => baz
         ^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_TARGET_NODE
 
@@ -7468,10 +7220,10 @@ pub struct pm_local_variable_target_node {
 
  Represents writing to a local variable.
 
-``` ruby
+ ```rb
  foo = 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_LOCAL_VARIABLE_WRITE_NODE
 
@@ -7487,26 +7239,22 @@ pub struct pm_local_variable_write_node {
 
  The name of the local variable, which is an [identifier](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#identifiers).
 
-``` ruby
+ ```rb
  foo = :bar # name `:foo`
-```
 
-``` ruby
  abc = 123  # name `:abc`
-```
+ ```
 */
     pub name: pm_constant_id_t,
     /** LocalVariableWriteNode#depth
 
  The number of semantic scopes we have to traverse to find the declaration of this variable.
 
-``` ruby
+ ```rb
  foo = 1         # depth 0
-```
 
-``` ruby
  tap { foo = 1 } # depth 1
-```
+ ```
 
  The specific rules for calculating the depth may differ from individual Ruby implementations, as they are not specified by the language. For more information, see [the Prism documentation](https://github.com/ruby/prism/blob/main/docs/local_variable_depth.md).
 */
@@ -7515,41 +7263,39 @@ pub struct pm_local_variable_write_node {
 
  The Location of the variable name.
 
-``` ruby
+ ```rb
  foo = :bar
  ^^^
-```
+ ```
 */
     pub name_loc: pm_location_t,
     /** LocalVariableWriteNode#value
 
  The value to write to the local variable. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  foo = :bar
        ^^^^
-```
 
-``` ruby
  abc = 1234
        ^^^^
-```
+ ```
 
  Note that since the name of a local variable is known before the value is parsed, it is valid for a local variable to appear within the value of its own write.
 
-``` ruby
+ ```rb
  foo = foo
-```
+ ```
 */
     pub value: *mut pm_node,
     /** LocalVariableWriteNode#operator_loc
 
  The Location of the `=` operator.
 
-``` ruby
+ ```rb
  x = :y
    ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -7557,10 +7303,10 @@ pub struct pm_local_variable_write_node {
 
  Represents a regular expression literal used in the predicate of a conditional to implicitly match against the last line read by an IO object.
 
-``` ruby
+ ```rb
  if /foo/i then end
     ^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_LAST_LINE_NODE
 
@@ -7602,10 +7348,10 @@ pub struct pm_match_last_line_node {
 
  Represents the use of the modifier `in` operator.
 
-``` ruby
+ ```rb
  foo in bar
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_PREDICATE_NODE
 
@@ -7631,10 +7377,10 @@ pub struct pm_match_predicate_node {
 
  Represents the use of the `=>` operator.
 
-``` ruby
+ ```rb
  foo => bar
  ^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_REQUIRED_NODE
 
@@ -7650,10 +7396,10 @@ pub struct pm_match_required_node {
 
  Represents the left-hand side of the operator.
 
-``` ruby
+ ```rb
  foo => bar
  ^^^
-```
+ ```
 */
     pub value: *mut pm_node,
     /** MatchRequiredNode#pattern
@@ -7662,77 +7408,69 @@ pub struct pm_match_required_node {
 
  Anything that looks like a local variable name (including `_`) will result in a `LocalVariableTargetNode`.
 
-``` ruby
+ ```rb
  foo => a # This is equivalent to writing `a = foo`
         ^
-```
+ ```
 
  Using an explicit `Array` or combining expressions with `,` will result in a `ArrayPatternNode`. This can be preceded by a constant.
 
-``` ruby
+ ```rb
  foo => [a]
         ^^^
-```
 
-``` ruby
  foo => a, b
         ^^^^
-```
 
-``` ruby
  foo => Bar[a, b]
         ^^^^^^^^^
-```
+ ```
 
  If the array pattern contains at least two wildcard matches, a `FindPatternNode` is created instead.
 
-``` ruby
+ ```rb
  foo => *, 1, *a
         ^^^^^
-```
+ ```
 
  Using an explicit `Hash` or a constant with square brackets and hash keys in the square brackets will result in a `HashPatternNode`.
 
-``` ruby
+ ```rb
  foo => { a: 1, b: }
-```
 
-``` ruby
  foo => Bar[a: 1, b:]
-```
 
-``` ruby
  foo => Bar[**]
-```
+ ```
 
  To use any variable that needs run time evaluation, pinning is required. This results in a `PinnedVariableNode`
 
-``` ruby
+ ```rb
  foo => ^a
         ^^
-```
+ ```
 
  Similar, any expression can be used with pinning. This results in a `PinnedExpressionNode`.
 
-``` ruby
+ ```rb
  foo => ^(a + 1)
-```
+ ```
 
  Anything else will result in the regular node for that expression, for example a `ConstantReadNode`.
 
-``` ruby
+ ```rb
  foo => CONST
-```
+ ```
 */
     pub pattern: *mut pm_node,
     /** MatchRequiredNode#operator_loc
 
  The Location of the operator.
 
-``` ruby
+ ```rb
  foo => bar
      ^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -7740,10 +7478,10 @@ pub struct pm_match_required_node {
 
  Represents writing local variables using a regular expression match with named capture groups.
 
-``` ruby
+ ```rb
  /(?<foo>bar)/ =~ baz
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MATCH_WRITE_NODE
 
@@ -7766,10 +7504,10 @@ pub struct pm_match_write_node {
 
  Represents a module declaration involving the `module` keyword.
 
-``` ruby
+ ```rb
  module Foo end
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MODULE_NODE
 
@@ -7804,17 +7542,17 @@ pub struct pm_module_node {
 
  Represents a multi-target expression.
 
-``` ruby
+ ```rb
  a, (b, c) = 1, 2, 3
     ^^^^^^
-```
+ ```
 
  This can be a part of `MultiWriteNode` as above, or the target of a `for` loop
 
-``` ruby
+ ```rb
  for a, b in [[1, 2], [3, 4]]
      ^^^^
-```
+ ```
 
  Type: ::PM_MULTI_TARGET_NODE
 
@@ -7830,71 +7568,71 @@ pub struct pm_multi_target_node {
 
  Represents the targets expressions before a splat node.
 
-``` ruby
+ ```rb
  a, (b, c, *) = 1, 2, 3, 4, 5
      ^^^^
-```
+ ```
 
  The splat node can be absent, in that case all target expressions are in the left field.
 
-``` ruby
+ ```rb
  a, (b, c) = 1, 2, 3, 4, 5
      ^^^^
-```
+ ```
 */
     pub lefts: pm_node_list,
     /** MultiTargetNode#rest
 
  Represents a splat node in the target expression.
 
-``` ruby
+ ```rb
  a, (b, *c) = 1, 2, 3, 4
         ^^
-```
+ ```
 
  The variable can be empty, this results in a `SplatNode` with a `nil` expression field.
 
-``` ruby
+ ```rb
  a, (b, *) = 1, 2, 3, 4
         ^
-```
+ ```
 
  If the `*` is omitted, this field will contain an `ImplicitRestNode`
 
-``` ruby
+ ```rb
  a, (b,) = 1, 2, 3, 4
       ^
-```
+ ```
 */
     pub rest: *mut pm_node,
     /** MultiTargetNode#rights
 
  Represents the targets expressions after a splat node.
 
-``` ruby
+ ```rb
  a, (*, b, c) = 1, 2, 3, 4, 5
         ^^^^
-```
+ ```
 */
     pub rights: pm_node_list,
     /** MultiTargetNode#lparen_loc
 
  The Location of the opening parenthesis.
 
-``` ruby
+ ```rb
  a, (b, c) = 1, 2, 3
     ^
-```
+ ```
 */
     pub lparen_loc: pm_location_t,
     /** MultiTargetNode#rparen_loc
 
  The Location of the closing parenthesis.
 
-``` ruby
+ ```rb
  a, (b, c) = 1, 2, 3
          ^
-```
+ ```
 */
     pub rparen_loc: pm_location_t,
 }
@@ -7902,10 +7640,10 @@ pub struct pm_multi_target_node {
 
  Represents a write to a multi-target expression.
 
-``` ruby
+ ```rb
  a, b, c = 1, 2, 3
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_MULTI_WRITE_NODE
 
@@ -7921,91 +7659,91 @@ pub struct pm_multi_write_node {
 
  Represents the targets expressions before a splat node.
 
-``` ruby
+ ```rb
  a, b, * = 1, 2, 3, 4, 5
  ^^^^
-```
+ ```
 
  The splat node can be absent, in that case all target expressions are in the left field.
 
-``` ruby
+ ```rb
  a, b, c = 1, 2, 3, 4, 5
  ^^^^^^^
-```
+ ```
 */
     pub lefts: pm_node_list,
     /** MultiWriteNode#rest
 
  Represents a splat node in the target expression.
 
-``` ruby
+ ```rb
  a, b, *c = 1, 2, 3, 4
        ^^
-```
+ ```
 
  The variable can be empty, this results in a `SplatNode` with a `nil` expression field.
 
-``` ruby
+ ```rb
  a, b, * = 1, 2, 3, 4
        ^
-```
+ ```
 
  If the `*` is omitted, this field will contain an `ImplicitRestNode`
 
-``` ruby
+ ```rb
  a, b, = 1, 2, 3, 4
      ^
-```
+ ```
 */
     pub rest: *mut pm_node,
     /** MultiWriteNode#rights
 
  Represents the targets expressions after a splat node.
 
-``` ruby
+ ```rb
  a, *, b, c = 1, 2, 3, 4, 5
        ^^^^
-```
+ ```
 */
     pub rights: pm_node_list,
     /** MultiWriteNode#lparen_loc
 
  The Location of the opening parenthesis.
 
-``` ruby
+ ```rb
  (a, b, c) = 1, 2, 3
  ^
-```
+ ```
 */
     pub lparen_loc: pm_location_t,
     /** MultiWriteNode#rparen_loc
 
  The Location of the closing parenthesis.
 
-``` ruby
+ ```rb
  (a, b, c) = 1, 2, 3
          ^
-```
+ ```
 */
     pub rparen_loc: pm_location_t,
     /** MultiWriteNode#operator_loc
 
  The Location of the operator.
 
-``` ruby
+ ```rb
  a, b, c = 1, 2, 3
          ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** MultiWriteNode#value
 
  The value to write to the targets. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  a, b, c = 1, 2, 3
            ^^^^^^^
-```
+ ```
 */
     pub value: *mut pm_node,
 }
@@ -8013,10 +7751,10 @@ pub struct pm_multi_write_node {
 
  Represents the use of the `next` keyword.
 
-``` ruby
+ ```rb
  next 1
  ^^^^^^
-```
+ ```
 
  Type: ::PM_NEXT_NODE
 
@@ -8039,10 +7777,10 @@ pub struct pm_next_node {
 
  Represents the use of the `nil` keyword.
 
-``` ruby
+ ```rb
  nil
  ^^^
-```
+ ```
 
  Type: ::PM_NIL_NODE
 
@@ -8059,11 +7797,11 @@ pub struct pm_nil_node {
 
  Represents the use of `&nil` inside method arguments.
 
-``` ruby
+ ```rb
  def a(&nil)
        ^^^^
  end
-```
+ ```
 
  Type: ::PM_NO_BLOCK_PARAMETER_NODE
 
@@ -8086,11 +7824,11 @@ pub struct pm_no_block_parameter_node {
 
  Represents the use of `**nil` inside method arguments.
 
-``` ruby
+ ```rb
  def a(**nil)
        ^^^^^
  end
-```
+ ```
 
  Type: ::PM_NO_KEYWORDS_PARAMETER_NODE
 
@@ -8113,10 +7851,10 @@ pub struct pm_no_keywords_parameter_node {
 
  Represents an implicit set of parameters through the use of numbered parameters within a block or lambda.
 
-``` ruby
+ ```rb
  -> { _1 + _2 }
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_NUMBERED_PARAMETERS_NODE
 
@@ -8136,10 +7874,10 @@ pub struct pm_numbered_parameters_node {
 
  Represents reading a numbered reference to a capture in the previous match.
 
-``` ruby
+ ```rb
  $1
  ^^
-```
+ ```
 
  Type: ::PM_NUMBERED_REFERENCE_READ_NODE
 
@@ -8155,17 +7893,13 @@ pub struct pm_numbered_reference_read_node {
 
  The (1-indexed, from the left) number of the capture group. Numbered references that are too large result in this value being `0`.
 
-``` ruby
+ ```rb
  $1          # number `1`
-```
 
-``` ruby
  $5432       # number `5432`
-```
 
-``` ruby
  $4294967296 # number `0`
-```
+ ```
 */
     pub number: u32,
 }
@@ -8173,11 +7907,11 @@ pub struct pm_numbered_reference_read_node {
 
  Represents an optional keyword parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b: 1)
        ^^^^
  end
-```
+ ```
 
  Type: ::PM_OPTIONAL_KEYWORD_PARAMETER_NODE
 
@@ -8206,11 +7940,11 @@ pub struct pm_optional_keyword_parameter_node {
 
  Represents an optional parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b = 1)
        ^^^^^
  end
-```
+ ```
 
  Type: ::PM_OPTIONAL_PARAMETER_NODE
 
@@ -8242,10 +7976,10 @@ pub struct pm_optional_parameter_node {
 
  Represents the use of the `||` operator or the `or` keyword.
 
-``` ruby
+ ```rb
  left or right
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_OR_NODE
 
@@ -8261,40 +7995,36 @@ pub struct pm_or_node {
 
  Represents the left side of the expression. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  left or right
  ^^^^
-```
 
-``` ruby
  1 || 2
  ^
-```
+ ```
 */
     pub left: *mut pm_node,
     /** OrNode#right
 
  Represents the right side of the expression.
 
-``` ruby
+ ```rb
  left || right
          ^^^^^
-```
 
-``` ruby
  1 or 2
       ^
-```
+ ```
 */
     pub right: *mut pm_node,
     /** OrNode#operator_loc
 
  The Location of the `or` keyword or the `||` operator.
 
-``` ruby
+ ```rb
  left or right
       ^^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -8302,11 +8032,11 @@ pub struct pm_or_node {
 
  Represents the list of parameters on a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b, c, d)
        ^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_PARAMETERS_NODE
 
@@ -8344,10 +8074,10 @@ pub struct pm_parameters_node {
 
  Represents a parenthesized expression
 
-``` ruby
+ ```rb
  (10 + 34)
  ^^^^^^^^^
-```
+ ```
 
  Type: ::PM_PARENTHESES_NODE
 
@@ -8376,10 +8106,10 @@ pub struct pm_parentheses_node {
 
  Represents the use of the `^` operator for pinning an expression in a pattern matching expression.
 
-``` ruby
+ ```rb
  foo in ^(bar)
         ^^^^^^
-```
+ ```
 
  Type: ::PM_PINNED_EXPRESSION_NODE
 
@@ -8395,40 +8125,40 @@ pub struct pm_pinned_expression_node {
 
  The expression used in the pinned expression
 
-``` ruby
+ ```rb
  foo in ^(bar)
           ^^^
-```
+ ```
 */
     pub expression: *mut pm_node,
     /** PinnedExpressionNode#operator_loc
 
  The Location of the `^` operator
 
-``` ruby
+ ```rb
  foo in ^(bar)
         ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
     /** PinnedExpressionNode#lparen_loc
 
  The Location of the opening parenthesis.
 
-``` ruby
+ ```rb
  foo in ^(bar)
          ^
-```
+ ```
 */
     pub lparen_loc: pm_location_t,
     /** PinnedExpressionNode#rparen_loc
 
  The Location of the closing parenthesis.
 
-``` ruby
+ ```rb
  foo in ^(bar)
              ^
-```
+ ```
 */
     pub rparen_loc: pm_location_t,
 }
@@ -8436,10 +8166,10 @@ pub struct pm_pinned_expression_node {
 
  Represents the use of the `^` operator for pinning a variable in a pattern matching expression.
 
-``` ruby
+ ```rb
  foo in ^bar
         ^^^^
-```
+ ```
 
  Type: ::PM_PINNED_VARIABLE_NODE
 
@@ -8455,20 +8185,20 @@ pub struct pm_pinned_variable_node {
 
  The variable used in the pinned expression
 
-``` ruby
+ ```rb
  foo in ^bar
          ^^^
-```
+ ```
 */
     pub variable: *mut pm_node,
     /** PinnedVariableNode#operator_loc
 
  The Location of the `^` operator
 
-``` ruby
+ ```rb
  foo in ^bar
         ^
-```
+ ```
 */
     pub operator_loc: pm_location_t,
 }
@@ -8476,10 +8206,10 @@ pub struct pm_pinned_variable_node {
 
  Represents the use of the `END` keyword.
 
-``` ruby
+ ```rb
  END { foo }
  ^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_POST_EXECUTION_NODE
 
@@ -8508,10 +8238,10 @@ pub struct pm_post_execution_node {
 
  Represents the use of the `BEGIN` keyword.
 
-``` ruby
+ ```rb
  BEGIN { foo }
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_PRE_EXECUTION_NODE
 
@@ -8561,15 +8291,13 @@ pub struct pm_program_node {
 
  Represents the use of the `..` or `...` operators.
 
-``` ruby
+ ```rb
  1..2
  ^^^^
-```
 
-``` ruby
  c if a =~ /left/ ... b =~ /right/
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_RANGE_NODE
 
@@ -8588,30 +8316,26 @@ pub struct pm_range_node {
 
  The left-hand side of the range, if present. It can be either `nil` or any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  1...
  ^
-```
 
-``` ruby
  hello...goodbye
  ^^^^^
-```
+ ```
 */
     pub left: *mut pm_node,
     /** RangeNode#right
 
  The right-hand side of the range, if present. It can be either `nil` or any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  ..5
    ^
-```
 
-``` ruby
  1...foo
      ^^^
-```
+ ```
  If neither right-hand or left-hand side was included, this will be an ErrorRecoveryNode.
 */
     pub right: *mut pm_node,
@@ -8625,10 +8349,10 @@ pub struct pm_range_node {
 
  Represents a rational number literal.
 
-``` ruby
+ ```rb
  1.0r
  ^^^^
-```
+ ```
 
  Type: ::PM_RATIONAL_NODE
 
@@ -8650,18 +8374,18 @@ pub struct pm_rational_node {
 
  The numerator of the rational number.
 
-``` ruby
+ ```rb
  1.5r # numerator 3
-```
+ ```
 */
     pub numerator: pm_integer_t,
     /** RationalNode#denominator
 
  The denominator of the rational number.
 
-``` ruby
+ ```rb
  1.5r # denominator 2
-```
+ ```
 */
     pub denominator: pm_integer_t,
 }
@@ -8669,10 +8393,10 @@ pub struct pm_rational_node {
 
  Represents the use of the `redo` keyword.
 
-``` ruby
+ ```rb
  redo
  ^^^^
-```
+ ```
 
  Type: ::PM_REDO_NODE
 
@@ -8689,10 +8413,10 @@ pub struct pm_redo_node {
 
  Represents a regular expression literal with no interpolation.
 
-``` ruby
+ ```rb
  /foo/i
  ^^^^^^
-```
+ ```
 
  Type: ::PM_REGULAR_EXPRESSION_NODE
 
@@ -8734,11 +8458,11 @@ pub struct pm_regular_expression_node {
 
  Represents a required keyword parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b: )
        ^^
  end
-```
+ ```
 
  Type: ::PM_REQUIRED_KEYWORD_PARAMETER_NODE
 
@@ -8764,11 +8488,11 @@ pub struct pm_required_keyword_parameter_node {
 
  Represents a required parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(b)
        ^
  end
-```
+ ```
 
  Type: ::PM_REQUIRED_PARAMETER_NODE
 
@@ -8791,10 +8515,10 @@ pub struct pm_required_parameter_node {
 
  Represents an expression modified with a rescue.
 
-``` ruby
+ ```rb
  foo rescue nil
  ^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_RESCUE_MODIFIER_NODE
 
@@ -8820,13 +8544,13 @@ pub struct pm_rescue_modifier_node {
 
  Represents a rescue statement.
 
-``` ruby
+ ```rb
  begin
  rescue Foo, *splat, Bar => ex
    foo
  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
  end
-```
+ ```
 
  `Foo, *splat, Bar` are in the `exceptions` field. `ex` is in the `reference` field.
 
@@ -8866,11 +8590,11 @@ pub struct pm_rescue_node {
 
  Represents a rest parameter to a method, block, or lambda definition.
 
-``` ruby
+ ```rb
  def a(*b)
        ^^
  end
-```
+ ```
 
  Type: ::PM_REST_PARAMETER_NODE
 
@@ -8899,10 +8623,10 @@ pub struct pm_rest_parameter_node {
 
  Represents the use of the `retry` keyword.
 
-``` ruby
+ ```rb
  retry
  ^^^^^
-```
+ ```
 
  Type: ::PM_RETRY_NODE
 
@@ -8919,10 +8643,10 @@ pub struct pm_retry_node {
 
  Represents the use of the `return` keyword.
 
-``` ruby
+ ```rb
  return 1
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_RETURN_NODE
 
@@ -8945,10 +8669,10 @@ pub struct pm_return_node {
 
  Represents the `self` keyword.
 
-``` ruby
+ ```rb
  self
  ^^^^
-```
+ ```
 
  Type: ::PM_SELF_NODE
 
@@ -8965,11 +8689,11 @@ pub struct pm_self_node {
 
  This node wraps a constant write to indicate that when the value is written, it should have its shareability state modified.
 
-``` ruby
+ ```rb
  # shareable_constant_value: literal
  C = { a: 1 }
  ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SHAREABLE_CONSTANT_NODE
 
@@ -8996,10 +8720,10 @@ pub struct pm_shareable_constant_node {
 
  Represents a singleton class declaration involving the `class` keyword.
 
-``` ruby
+ ```rb
  class << self end
  ^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SINGLETON_CLASS_NODE
 
@@ -9034,10 +8758,10 @@ pub struct pm_singleton_class_node {
 
  Represents the use of the `__ENCODING__` keyword.
 
-``` ruby
+ ```rb
  __ENCODING__
  ^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_ENCODING_NODE
 
@@ -9054,10 +8778,10 @@ pub struct pm_source_encoding_node {
 
  Represents the use of the `__FILE__` keyword.
 
-``` ruby
+ ```rb
  __FILE__
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_FILE_NODE
 
@@ -9085,10 +8809,10 @@ pub struct pm_source_file_node {
 
  Represents the use of the `__LINE__` keyword.
 
-``` ruby
+ ```rb
  __LINE__
  ^^^^^^^^
-```
+ ```
 
  Type: ::PM_SOURCE_LINE_NODE
 
@@ -9105,10 +8829,10 @@ pub struct pm_source_line_node {
 
  Represents the use of the splat operator.
 
-``` ruby
+ ```rb
  [*a]
   ^^
-```
+ ```
 
  Type: ::PM_SPLAT_NODE
 
@@ -9131,10 +8855,10 @@ pub struct pm_splat_node {
 
  Represents a set of statements contained within some scope.
 
-``` ruby
+ ```rb
  foo; bar; baz
  ^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_STATEMENTS_NODE
 
@@ -9154,20 +8878,16 @@ pub struct pm_statements_node {
 
  Represents a string literal, a string contained within a `%w` list, or plain string content within an interpolated string.
 
-``` ruby
+ ```rb
  "foo"
  ^^^^^
-```
 
-``` ruby
  %w[foo]
     ^^^
-```
 
-``` ruby
  "foo #{bar} baz"
   ^^^^      ^^^^
-```
+ ```
 
  Type: ::PM_STRING_NODE
 
@@ -9202,15 +8922,13 @@ pub struct pm_string_node {
 
  Represents the use of the `super` keyword with parentheses or arguments.
 
-``` ruby
+ ```rb
  super()
  ^^^^^^^
-```
 
-``` ruby
  super foo, bar
  ^^^^^^^^^^^^^^
-```
+ ```
 
  If no arguments are provided (except for a block), it would be a `ForwardingSuperNode` instead.
 
@@ -9246,15 +8964,13 @@ pub struct pm_super_node {
 
  Represents a symbol literal or a symbol contained within a `%i` list.
 
-``` ruby
+ ```rb
  :foo
  ^^^^
-```
 
-``` ruby
  %i[foo]
     ^^^
-```
+ ```
 
  Type: ::PM_SYMBOL_NODE
 
@@ -9288,10 +9004,10 @@ pub struct pm_symbol_node {
 
  Represents the use of the literal `true` keyword.
 
-``` ruby
+ ```rb
  true
  ^^^^
-```
+ ```
 
  Type: ::PM_TRUE_NODE
 
@@ -9308,10 +9024,10 @@ pub struct pm_true_node {
 
  Represents the use of the `undef` keyword.
 
-``` ruby
+ ```rb
  undef :foo, :bar, :baz
  ^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNDEF_NODE
 
@@ -9334,15 +9050,13 @@ pub struct pm_undef_node {
 
  Represents the use of the `unless` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar unless foo
  ^^^^^^^^^^^^^^
-```
 
-``` ruby
  unless foo then bar end
  ^^^^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNLESS_NODE
 
@@ -9358,40 +9072,36 @@ pub struct pm_unless_node {
 
  The Location of the `unless` keyword.
 
-``` ruby
+ ```rb
  unless cond then bar end
  ^^^^^^
-```
 
-``` ruby
  bar unless cond
      ^^^^^^
-```
+ ```
 */
     pub unless_keyword_loc: pm_location_t,
     /** UnlessNode#predicate
 
  The condition to be evaluated for the unless expression. It can be any [non-void expression](https://github.com/ruby/prism/blob/main/docs/parsing_rules.md#non-void-expression).
 
-``` ruby
+ ```rb
  unless cond then bar end
         ^^^^
-```
 
-``` ruby
  bar unless cond
             ^^^^
-```
+ ```
 */
     pub predicate: *mut pm_node,
     /** UnlessNode#then_keyword_loc
 
  The Location of the `then` keyword, if present.
 
-``` ruby
+ ```rb
  unless cond then bar end
              ^^^^
-```
+ ```
 */
     pub then_keyword_loc: pm_location_t,
     /** UnlessNode#statements
@@ -9399,30 +9109,30 @@ pub struct pm_unless_node {
  The body of statements that will executed if the unless condition is
  falsey. Will be `nil` if no body is provided.
 
-``` ruby
+ ```rb
  unless cond then bar end
                   ^^^
-```
+ ```
 */
     pub statements: *mut pm_statements_node,
     /** UnlessNode#else_clause
 
  The else clause of the unless expression, if present.
 
-``` ruby
+ ```rb
  unless cond then bar else baz end
                       ^^^^^^^^^^^^
-```
+ ```
 */
     pub else_clause: *mut pm_else_node,
     /** UnlessNode#end_keyword_loc
 
  The Location of the `end` keyword, if present.
 
-``` ruby
+ ```rb
  unless cond then bar end
                       ^^^
-```
+ ```
 */
     pub end_keyword_loc: pm_location_t,
 }
@@ -9430,15 +9140,13 @@ pub struct pm_unless_node {
 
  Represents the use of the `until` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar until foo
  ^^^^^^^^^^^^^
-```
 
-``` ruby
  until foo do bar end
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_UNTIL_NODE
 
@@ -9473,12 +9181,12 @@ pub struct pm_until_node {
 
  Represents the use of the `when` keyword within a case statement.
 
-``` ruby
+ ```rb
  case true
  when true
  ^^^^^^^^^
  end
-```
+ ```
 
  Type: ::PM_WHEN_NODE
 
@@ -9507,15 +9215,13 @@ pub struct pm_when_node {
 
  Represents the use of the `while` keyword, either in the block form or the modifier form.
 
-``` ruby
+ ```rb
  bar while foo
  ^^^^^^^^^^^^^
-```
 
-``` ruby
  while foo do bar end
  ^^^^^^^^^^^^^^^^^^^^
-```
+ ```
 
  Type: ::PM_WHILE_NODE
 
@@ -9550,10 +9256,10 @@ pub struct pm_while_node {
 
  Represents an xstring literal with no interpolation.
 
-``` ruby
+ ```rb
  `foo`
  ^^^^^
-```
+ ```
 
  Type: ::PM_X_STRING_NODE
 
@@ -9586,10 +9292,10 @@ pub struct pm_x_string_node {
 
  Represents the use of the `yield` keyword.
 
-``` ruby
+ ```rb
  yield 1
  ^^^^^^^
-```
+ ```
 
  Type: ::PM_YIELD_NODE
 

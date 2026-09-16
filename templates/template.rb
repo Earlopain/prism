@@ -69,7 +69,11 @@ module Prism
       end
 
       def each_java_line(&block)
-        ConfigComment.new(JavaDoc.escape(value)).each_line(&block)
+        ConfigComment.new(JavaDoc.escape(value)).each_line do |line|
+          # Skip codefences. Only javadoc since version 23 can use markdown (via /// comments).
+          next if line.include?("```")
+          yield line
+        end
       end
     end
 

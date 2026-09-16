@@ -196,26 +196,8 @@ fn accessor_func_name(value: &str) -> String {
 
 /// Write the generated struct for the node to the file.
 fn write_node(file: &mut File, flags: &[Flags], node: &Node) -> Result<(), Box<dyn std::error::Error>> {
-    let mut example = false;
-
     for line in node.comment.lines() {
-        if let Some(stripped) = line.strip_prefix("    ") {
-            if !example {
-                writeln!(file, "/// ```ruby")?;
-                example = true;
-            }
-            writeln!(file, "/// {}", stripped)?;
-        } else {
-            if example {
-                writeln!(file, "/// ```")?;
-                example = false;
-            }
-            writeln!(file, "/// {}", line)?;
-        }
-    }
-
-    if example {
-        writeln!(file, "/// ```")?;
+        writeln!(file, "/// {}", line)?;
     }
 
     writeln!(file, "pub struct {}<'pr> {{", node.name)?;
