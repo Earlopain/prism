@@ -68,6 +68,17 @@ module Prism
         value.each_line { |line| yield line.prepend(" ").rstrip }
       end
 
+      def each_line_with_playground_link(&block)
+        each_line(&block)
+        code = value[/```rb\s*\n(.*?)\n```/m, 1]
+        return unless code
+
+        code.gsub!(/^[\s^]*$/, "") # clear marker lines
+        encoded = [code].pack("m0").tr("+/", "-_").delete("=")
+        yield ""
+        yield " [Explore code sample](https://ruby.github.io/prism/playground.html##{encoded})"
+      end
+
       def each_java_line(&block)
         ConfigComment.new(JavaDoc.escape(value)).each_line(&block)
       end
@@ -86,6 +97,10 @@ module Prism
 
       def each_comment_line(&block)
         ConfigComment.new(comment).each_line(&block) if comment
+      end
+
+      def each_comment_line_with_playground_link(&block)
+        ConfigComment.new(comment).each_line_with_playground_link(&block) if comment
       end
 
       def each_comment_java_line(&block)
@@ -517,6 +532,10 @@ module Prism
 
       def each_comment_line(&block)
         ConfigComment.new(comment).each_line(&block)
+      end
+
+      def each_comment_line_with_playground_link(&block)
+        ConfigComment.new(comment).each_line_with_playground_link(&block)
       end
 
       def each_comment_java_line(&block)
